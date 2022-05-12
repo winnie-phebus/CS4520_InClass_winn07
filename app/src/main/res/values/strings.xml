@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">CS4520_InClassAssignments</string>
+    <string name="ic01_calculate_bmi">Calculate BMI</string>
+    <string name="ic01_body_mass_index_bmi">Body Mass Index (BMI)</string>
+    <string name="ic01_click_on_calculate_bmi_to_find_your_bmi">Click on Calculate BMI to find your BMI</string>
+    <string name="ic01_your_weight_in_pounds">Your Weight (in pounds)</string>
+    <string name="ic01_feet">feet</string>
+    <string name="ic01_inches">inches</string>
+    <string name="ic01_weight">Weight</string>
+    <string name="ic01_height">Height</string>
+    <string name="ic01_lbs">lbs</string>
 </resources>

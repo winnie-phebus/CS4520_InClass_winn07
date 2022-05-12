@@ -6,4 +6,123 @@
     android:layout_height="match_parent"
     tools:context=".InClass01">
 
+    <TextView
+        android:id="@+id/ic01_weightlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/ic01_weight"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic01_lblabel" />
+
+    <Button
+        android:id="@+id/IC01calcBMI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="85dp"
+        android:text="@string/ic01_calculate_bmi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic01_heightIn" />
+
+    <TextView
+        android:id="@+id/ic01_heightlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="45dp"
+        android:text="@string/ic01_height"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic01_weight" />
+
+    <TextView
+        android:id="@+id/ic01_promptText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/ic01_click_on_calculate_bmi_to_find_your_bmi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IC01calcBMI" />
+
+    <EditText
+        android:id="@+id/ic01_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/ic01_your_weight_in_pounds"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic01_weightlabel" />
+
+    <TextView
+        android:id="@+id/ic01_lblabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="65dp"
+        android:text="@string/ic01_body_mass_index_bmi"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ic01_heightFt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/ic01_feet"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic01_heightlabel" />
+
+    <EditText
+        android:id="@+id/ic01_heightIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/ic01_inches"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic01_heightFt" />
+
+    <TextView
+        android:id="@+id/ic01_lb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="156dp"
+        android:text="@string/ic01_lbs"
+        app:layout_constraintStart_toEndOf="@+id/ic01_weight"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ic01_feet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="110dp"
+        android:text="@string/ic01_feet"
+        app:layout_constraintStart_toEndOf="@+id/ic01_heightFt"
+        app:layout_constraintTop_toBottomOf="@+id/ic01_lb" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/ic01_inches"
+        app:layout_constraintStart_toEndOf="@+id/ic01_heightIn"
+        app:layout_constraintTop_toBottomOf="@+id/ic01_feet" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
