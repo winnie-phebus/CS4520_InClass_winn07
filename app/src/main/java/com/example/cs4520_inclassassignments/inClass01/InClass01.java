@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass01;
 
 // @author: Winnie Phebus
 // Assignment 01
@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.cs4520_inclassassignments.R;
 
 public class InClass01 extends AppCompatActivity {
     final String TAG = "InClass01";

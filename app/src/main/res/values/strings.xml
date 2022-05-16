@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">CS4520_InClassAssignments</string>
+    <!-- In-Class 01 string values -->
     <string name="ic01_calculate_bmi">Calculate BMI</string>
     <string name="ic01_body_mass_index_bmi">Body Mass Index (BMI)</string>
     <string name="ic01_click_on_calculate_bmi_to_find_your_bmi">Click on Calculate BMI to find your BMI</string>
@@ -9,4 +10,8 @@
     <string name="ic01_weight">Weight</string>
     <string name="ic01_height">Height</string>
     <string name="ic01_lbs">lbs</string>
+    <!-- These are the main string values -->
+    <string name="main_practice">Practice</string>
+    <string name="main_in_class_01">In Class 01</string>
+    <string name="main_in_class_02">In Class 02</string>
 </resources>

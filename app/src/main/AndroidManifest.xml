@@ -10,10 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CS4520_InClassAssignments">
         <activity
-            android:name=".InClass01"
+            android:name=".InClass02"
             android:exported="false" />
         <activity
-            android:name=".Practice"
+            android:name=".inClass01.InClass01"
+            android:exported="false" />
+        <activity
+            android:name=".practice.Practice"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
