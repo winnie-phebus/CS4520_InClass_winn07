@@ -14,4 +14,10 @@
     <string name="main_practice">Practice</string>
     <string name="main_in_class_01">In Class 01</string>
     <string name="main_in_class_02">In Class 02</string>
+    <!-- From ic2 but could be considered general use -->
+    <string name="submit">Submit</string>
+    <string name="email">Email</string>
+    <string name="android">Android</string>
+    <string name="ios">IOS</string>
+    <string name="name">Name</string>
 </resources>

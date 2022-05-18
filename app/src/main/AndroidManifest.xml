@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CS4520_InClassAssignments">
         <activity
+            android:name=".IC02_Display"
+            android:exported="false" />
+        <activity
+            android:name=".IC02_SelectAvatar"
+            android:exported="false" />
+        <activity
             android:name=".InClass02"
             android:exported="false" />
         <activity

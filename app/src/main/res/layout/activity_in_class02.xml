@@ -6,4 +6,121 @@
     android:layout_height="match_parent"
     tools:context=".InClass02">
 
+    <EditText
+        android:id="@+id/ic2_NameEdit"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ic2_AvatarImageV"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic2_emailEditText"
+        tools:src="@drawable/select_avatar" />
+
+    <TextView
+        android:id="@+id/ic_IUseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="36dp"
+        android:text="I use:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic2_AvatarImageV" />
+
+    <RadioGroup
+        android:id="@+id/ic2_andorios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.127"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic_IUseText">
+
+        <RadioButton
+            android:id="@+id/ic2_radioAndroid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/android"
+            tools:layout_editor_absoluteX="49dp"
+            tools:layout_editor_absoluteY="448dp" />
+
+        <RadioButton
+            android:id="@+id/ic2_radioIOS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ios"
+            tools:layout_editor_absoluteX="130dp"
+            tools:layout_editor_absoluteY="448dp" />
+    </RadioGroup>
+
+    <SeekBar
+        android:id="@+id/ic2_MoodSeekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:max="3"
+        android:progress="2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic2_moodIndicTextView" />
+
+    <Button
+        android:id="@+id/ic2_submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic2_MoodSeekBar" />
+
+    <EditText
+        android:id="@+id/ic2_emailEditText"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic2_NameEdit" />
+
+    <TextView
+        android:id="@+id/ic2_moodIndicTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:text="Your current mood: Happy"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic2_andorios" />
+
+    <ImageView
+        android:id="@+id/ic2_moodImageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ic2_MoodSeekBar"
+        app:layout_constraintTop_toBottomOf="@+id/ic2_moodIndicTextView"
+        app:srcCompat="@drawable/happy" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

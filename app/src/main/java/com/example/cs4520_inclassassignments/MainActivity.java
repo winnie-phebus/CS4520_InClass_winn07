@@ -2,10 +2,12 @@ package com.example.cs4520_inclassassignments;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.cs4520_inclassassignments.inClass01.InClass01;
 import com.example.cs4520_inclassassignments.practice.Practice;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         basicButtonSetup(inClass02Button, new Intent(MainActivity.this, InClass02.class), "MainTo02");
     }
 
+    // this function simplifies the action of using a button to open a new activity
     private void basicButtonSetup(Button newButton, Intent newIntent, String extraName){
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,5 +53,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(newIntent);
             }
         });
+    }
+
+    // this function simplifies Toast creation throughout the project, abstracted for fun
+    public static void showToast(Context contxt, String toastMsg) {
+        Toast.makeText(contxt, toastMsg, Toast.LENGTH_SHORT).show();
     }
 }
