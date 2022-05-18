@@ -20,4 +20,6 @@
     <string name="android">Android</string>
     <string name="ios">IOS</string>
     <string name="name">Name</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

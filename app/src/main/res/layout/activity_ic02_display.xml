@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IC02_Display">
+    tools:context=".inClass02.IC02_Display">
 
     <ImageView
         android:id="@+id/ic02_displayIV"

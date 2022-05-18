@@ -1,11 +1,13 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass02;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.cs4520_inclassassignments.Profile;
+import com.example.cs4520_inclassassignments.R;
 
 // @author: Winnie Phebus
 // Assignment 02
