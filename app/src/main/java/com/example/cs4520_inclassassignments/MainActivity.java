@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Log.d(TAG, "Practice button hit!");
                 Intent toPractice = new Intent(MainActivity.this, Practice.class);
-                toPractice.putExtra("MainToPractice","Alex Parkar?");
                 startActivity(toPractice);
             }
         });
@@ -44,12 +43,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // this function simplifies the action of using a button to open a new activity
-    private void basicButtonSetup(Button newButton, Intent newIntent, String extraName){
+    private void basicButtonSetup(Button newButton, Intent newIntent, String extraName) {
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Log.d(TAG, "Button hit");
-                newIntent.putExtra(extraName,"non-important");
+                newIntent.putExtra(extraName, "non-important");
                 startActivity(newIntent);
             }
         });

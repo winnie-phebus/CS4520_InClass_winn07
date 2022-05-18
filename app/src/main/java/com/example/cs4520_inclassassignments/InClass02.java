@@ -8,9 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -19,8 +17,6 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import com.example.cs4520_inclassassignments.R;
 
 // @author: Winnie Phebus
 // Assignment 02
@@ -47,7 +43,7 @@ public class InClass02 extends AppCompatActivity {
             = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
-            if (result.getResultCode()==RESULT_OK){
+            if (result.getResultCode() == RESULT_OK) {
                 avatarId = result.getData().getIntExtra("ToMain", R.drawable.select_avatar);
                 avatar.setImageResource(avatarId);
             }
@@ -60,7 +56,7 @@ public class InClass02 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_class02);
         setTitle("Edit Profile Activity");
-        curr = new Profile("","","","",0);
+        curr = new Profile("", "", "", "", 0);
 
         initViews();
 
@@ -76,7 +72,7 @@ public class InClass02 extends AppCompatActivity {
         iUseRadio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.ic2_radioAndroid){
+                if (checkedId == R.id.ic2_radioAndroid) {
                     andvios = "Android";
                 } else {
                     andvios = "IOS";
@@ -117,13 +113,13 @@ public class InClass02 extends AppCompatActivity {
 
     // takes in an int and updates the mood accordingly
     private void updateMood(int progress) {
-        if (progress == 0){
+        if (progress == 0) {
             moodStr = "Angry";
             moodImg.setImageResource(R.drawable.angry);
-        } else if (progress == 1){
+        } else if (progress == 1) {
             moodStr = "Sad";
             moodImg.setImageResource(R.drawable.sad);
-        } else if (progress == 2){
+        } else if (progress == 2) {
             moodStr = "Happy";
             moodImg.setImageResource(R.drawable.happy);
         } else {
@@ -131,11 +127,11 @@ public class InClass02 extends AppCompatActivity {
             moodImg.setImageResource(R.drawable.awesome);
         }
 
-        moodAnnounce.setText("Your current mood: "+moodStr);
+        moodAnnounce.setText("Your current mood: " + moodStr);
     }
 
     // to keep the onCreate method a little more concise, may be deleted later.
-    private void initViews(){
+    private void initViews() {
         name = findViewById(R.id.ic2_NameEdit);
         email = findViewById(R.id.ic2_emailEditText);
         avatar = findViewById(R.id.ic2_AvatarImageV);
@@ -165,11 +161,11 @@ public class InClass02 extends AppCompatActivity {
     }
 
     // basically updates the Profile, only run after onCreate so value should never be null
-    private boolean saveProfile(Profile current){
+    private boolean saveProfile(Profile current) {
         String nameGiven = name.getText().toString();
         String emailGiven = email.getText().toString().trim();
 
-        if (!validateInput(nameGiven,0) || !validateInput(emailGiven, 1)){
+        if (!validateInput(nameGiven, 0) || !validateInput(emailGiven, 1)) {
             return false;
         }
 
@@ -178,7 +174,7 @@ public class InClass02 extends AppCompatActivity {
         current.setEmail(emailGiven);
 
         // android/ios and mood
-        if (TextUtils.isEmpty(andvios)){
+        if (TextUtils.isEmpty(andvios)) {
             MainActivity.showToast(InClass02.this, "Please select an option for Android or IOS.");
             return false;
         }

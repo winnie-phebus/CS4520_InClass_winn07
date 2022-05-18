@@ -35,21 +35,21 @@ public class IC02_Display extends AppCompatActivity {
             Profile curr = getIntent().getParcelableExtra(InClass02.pro_key);
 
             avatar.setImageResource(curr.getAvatarId());
-            name.setText("Name: "+curr.getName());
-            email.setText("Email: "+curr.getEmail());
-            andios.setText("I use "+curr.getAndOrIos()+"!");
-            mood.setText("I am "+curr.getMood()+"!");
+            name.setText("Name: " + curr.getName());
+            email.setText("Email: " + curr.getEmail());
+            andios.setText("I use " + curr.getAndOrIos() + "!");
+            mood.setText("I am " + curr.getMood() + "!");
             moodImg.setImageResource(imgForMood(curr.getMood()));
         }
     }
 
     // finds out what moodimg matches the current mood
-    private int imgForMood(String mood){
-        if (mood.equals("Angry")){
+    private int imgForMood(String mood) {
+        if (mood.equals("Angry")) {
             return R.drawable.angry;
-        } else if (mood.equals("Sad")){
+        } else if (mood.equals("Sad")) {
             return R.drawable.sad;
-        } else if (mood.equals("Happy")){
+        } else if (mood.equals("Happy")) {
             return R.drawable.happy;
         } else { //"Awesome"
             return R.drawable.awesome;
