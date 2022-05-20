@@ -22,4 +22,7 @@
     <string name="name">Name</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_in_class_03">IN CLASS 03</string>
 </resources>

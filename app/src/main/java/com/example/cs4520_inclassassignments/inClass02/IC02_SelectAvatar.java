@@ -46,6 +46,7 @@ public class IC02_SelectAvatar extends AppCompatActivity {
         blackM.setOnClickListener(ivOnClick(R.drawable.avatar_m_1));
     }
 
+    // internal onclick listener for all the imageview, abstracted for convenience
     private View.OnClickListener ivOnClick(int id) {
         return new View.OnClickListener() {
             @Override

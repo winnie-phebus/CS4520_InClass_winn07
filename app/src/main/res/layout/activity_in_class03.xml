@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ic03_baseContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InClass03">
+
 
     <EditText
         android:id="@+id/ic03_NameEdit"
@@ -78,15 +80,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ic03_moodIndicTextView" />
 
-    <Button
-        android:id="@+id/ic03_submitButton"
+    <LinearLayout
+        android:id="@+id/ic03_submitTimeoutLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/submit"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic03_MoodSeekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/ic03_moodImageView">
+
+        <Button
+            android:id="@+id/ic03_submitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@string/submit" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/ic03_emailEditText"

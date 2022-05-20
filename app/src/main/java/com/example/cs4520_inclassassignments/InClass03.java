@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -17,7 +18,12 @@ import android.widget.TextView;
 import com.example.cs4520_inclassassignments.inClass02.IC02_Display;
 import com.example.cs4520_inclassassignments.inClass02.IC02_SelectAvatar;
 
-public class InClass03 extends AppCompatActivity {
+/**
+ * @author: Winnie Phebus
+ * Assignment 03
+ */
+
+public class InClass03 extends AppCompatActivity implements IC03_SelectAvatarFragment.SelectDataManager {
     final static String pro_key = "currentProfile";
 
     Profile curr;
@@ -34,11 +40,15 @@ public class InClass03 extends AppCompatActivity {
     int avatarId;
     String moodStr;
 
+    private String defaultActivityTitle = "Edit Profile Activity";
+    String selectFragmentTitle = "Select Avatar";
+    String displayFragmentTitle = "Display Profile";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_class03);
-        setTitle("Edit Profile Activity");
+        setTitle(defaultActivityTitle);
 
         curr = new Profile("", "", "", "", 0);
 
@@ -48,9 +58,11 @@ public class InClass03 extends AppCompatActivity {
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent openSelectAvatar = new Intent(InClass03.this, IC02_SelectAvatar.class);
-                //startActivityForResult.launch(openSelectAvatar);
-                //TODO: make this send to a fragment instead
+                setTitle(selectFragmentTitle);
+                getSupportFragmentManager().beginTransaction()
+                        .addToBackStack(selectFragmentTitle)
+                        .add(R.id.ic03_baseContainer, new IC03_SelectAvatarFragment())
+                        .commit();
             }
         });
 
@@ -87,13 +99,25 @@ public class InClass03 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (saveProfile(curr)) {
-                    Intent openDisplay = new Intent(InClass03.this, IC02_Display.class);
-                    openDisplay.putExtra(pro_key, curr);
-                    startActivity(openDisplay);
+                    setTitle(displayFragmentTitle);
+                    toggleViewVisibility(false);
+                    getSupportFragmentManager().beginTransaction()
+                            .addToBackStack(displayFragmentTitle)
+                            .add(R.id.ic03_baseContainer, IC03_DisplayFragment.newInstance(curr))
+                            .commit();
                 }
             }
         });
 
+    }
+
+    // collects information from the SelectAvatar fragment and reacts accordingly
+    public void avatarIdUpdate(int data) {
+        avatarId = data;
+        avatar.setImageResource(avatarId);
+        getSupportFragmentManager().popBackStack();
+        setTitle(defaultActivityTitle);
+        toggleViewVisibility(true);
     }
 
     // takes in an int and updates the mood accordingly
@@ -170,5 +194,16 @@ public class InClass03 extends AppCompatActivity {
         // the avatarID
         current.setAvatarId(avatarId);
         return true;
+    }
+
+    // flips the visibility of the main Activity views for when fragments are present
+    // scoped to only submit button, not-necessary otherwise
+    public void toggleViewVisibility(boolean showViews) {
+        int vis = View.INVISIBLE;
+
+        if (showViews) {
+            vis = View.VISIBLE;
+        }
+        findViewById(R.id.ic03_submitTimeoutLayout).setVisibility(vis);
     }
 }
