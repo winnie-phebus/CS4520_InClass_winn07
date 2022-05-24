@@ -1,8 +1,7 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass03;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -10,13 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.cs4520_inclassassignments.inClass02.IC02_Display;
-import com.example.cs4520_inclassassignments.inClass02.IC02_SelectAvatar;
+import com.example.cs4520_inclassassignments.MainActivity;
+import com.example.cs4520_inclassassignments.Profile;
+import com.example.cs4520_inclassassignments.R;
 
 /**
  * @author: Winnie Phebus

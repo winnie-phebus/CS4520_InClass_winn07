@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:visibility="visible"
-    tools:context=".IC03_DisplayFragment">
+    tools:context=".inClass03.IC03_DisplayFragment">
 
     <ImageView
         android:id="@+id/ic03_displayIV"

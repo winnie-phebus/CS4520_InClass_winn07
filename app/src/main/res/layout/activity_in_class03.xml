@@ -5,7 +5,7 @@
     android:id="@+id/ic03_baseContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InClass03">
+    tools:context=".inClass03.InClass03">
 
 
     <EditText

@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass03;
 
 import android.os.Bundle;
 
@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.cs4520_inclassassignments.Profile;
+import com.example.cs4520_inclassassignments.R;
 
 /**
  * @author: Winnie Phebus

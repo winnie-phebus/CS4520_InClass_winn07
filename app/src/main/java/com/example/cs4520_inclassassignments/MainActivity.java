@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.cs4520_inclassassignments.inClass01.InClass01;
 import com.example.cs4520_inclassassignments.inClass02.InClass02;
+import com.example.cs4520_inclassassignments.inClass03.InClass03;
 import com.example.cs4520_inclassassignments.practice.Practice;
 
 public class MainActivity extends AppCompatActivity {
