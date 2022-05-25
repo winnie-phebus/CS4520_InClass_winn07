@@ -1,21 +1,23 @@
 package com.example.cs4520_inclassassignments;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+/**
+ * @author: Winnie Phebus
+ * Assignment 04
+ */
 
 public class InClass04 extends AppCompatActivity {
     private TextView selectComplex;
@@ -142,7 +144,6 @@ public class InClass04 extends AppCompatActivity {
                     case HeavyWork.NUMBER_GOTTEN:
                         allNumsGenerated = false;
                         numCount = (int) msg.getData().getDouble(HeavyWork.ARR_I_KEY, 0.0);
-                        Log.d("IC04", "numCount: " + numCount);
                         break;
                     case DoHeavyWork.STATUS_NUMBERSRECV:
                         allNumsGenerated = true;
@@ -171,9 +172,7 @@ public class InClass04 extends AppCompatActivity {
                     progress = msg.what;
                 } else {
                     progress = numCount * 100 / arrMaxNum;
-                    Log.d("IC04", "NumCount: " + numCount + ", progress: " + progress);
                 }
-                Log.d("IC04", "Updating progress: " + progress);
                 threadProgression.setProgress(progress);
                 return false;
             }
@@ -204,10 +203,8 @@ public class InClass04 extends AppCompatActivity {
 
     // just rounds the given double
     private double qRound(double nn) {
-        Log.d("IC04", "Rounding " + nn);
-        double nthPlace = 10000.0;
+        double nthPlace = 1000000.0;
         return (Math.round(nn * nthPlace) / nthPlace);
-        //return nn;
     }
 
     // updates the UI with the information taken from the thread

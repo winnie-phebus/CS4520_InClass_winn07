@@ -39,7 +39,7 @@ public class InClass03 extends AppCompatActivity implements IC03_SelectAvatarFra
     int avatarId;
     String moodStr;
 
-    private String defaultActivityTitle = "Edit Profile Activity";
+    private final String defaultActivityTitle = "Edit Profile Activity";
     String selectFragmentTitle = "Select Avatar";
     String displayFragmentTitle = "Display Profile";
 
