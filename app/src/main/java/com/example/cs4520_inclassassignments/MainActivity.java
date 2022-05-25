@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button inClass01Button;
     Button inClass02Button;
     Button inClass03Button;
+    private Button inClass04Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
         inClass03Button = findViewById(R.id.inClass03Button);
         basicButtonSetup(inClass03Button, new Intent(MainActivity.this, InClass03.class), "MainTo03");
+
+        inClass04Button = findViewById(R.id.inClass04Button);
+        basicButtonSetup(inClass04Button, new Intent(MainActivity.this, InClass04.class), "");
+
     }
 
     // this function simplifies the action of using a button to open a new activity
