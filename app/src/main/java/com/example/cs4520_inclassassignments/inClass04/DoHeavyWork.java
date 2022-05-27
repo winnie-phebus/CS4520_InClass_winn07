@@ -1,7 +1,7 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass04;
 
-import static com.example.cs4520_inclassassignments.InClass04.msgBuilder;
-import static com.example.cs4520_inclassassignments.InClass04.msgWDataBuilder;
+import static com.example.cs4520_inclassassignments.inClass04.InClass04.msgBuilder;
+import static com.example.cs4520_inclassassignments.inClass04.InClass04.msgWDataBuilder;
 
 import android.os.Handler;
 
@@ -19,6 +19,7 @@ public class DoHeavyWork implements Runnable {
     public final static int STATUS_MAXFOUND = 102;
     public final static int STATUS_AVGFOUND = 103;
     public final static int STATUS_END = 105;
+
     public static final String ARR_MIN_KEY = "arr_min";
     public static final String ARR_MAX_KEY = "arr_max";
     public static final String ARR_AVG_KEY = "arr_avg";

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.cs4520_inclassassignments.inClass01.InClass01;
 import com.example.cs4520_inclassassignments.inClass02.InClass02;
 import com.example.cs4520_inclassassignments.inClass03.InClass03;
+import com.example.cs4520_inclassassignments.inClass04.InClass04;
 import com.example.cs4520_inclassassignments.practice.Practice;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Button inClass02Button;
     Button inClass03Button;
     private Button inClass04Button;
+    private Button inClass05Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         inClass04Button = findViewById(R.id.inClass04Button);
         basicButtonSetup(inClass04Button, new Intent(MainActivity.this, InClass04.class), "");
 
+        inClass05Button = findViewById(R.id.inClass05Button);
+        basicButtonSetup(inClass05Button, new Intent(MainActivity.this, InClass05.class),"");
     }
 
     // this function simplifies the action of using a button to open a new activity

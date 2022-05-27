@@ -2,15 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cs4520_inclassassignments">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CS4520_InClassAssignments">
+        android:theme="@style/Theme.CS4520_InClassAssignments"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".InClass04"
+            android:name=".InClass05"
+            android:exported="false" />
+        <activity
+            android:name=".inClass04.InClass04"
             android:exported="false" />
         <activity
             android:name=".inClass03.InClass03"

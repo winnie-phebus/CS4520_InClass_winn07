@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass04;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +10,9 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cs4520_inclassassignments.MainActivity;
+import com.example.cs4520_inclassassignments.R;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
