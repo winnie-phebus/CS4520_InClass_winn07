@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass05;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cs4520_inclassassignments.MainActivity;
+import com.example.cs4520_inclassassignments.R;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;

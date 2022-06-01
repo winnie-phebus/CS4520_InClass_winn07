@@ -13,16 +13,18 @@ import com.example.cs4520_inclassassignments.inClass01.InClass01;
 import com.example.cs4520_inclassassignments.inClass02.InClass02;
 import com.example.cs4520_inclassassignments.inClass03.InClass03;
 import com.example.cs4520_inclassassignments.inClass04.InClass04;
+import com.example.cs4520_inclassassignments.inClass05.InClass05;
 import com.example.cs4520_inclassassignments.practice.Practice;
 
 public class MainActivity extends AppCompatActivity {
     final String TAG = "Main";
-    Button practiceButton;
-    Button inClass01Button;
-    Button inClass02Button;
-    Button inClass03Button;
+    private Button practiceButton;
+    private Button inClass01Button;
+    private Button inClass02Button;
+    private Button inClass03Button;
     private Button inClass04Button;
     private Button inClass05Button;
+    private Button inClass06Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
         inClass05Button = findViewById(R.id.inClass05Button);
         basicButtonSetup(inClass05Button, new Intent(MainActivity.this, InClass05.class),"");
+        
+        inClass06Button = findViewById(R.id.inClass06Button);
+        basicButtonSetup(inClass06Button, new Intent(MainActivity.this, InClass06.class), "");
     }
 
     // this function simplifies the action of using a button to open a new activity
