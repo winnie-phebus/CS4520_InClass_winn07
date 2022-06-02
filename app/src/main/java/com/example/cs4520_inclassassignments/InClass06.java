@@ -37,7 +37,7 @@ public class InClass06 extends AppCompatActivity {
     private Button findNewsButton;
     private ListView listView;
 
-    private String apikey = "f777477991854b12a9a2f60117e85e34";
+
 
     private IC06_Category selectedCategory;
     private IC06_Country selectedCountry;
@@ -97,49 +97,27 @@ public class InClass06 extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getNews();
+               // getNews();
+                RetrofitClient.getInstance().getNews(selectedCategory, selectedCountry);
                 findNewsButton.setEnabled(false);
             }
         };
     }
 
-    // trying to use a simpler wrapper library for the Request, having dependency issues??
-    private void acquireNews(){
-       /* NewsApiClient newsApiClient = new NewsApiClient(apikey);
+  /*  private void getNews() {
 
-        // /v2/top-headlines
-        newsApiClient.getTopHeadlines(
-                new TopHeadlinesRequest.Builder()
-                        .q("bitcoin")
-                        .language("en")
-                        .build(),
-                new NewsApiClient.ArticlesResponseCallback() {
-                    @Override
-                    public void onSuccess(ArticleResponse response) {
-                        System.out.println(response.getArticles().get(0).getTitle());
-                    }
-
-                    @Override
-                    public void onFailure(Throwable throwable) {
-                        System.out.println(throwable.getMessage());
-                    }
-                }
-        );*/
-    }
-    private void getNews() {
-        String baseNewsAPIURL = "https://newsapi.org/v2/top-headlines?";
-
-        HttpUrl finUrl = HttpUrl.parse(baseNewsAPIURL).newBuilder()
+       *//* HttpUrl finUrl = HttpUrl.parse(baseNewsAPIURL).newBuilder()
                 .addQueryParameter("category", selectedCategory.getValue())
                 .addQueryParameter("country", selectedCountry.getValue())
                 .addQueryParameter("apiKey", apikey)
-                .build();
+                .build();*//*
 
+*//*        Call<List<Result>>
         Log.d(TAG, finUrl.toString());
 
         Request request = new Request.Builder()
                 .url(finUrl)
-                .build();
+                .build();*//*
 
         Log.d(TAG, request.toString());
 
@@ -158,7 +136,7 @@ public class InClass06 extends AppCompatActivity {
                     gsonData.fromJson(response.body().charStream(), Headlines.class);
                     Log.d(TAG, "Success");
                 } else {
-                    Log.d(TAG, String.valueOf(response.message()));
+                    Log.d(TAG, response.code()+" : "+String.valueOf(response.message()));
                 }
                 runOnUiThread(new Runnable() {
                     @Override
@@ -168,5 +146,5 @@ public class InClass06 extends AppCompatActivity {
                 });
             }
         });
-    }
+    }*/
 }

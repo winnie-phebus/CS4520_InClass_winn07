@@ -13,8 +13,8 @@ public class Headline {
     private String description;
     private String urlToImage;
 
-    public Headline(){
-    }
+    /*public Headline(){
+    }*/
 
     public Headline(String title, String author, String publishedAt, String description, String urlToImage) {
         this.title = title;

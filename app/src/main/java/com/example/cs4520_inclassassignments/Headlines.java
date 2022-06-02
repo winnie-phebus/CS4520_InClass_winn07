@@ -1,24 +1,30 @@
 package com.example.cs4520_inclassassignments;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Headlines {
+    private final String status;
+    private final int totalResults;
 
-    private ArrayList<Headline> headlines;
+    private final List<Headline> headlines;
 
-    public Headlines() {
-    }
-
-    public Headlines(ArrayList<Headline> headlines) {
+    public Headlines(String status, int totalResults, List<Headline> headlines) {
+        this.status = status;
+        this.totalResults = totalResults;
         this.headlines = headlines;
     }
 
-    public ArrayList<Headline> getHeadlines() {
+    public String getStatus() {
+        return status;
+    }
+
+    public int getTotalResults() {
+        return totalResults;
+    }
+
+    public List<Headline> getHeadlines() {
         return headlines;
-    }
-
-    public void setHeadlines(ArrayList<Headline> headlines) {
-        this.headlines = headlines;
     }
 
     @Override
