@@ -14,6 +14,14 @@ public class Headline implements Serializable {
     private String description;
     private String urlToImage;
 
+    public Headline() {
+        this.title = "";
+        this.author = "";
+        this.publishedAt = "";
+        this.description = "";
+        this.urlToImage = "";
+    }
+
     public Headline(String title, String author, String publishedAt, String description, String urlToImage) {
         this.title = title;
         this.author = author;

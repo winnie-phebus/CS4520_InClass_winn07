@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -41,6 +42,8 @@ public class InClass06 extends AppCompatActivity implements LifecycleOwner {
 
     private static final String TAG = "IC06";
 
+    private FragmentActivity fragment;
+
     private TextView topTextview;
     private Spinner newsCategory;
     private Spinner newsCountry;
@@ -59,11 +62,26 @@ public class InClass06 extends AppCompatActivity implements LifecycleOwner {
         setContentView(R.layout.activity_in_class06);
         setTitle("Article Finder");
 
-        initConditions();
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.ic06_fragmentContainer, new SelectHeadline())
+                .commit();
+
+        // TODO: replace new Headline with the actual article clicked on
+
+        findViewById(R.id.ic06_fragmentContainer).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.ic06_fragmentContainer, new ArticleDisplay())
+                        .commit();
+            }
+        });
+
+        //initConditions();
     }
 
     // binds the views to their corresponding variables
-    private void initConditions() {
+    /*private void initConditions() {
         topTextview = findViewById(R.id.IC06_textView);
 
         //defaults
@@ -120,15 +138,15 @@ public class InClass06 extends AppCompatActivity implements LifecycleOwner {
         headlineAdapter = new HeadlineAdapter(articles.getValue(), this);
         foundNewsDisplay.setLayoutManager(fndManager);
         foundNewsDisplay.setAdapter(headlineAdapter);
-    }
+    }*/
 
-    private View.OnClickListener findNews() {
+    /*private View.OnClickListener findNews() {
         return v -> {
             findNewsButton.setEnabled(false);
             articles =
                     RetrofitClient.getInstance().getNews(selectedCategory, selectedCountry);
         };
-    }
+    }*/
 
   /*  private void getNews() {
 
