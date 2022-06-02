@@ -33,7 +33,10 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+// Alix Heudebourg & Winnie Phebus
 public class InClass06 extends AppCompatActivity implements LifecycleOwner {
+
+
 
     private static final String TAG = "IC06";
 
