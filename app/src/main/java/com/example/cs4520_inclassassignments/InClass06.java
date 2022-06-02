@@ -12,12 +12,19 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cs4520_inclassassignments.enums.IC06_Category;
 import com.example.cs4520_inclassassignments.enums.IC06_Country;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -26,21 +33,21 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class InClass06 extends AppCompatActivity {
+public class InClass06 extends AppCompatActivity implements LifecycleOwner {
 
     private static final String TAG = "IC06";
-    private final OkHttpClient client = new OkHttpClient();
 
     private TextView topTextview;
     private Spinner newsCategory;
     private Spinner newsCountry;
     private Button findNewsButton;
-    private ListView listView;
-
-
+    private RecyclerView foundNewsDisplay;
+    private RecyclerView.LayoutManager fndManager;
+    private HeadlineAdapter headlineAdapter;
 
     private IC06_Category selectedCategory;
     private IC06_Country selectedCountry;
+    private MutableLiveData<List<Headline>> articles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +61,10 @@ public class InClass06 extends AppCompatActivity {
     // binds the views to their corresponding variables
     private void initConditions() {
         topTextview = findViewById(R.id.IC06_textView);
+
+        //defaults
+        selectedCategory = IC06_Category.getDefault();
+        selectedCountry = IC06_Country.getDefault();
 
         newsCategory = findViewById(R.id.ic06_news_category);
         ArrayAdapter<IC06_Category> adapter = new ArrayAdapter<IC06_Category>(this, android.R.layout.simple_spinner_dropdown_item, IC06_Category.values());
@@ -90,17 +101,28 @@ public class InClass06 extends AppCompatActivity {
         findNewsButton = findViewById(R.id.ic06_find_news_button);
         findNewsButton.setOnClickListener(findNews());
 
-        listView = findViewById(R.id.ic06_news_listview);
+        articles =
+                RetrofitClient.getInstance().getNews(selectedCategory, selectedCountry);
+        articles.observe(this, headlines -> runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findNewsButton.setEnabled(true);
+                headlineAdapter = new HeadlineAdapter(articles.getValue(), InClass06.this);
+            }
+        }));
+
+        foundNewsDisplay = findViewById(R.id.ic06_findNewsRV);
+        fndManager = new LinearLayoutManager(this);
+        headlineAdapter = new HeadlineAdapter(articles.getValue(), this);
+        foundNewsDisplay.setLayoutManager(fndManager);
+        foundNewsDisplay.setAdapter(headlineAdapter);
     }
 
     private View.OnClickListener findNews() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               // getNews();
-                RetrofitClient.getInstance().getNews(selectedCategory, selectedCountry);
-                findNewsButton.setEnabled(false);
-            }
+        return v -> {
+            findNewsButton.setEnabled(false);
+            articles =
+                    RetrofitClient.getInstance().getNews(selectedCategory, selectedCountry);
         };
     }
 

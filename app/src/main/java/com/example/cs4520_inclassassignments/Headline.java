@@ -1,20 +1,18 @@
 package com.example.cs4520_inclassassignments;
 
 
+import java.io.Serializable;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
-public class Headline {
+public class Headline implements Serializable {
 
     private String title;
     private String author;
     private String publishedAt;
     private String description;
     private String urlToImage;
-
-    /*public Headline(){
-    }*/
 
     public Headline(String title, String author, String publishedAt, String description, String urlToImage) {
         this.title = title;
@@ -73,22 +71,6 @@ public class Headline {
                 ", description='" + description + '\'' +
                 ", urlToImage='" + urlToImage + '\'' +
                 '}';
-    }
-
-    public String readbleDate(){
-        // get readble date from UTC format
-        // 2022-05-31T18:28:56Z -> May 31st, 2022 at 6:28
-
-        DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter
-                .ofPattern("uuuu-MM-dd'T'HH:mm:ss'Z'");
-
-        //Instance with given offset
-        OffsetDateTime odtInstanceAtOffset = OffsetDateTime.parse(this.publishedAt,
-                DATE_TIME_FORMATTER);
-
-        String dateStringInUTC = odtInstanceAtOffset.format(DATE_TIME_FORMATTER);
-
-        return dateStringInUTC;
     }
 }
 

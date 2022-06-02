@@ -7,12 +7,12 @@ public class Headlines {
     private final String status;
     private final int totalResults;
 
-    private final List<Headline> headlines;
+    private List<Headline> articles;
 
     public Headlines(String status, int totalResults, List<Headline> headlines) {
         this.status = status;
         this.totalResults = totalResults;
-        this.headlines = headlines;
+        this.articles = headlines;
     }
 
     public String getStatus() {
@@ -23,14 +23,14 @@ public class Headlines {
         return totalResults;
     }
 
-    public List<Headline> getHeadlines() {
-        return headlines;
+    public List<Headline> getArticles() {
+        return articles;
     }
 
     @Override
     public String toString() {
         return "Headlines{" +
-                "headlines=" + headlines +
+                "headlines=" + articles +
                 '}';
     }
 }

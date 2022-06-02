@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ic06_newsRV"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".InClass06">
@@ -13,7 +14,7 @@
         android:layout_marginStart="178dp"
         android:layout_marginTop="22dp"
         android:layout_marginEnd="175dp"
-        android:text="&quot;Generate News Articles by:&quot;"
+        android:text="Generate News Articles by:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,20 +41,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"
-        android:text="Button"
+        android:text="@string/ic06_findnews"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ic06_news_country" />
-
-    <ListView
-        android:id="@+id/ic06_news_listview"
-        android:layout_width="409dp"
-        android:layout_height="525dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic06_find_news_button" />
 
     <TextView
         android:id="@+id/textView2"
@@ -75,4 +67,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ic06_findNewsRV"
+        android:layout_width="fill_parent"
+        android:layout_height="510dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic06_find_news_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
