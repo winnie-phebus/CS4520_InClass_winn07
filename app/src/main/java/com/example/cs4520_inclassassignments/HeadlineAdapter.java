@@ -1,21 +1,35 @@
 package com.example.cs4520_inclassassignments;
 
-import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 06
+ */
 public class HeadlineAdapter extends RecyclerView.Adapter<HeadlineAdapter.ViewHolder> {
     List<Headline> articles;
+    FragmentActivity fContext;
 
-    public HeadlineAdapter(List<Headline> articles, Context context) {
-        this.articles = articles;
+    public HeadlineAdapter(List<Headline> articles, FragmentActivity context) {
+        if (context != null) {
+            this.articles = articles;
+            this.fContext = context;
+        } else {
+            throw new RuntimeException(context.toString() + "must be called from Fragment");
+        }
     }
 
     public List<Headline> getArticles() {
@@ -24,22 +38,30 @@ public class HeadlineAdapter extends RecyclerView.Adapter<HeadlineAdapter.ViewHo
 
     public void setArticles(List<Headline> articles) {
         this.articles = articles;
+        this.notifyDataSetChanged();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        private ConstraintLayout container;
         private TextView titleTV;
         private TextView authorTV;
         private TextView publishedAtTV;
         private TextView descriptionTV;
-       // private TextView urlToImageTV;
+        // private TextView urlToImageTV;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.container = itemView.findViewById(R.id.ic06_headlineV);
             this.titleTV = itemView.findViewById(R.id.ic06_hTitle);
             this.authorTV = itemView.findViewById(R.id.ic06_hAuthor);
             this.publishedAtTV = itemView.findViewById(R.id.ico06_hDate);
             this.descriptionTV = itemView.findViewById(R.id.ic06_hDescription);
-           // this.urlToImageTV = itemView.findViewById();
+            // this.urlToImageTV = itemView.findViewById();
+        }
+
+        public ConstraintLayout getContainer() {
+            return container;
         }
 
         public TextView getTitleTV() {
@@ -68,7 +90,7 @@ public class HeadlineAdapter extends RecyclerView.Adapter<HeadlineAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemRecyclerView = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.ic06_headline_view,parent, false);
+                .inflate(R.layout.ic06_headline_view, parent, false);
 
         return new ViewHolder(itemRecyclerView);
     }
@@ -78,17 +100,39 @@ public class HeadlineAdapter extends RecyclerView.Adapter<HeadlineAdapter.ViewHo
         Headline curr = this.getArticles().get(position);
 
         holder.getTitleTV().setText(curr.getTitle());
-        holder.getAuthorTV().setText(curr.getAuthor());
-        holder.getPublishedAtTV().setText(curr.getPublishedAt());
-        holder.getDescriptionTV().setText(curr.getDescription());
-        // TODO: figure out what you're doing with the image
+
+        String author = curr.getAuthor();
+        if (TextUtils.isEmpty(author)) {
+            holder.getAuthorTV().setVisibility(View.GONE);
+        } else {
+            holder.getAuthorTV().setText(curr.getAuthor());
+        }
+
+        String date = curr.getPublishedAt();
+        if (TextUtils.isEmpty(date)) {
+            holder.getPublishedAtTV().setVisibility(View.GONE);
+        } else {
+            holder.getPublishedAtTV().setText(date);
+        }
+        String description = curr.getDescription();
+        if (TextUtils.isEmpty(description)) {
+            holder.getDescriptionTV().setVisibility(View.GONE);
+        } else {
+            holder.getDescriptionTV().setText(curr.getDescription());
+        }
+
+        holder.getContainer().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (fContext instanceof InClass06) {
+                    ((InClass06) fContext).openArticle(curr);
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
-        if (getArticles() == null){
-            return 0;
-        }
         return getArticles().size();
     }
 }

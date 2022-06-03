@@ -1,42 +1,40 @@
 package com.example.cs4520_inclassassignments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import androidx.fragment.app.Fragment;
+
+import com.squareup.picasso.Picasso;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link ArticleDisplay#newInstance} factory method to
- * create an instance of this fragment.
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 06
  */
 public class ArticleDisplay extends Fragment {
 
-    //private final Headline headline;
     TextView articleName, author, date, description;
     ImageView image;
 
     private static final String ARG_HEADLINE = "givenHeadline";
 
-    private Headline headline;
+    private final Headline headline;
 
-
-    public ArticleDisplay() {
+    public ArticleDisplay(Headline headline) {
         // Required empty public constructor
+        this.headline = headline;
     }
 
     public static ArticleDisplay newInstance(Headline headline) {
-        ArticleDisplay fragment = new ArticleDisplay();
+        ArticleDisplay fragment = new ArticleDisplay(headline);
         Bundle args = new Bundle();
-        args.putParcelable(ARG_HEADLINE, (Parcelable) headline);
+        args.putParcelable(ARG_HEADLINE, headline);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,10 +42,6 @@ public class ArticleDisplay extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            // default article
-
-        }
     }
 
     @Override
@@ -62,15 +56,11 @@ public class ArticleDisplay extends Fragment {
         description = rootView.findViewById(R.id.ic06_textView_description);
         image = rootView.findViewById(R.id.ic06_imageView);
 
-        //image.setVisibility(hide);
-
         articleName.setText(this.headline.getTitle());
         author.setText(this.headline.getAuthor());
         date.setText(this.headline.getPublishedAt());
         description.setText(this.headline.getDescription());
-
-        //image.setImageResource(headline.getUrlToImage());
-
+        Picasso.get().load(this.headline.getUrlToImage()).into(image);
 
         return rootView;
     }

@@ -1,8 +1,13 @@
 package com.example.cs4520_inclassassignments;
 
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 06
+ */
 public class Headlines {
     private final String status;
     private final int totalResults;

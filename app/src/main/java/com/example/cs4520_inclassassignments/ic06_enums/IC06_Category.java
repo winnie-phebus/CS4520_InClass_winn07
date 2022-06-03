@@ -1,5 +1,11 @@
-package com.example.cs4520_inclassassignments.enums;
+package com.example.cs4520_inclassassignments.ic06_enums;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 06
+ */
 public enum IC06_Category{
 
     BLANK(""),
@@ -19,7 +25,7 @@ public enum IC06_Category{
 
     // returns whatever is the correct response to represent 'empty request param'
     public static IC06_Category getDefault() {
-        return IC06_Category.BLANK;
+        return IC06_Category.GENERAL;
     }
 
     @Override

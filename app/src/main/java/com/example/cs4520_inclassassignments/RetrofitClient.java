@@ -1,12 +1,10 @@
 package com.example.cs4520_inclassassignments;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.cs4520_inclassassignments.enums.IC06_Category;
-import com.example.cs4520_inclassassignments.enums.IC06_Country;
+import com.example.cs4520_inclassassignments.ic06_enums.IC06_Category;
+import com.example.cs4520_inclassassignments.ic06_enums.IC06_Country;
 import com.google.gson.GsonBuilder;
 
 import java.util.Date;
@@ -18,6 +16,12 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 06
+ */
 public class RetrofitClient {
     private static final String TAG = "ICO6_RETROFIT";
     private static RetrofitClient instance = null;
@@ -52,25 +56,24 @@ public class RetrofitClient {
         return instance;
     }
 
-    public MutableLiveData<List<Headline>> getNews(final IC06_Category category, final IC06_Country country) {
-        Log.d(TAG, "Calling with values: " + category.getValue() + ", " + country.getValue());
+    public void getNews(MutableLiveData<List<Headline>> results, final IC06_Category category, final IC06_Country country) {
+        //Log.d(TAG, "Calling with values: " + category.getValue() + ", " + country.getValue());
         Call<Headlines> networkCall = myApi.getHeadlines(
                 category.getValue(),
                 country.getValue()
         );
 
-        Log.d(TAG, String.valueOf(networkCall));
-        final MutableLiveData<List<Headline>> results = new MutableLiveData<>();
+        //Log.d(TAG, String.valueOf(networkCall));
 
         networkCall.enqueue(new Callback<Headlines>() {
                                 @Override
                                 public void onResponse(@NonNull Call<Headlines> call, @NonNull retrofit2.Response<Headlines> response) {
-                                    Log.d(TAG, response.code() + " : " + String.valueOf(response.message()));
+                                    //Log.d(TAG, response.code() + " : " + String.valueOf(response.message()));
                                     if (response.isSuccessful()) {
                                         Headlines body = response.body();
                                         if (body != null) {
-                                            Log.d(TAG, String.valueOf(response));
-                                            /*Log.d(TAG,
+                                            //Log.d(TAG, String.valueOf(response));
+                                            /*//Log.d(TAG,
                                                     "Success? status: "
                                                             + body.getStatus()
                                                             + " results: "
@@ -78,11 +81,8 @@ public class RetrofitClient {
                                                             + " headlines: "
                                                             + body.getArticles());*/
                                             List<Headline> headlines = body.getArticles();
-
                                             results.setValue(headlines);
                                         }
-                                    } else {
-                                        Log.d(TAG, response.code() + " : " + response.message());
                                     }
                                 }
 
@@ -92,8 +92,6 @@ public class RetrofitClient {
                                 }
                             }
         );
-
-        return results;
     }
 
 /*    public Api getMyApi() {

@@ -1,5 +1,11 @@
-package com.example.cs4520_inclassassignments.enums;
+package com.example.cs4520_inclassassignments.ic06_enums;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 06
+ */
 public enum IC06_Country {
     // ca, pl, us, za, nz
     DEFAULT(""),
@@ -17,7 +23,7 @@ public enum IC06_Country {
 
     // returns whatever is the correct response to represent 'empty request param'
     public static IC06_Country getDefault() {
-        return IC06_Country.DEFAULT;
+        return IC06_Country.US;
     }
 
     @Override

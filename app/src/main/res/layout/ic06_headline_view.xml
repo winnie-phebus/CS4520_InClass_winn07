@@ -16,38 +16,46 @@
         app:contentPadding="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ic06_headlineV"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp">
 
             <TextView
                 android:id="@+id/ic06_hTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:text=""
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/ic06_hAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:text=""
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="@id/ic06_hTitle"
                 app:layout_constraintTop_toBottomOf="@id/ic06_hTitle" />
+
             <TextView
                 android:id="@+id/ico06_hDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:text=""
                 app:layout_constraintStart_toStartOf="@id/ic06_hAuthor"
                 app:layout_constraintTop_toBottomOf="@id/ic06_hAuthor" />
+
             <TextView
                 android:id="@+id/ic06_hDescription"
                 android:layout_width="wrap_content"
@@ -55,9 +63,18 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text=""
-                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ico06_hDate" />
+
+            <TextView
+                android:id="@+id/ic06_expandNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="5dp"
+                android:text="Tap to expand and see image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ic06_hDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
