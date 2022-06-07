@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass06;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.cs4520_inclassassignments.R;
 import com.squareup.picasso.Picasso;
 
 /**

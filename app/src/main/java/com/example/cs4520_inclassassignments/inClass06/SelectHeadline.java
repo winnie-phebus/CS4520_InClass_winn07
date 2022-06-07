@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass06;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +14,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cs4520_inclassassignments.MainActivity;
+import com.example.cs4520_inclassassignments.R;
 import com.example.cs4520_inclassassignments.ic06_enums.IC06_Category;
 import com.example.cs4520_inclassassignments.ic06_enums.IC06_Country;
 
@@ -115,7 +117,7 @@ public class SelectHeadline extends Fragment {
                 "W.phebus", "", "", ""));
         articles.setValue(startVal);
 
-        RetrofitClient.getInstance().getNews(articles, selectedCategory, selectedCountry);
+        NewsAPIRetrofitClient.getInstance().getNews(articles, selectedCategory, selectedCountry);
         articles.observe(getActivity(), headlines -> getActivity().runOnUiThread(() -> {
             updateArticles();
             findNewsButton.setEnabled(true);
@@ -135,7 +137,7 @@ public class SelectHeadline extends Fragment {
             if (selectedCategory == null && selectedCountry == null) {
                 MainActivity.showToast(getActivity(), "Please select a value for country and category.");
             }
-            RetrofitClient.getInstance().getNews(articles, selectedCategory, selectedCountry);
+            NewsAPIRetrofitClient.getInstance().getNews(articles, selectedCategory, selectedCountry);
         };
     }
 

@@ -20,8 +20,8 @@
         android:id="@+id/inClass01Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/main_in_class_01"
+        android:layout_marginTop="@dimen/main_button_mTop"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/practiceButton" />
@@ -30,8 +30,8 @@
         android:id="@+id/inClass02Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/main_in_class_02"
+        android:layout_marginTop="@dimen/main_button_mTop"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inClass01Button" />
@@ -40,8 +40,8 @@
         android:id="@+id/inClass03Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/main_in_class_03"
+        android:layout_marginTop="@dimen/main_button_mTop"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inClass02Button" />
@@ -50,8 +50,8 @@
         android:id="@+id/inClass04Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/main_in_class_04"
+        android:layout_marginTop="@dimen/main_button_mTop"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inClass03Button" />
@@ -60,8 +60,8 @@
         android:id="@+id/inClass05Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/main_in_class_05"
+        android:layout_marginTop="@dimen/main_button_mTop"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inClass04Button" />
@@ -70,10 +70,19 @@
         android:id="@+id/inClass06Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/main_in_class_06"
+        android:layout_marginTop="@dimen/main_button_mTop"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inClass05Button" />
 
+    <Button
+        android:id="@+id/inClass07Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/main_button_mTop"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inClass06Button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

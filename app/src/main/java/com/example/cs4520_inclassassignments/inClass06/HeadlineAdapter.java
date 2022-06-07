@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass06;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.cs4520_inclassassignments.R;
 
 import java.util.List;
 

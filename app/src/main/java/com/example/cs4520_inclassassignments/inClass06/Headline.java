@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass06;
 
 
 import android.os.Parcel;

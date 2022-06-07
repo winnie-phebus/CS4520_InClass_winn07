@@ -12,8 +12,7 @@
     <string name="ic01_lbs">lbs</string>
     <!-- These are the main string values -->
     <string name="main_practice">Practice</string>
-    <string name="main_in_class_01">In Class 01</string>
-    <string name="main_in_class_02">In Class 02</string>
+    <string name="main_in_class_param">In Class %1$s</string>
     <!-- From ic2 but could be considered general use -->
     <string name="submit">Submit</string>
     <string name="email">Email</string>
@@ -22,14 +21,19 @@
     <string name="name">Name</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="main_in_class_03">IN CLASS 03</string>
     <string name="generate_number">Generate Number</string>
-    <string name="main_in_class_04">IN CLASS 04</string>
-    <string name="main_in_class_05">IN CLASS 05</string>
     <string name="go">GO</string>
     <string name="loading">Loading...</string>
-    <string name="main_in_class_06">IN CLASS 06</string>
+    <!-- IN CLASS 04 -->
+    <string name="minimum">Minimum: %1$f</string>
+    <string name="maximum">Maximum: %f</string>
+    <string name="avg">Average: %f</string>
+    <!-- IN CLASS 06 -->
     <string name="ic06_findnews">Find News</string>
+    <string name="prompt_email">Email:</string>
+    <string name="prompt_password">Password:</string>
+    <string name="action_sign_in">Sign In or Register</string>
+    <!-- IN CLASS 07 -->
+
 </resources>

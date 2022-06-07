@@ -5,11 +5,11 @@
     android:id="@+id/ic06_newsRV"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InClass06">
+    tools:context=".inClass06.InClass06">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/ic06_fragmentContainer"
-        android:name="com.example.cs4520_inclassassignments.SelectHeadline"
+        android:name="com.example.cs4520_inclassassignments.inClass06.SelectHeadline"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

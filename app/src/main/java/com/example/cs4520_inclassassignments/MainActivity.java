@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,6 +16,7 @@ import com.example.cs4520_inclassassignments.inClass02.InClass02;
 import com.example.cs4520_inclassassignments.inClass03.InClass03;
 import com.example.cs4520_inclassassignments.inClass04.InClass04;
 import com.example.cs4520_inclassassignments.inClass05.InClass05;
+import com.example.cs4520_inclassassignments.inClass06.InClass06;
 import com.example.cs4520_inclassassignments.practice.Practice;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +28,46 @@ public class MainActivity extends AppCompatActivity {
     private Button inClass04Button;
     private Button inClass05Button;
     private Button inClass06Button;
+    private Button inClass07Button;
+
+
+    public static boolean nonNullInput(String input){
+        return !TextUtils.isEmpty(input);
+    }
+
+    private static boolean validEmail(Context contxt, String email){
+        boolean valid = false;
+        if (!nonNullInput(email)){
+            MainActivity.showToast(contxt, "Email must be filled out.");
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            MainActivity.showToast(contxt, "Email must follow '@domain.com' pattern.");
+        } else {
+            valid = true;
+        }
+
+        return valid;
+    }
+
+    private static boolean validPassword(Context contxt, String password) {
+        boolean valid = false;
+        if (!nonNullInput(password)){
+            MainActivity.showToast(contxt, "Password must not remain null.");
+        } else {
+            valid = true;
+        }
+        return valid;
+    }
+
+    public static boolean validateLogin(Context contxt, String email, String password) {
+        return validEmail(contxt, email) && validPassword(contxt, password);
+    }
+
+    public static boolean validateRegister(Context contxt, String username,
+                                           String email, String password){
+        return nonNullInput(username)
+                && validEmail(contxt, email)
+                && validPassword(contxt, password);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,33 +80,47 @@ public class MainActivity extends AppCompatActivity {
         practiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Log.d(TAG, "Practice button hit!");
                 Intent toPractice = new Intent(MainActivity.this, Practice.class);
                 startActivity(toPractice);
             }
         });
 
         inClass01Button = findViewById(R.id.inClass01Button);
-        basicButtonSetup(inClass01Button, new Intent(MainActivity.this, InClass01.class), "MainTo01");
+        basicButtonSetup(inClass01Button, new Intent(MainActivity.this, InClass01.class), "01");
 
         inClass02Button = findViewById(R.id.inClass02Button);
-        basicButtonSetup(inClass02Button, new Intent(MainActivity.this, InClass02.class), "MainTo02");
+        basicButtonSetup(inClass02Button, new Intent(MainActivity.this, InClass02.class), "02");
 
         inClass03Button = findViewById(R.id.inClass03Button);
-        basicButtonSetup(inClass03Button, new Intent(MainActivity.this, InClass03.class), "MainTo03");
+        basicButtonSetup(inClass03Button, new Intent(MainActivity.this, InClass03.class), "03");
 
         inClass04Button = findViewById(R.id.inClass04Button);
-        basicButtonSetup(inClass04Button, new Intent(MainActivity.this, InClass04.class), "");
+        basicButtonSetup(inClass04Button, new Intent(MainActivity.this, InClass04.class), "04");
 
         inClass05Button = findViewById(R.id.inClass05Button);
-        basicButtonSetup(inClass05Button, new Intent(MainActivity.this, InClass05.class),"");
+        basicButtonSetup(inClass05Button, new Intent(MainActivity.this, InClass05.class), "05");
         
         inClass06Button = findViewById(R.id.inClass06Button);
-        basicButtonSetup(inClass06Button, new Intent(MainActivity.this, InClass06.class), "");
+        basicButtonSetup(inClass06Button, new Intent(MainActivity.this, InClass06.class), "06");
+
+        inClass07Button = findViewById(R.id.inClass07Button);
+        basicButtonSetup(inClass07Button, new Intent(MainActivity.this, InClass07.class), "07");
     }
 
     // this function simplifies the action of using a button to open a new activity
-    private void basicButtonSetup(Button newButton, Intent newIntent, String extraName) {
+    private void basicButtonSetup(Button newButton, Intent newIntent, String num) {
+        newButton.setText(getResources().getString(R.string.main_in_class_param, num));
+        newButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(newIntent);
+            }
+        });
+    }
+
+    // this function simplifies the action of using a button to open a new activity
+    // while also including an Extra
+    private void buttonWExtra(Button newButton, Intent newIntent, String extraName) {
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -5,7 +5,7 @@
     android:id="@+id/ic06_articleFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ArticleDisplay" >
+    tools:context=".inClass06.ArticleDisplay" >
 
     <TextView
         android:id="@+id/ic06_textView_articleName"

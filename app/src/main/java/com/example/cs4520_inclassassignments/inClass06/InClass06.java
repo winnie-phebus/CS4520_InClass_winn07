@@ -1,9 +1,11 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass06;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleOwner;
+
+import com.example.cs4520_inclassassignments.R;
 
 /**
  * TEAM 06

@@ -19,7 +19,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.cs4520_inclassassignments.MainActivity;
-import com.example.cs4520_inclassassignments.Profile;
 import com.example.cs4520_inclassassignments.R;
 
 // @author: Winnie Phebus

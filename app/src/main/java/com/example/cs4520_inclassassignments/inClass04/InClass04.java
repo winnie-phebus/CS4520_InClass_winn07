@@ -211,11 +211,10 @@ public class InClass04 extends AppCompatActivity {
     }
 
     // updates the UI with the information taken from the thread
-    // TODO: figure out how to String Resource with formatting
     private void updateUI() {
-        minText.setText("Minimum: " + qRound(min));
-        maxText.setText("Maximum: " + qRound(max));
-        avgText.setText("Average: " + qRound(avg));
+        minText.setText(getString(R.string.minimum, qRound(min)));
+        maxText.setText(getString(R.string.maximum, qRound(max)));
+        avgText.setText(getString(R.string.avg, qRound(avg)));
     }
 
     // responds to the generate button and creates a Worker thread to handle the HeavyWork numbers

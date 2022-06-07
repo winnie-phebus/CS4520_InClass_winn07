@@ -1,4 +1,6 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass06;
+
+import com.example.cs4520_inclassassignments.inClass06.Headlines;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
