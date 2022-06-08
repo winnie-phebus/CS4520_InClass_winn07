@@ -7,27 +7,28 @@
     tools:context=".NoteActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/ic07_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="TextView"
+        android:text="Profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/ic07_note_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/ic07_profile" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ic07_recview_container"
         android:layout_width="fill_parent"
         android:layout_height="500dp"
         android:layout_marginStart="10dp"
@@ -52,19 +53,55 @@
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="20dp"
         android:text="Notes"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/ic07_logout"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="115dp"
         android:layout_marginEnd="10dp"
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/ic07_note_username" />
+
+    <TextView
+        android:id="@+id/ic07_note_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toStartOf="@+id/ic07_logout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ic07_note_username"
+        app:layout_constraintTop_toBottomOf="@+id/ic07_note_username" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="5dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic07_logout" />
+
+    <Button
+        android:id="@+id/ic07_add_note"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:text="+"
+        app:iconPadding="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/ic07_logout"
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>

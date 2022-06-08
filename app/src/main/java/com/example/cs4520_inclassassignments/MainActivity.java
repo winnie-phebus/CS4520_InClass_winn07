@@ -1,15 +1,14 @@
 package com.example.cs4520_inclassassignments;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs4520_inclassassignments.inClass01.InClass01;
 import com.example.cs4520_inclassassignments.inClass02.InClass02;
@@ -20,7 +19,7 @@ import com.example.cs4520_inclassassignments.inClass06.InClass06;
 import com.example.cs4520_inclassassignments.practice.Practice;
 
 public class MainActivity extends AppCompatActivity {
-    final String TAG = "Main";
+    // final String TAG = "Main";
     private Button practiceButton;
     private Button inClass01Button;
     private Button inClass02Button;
@@ -31,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private Button inClass07Button;
 
 
-    public static boolean nonNullInput(String input){
+    public static boolean nonNullInput(String input) {
         return !TextUtils.isEmpty(input);
     }
 
-    private static boolean validEmail(Context contxt, String email){
+    private static boolean validEmail(Context contxt, String email) {
         boolean valid = false;
-        if (!nonNullInput(email)){
+        if (!nonNullInput(email)) {
             MainActivity.showToast(contxt, "Email must be filled out.");
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             MainActivity.showToast(contxt, "Email must follow '@domain.com' pattern.");
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static boolean validPassword(Context contxt, String password) {
         boolean valid = false;
-        if (!nonNullInput(password)){
+        if (!nonNullInput(password)) {
             MainActivity.showToast(contxt, "Password must not remain null.");
         } else {
             valid = true;
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static boolean validateRegister(Context contxt, String username,
-                                           String email, String password){
+                                           String email, String password) {
         return nonNullInput(username)
                 && validEmail(contxt, email)
                 && validPassword(contxt, password);
@@ -77,12 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
         practiceButton = findViewById(R.id.practiceButton);
 
-        practiceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent toPractice = new Intent(MainActivity.this, Practice.class);
-                startActivity(toPractice);
-            }
+        practiceButton.setOnClickListener(view -> {
+            Intent toPractice = new Intent(MainActivity.this, Practice.class);
+            startActivity(toPractice);
         });
 
         inClass01Button = findViewById(R.id.inClass01Button);
@@ -99,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         inClass05Button = findViewById(R.id.inClass05Button);
         basicButtonSetup(inClass05Button, new Intent(MainActivity.this, InClass05.class), "05");
-        
+
         inClass06Button = findViewById(R.id.inClass06Button);
         basicButtonSetup(inClass06Button, new Intent(MainActivity.this, InClass06.class), "06");
 
@@ -110,23 +106,15 @@ public class MainActivity extends AppCompatActivity {
     // this function simplifies the action of using a button to open a new activity
     private void basicButtonSetup(Button newButton, Intent newIntent, String num) {
         newButton.setText(getResources().getString(R.string.main_in_class_param, num));
-        newButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(newIntent);
-            }
-        });
+        newButton.setOnClickListener(view -> startActivity(newIntent));
     }
 
     // this function simplifies the action of using a button to open a new activity
     // while also including an Extra
     private void buttonWExtra(Button newButton, Intent newIntent, String extraName) {
-        newButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                newIntent.putExtra(extraName, "non-important");
-                startActivity(newIntent);
-            }
+        newButton.setOnClickListener(view -> {
+            newIntent.putExtra(extraName, "non-important");
+            startActivity(newIntent);
         });
     }
 
@@ -134,4 +122,5 @@ public class MainActivity extends AppCompatActivity {
     public static void showToast(Context contxt, String toastMsg) {
         Toast.makeText(contxt, toastMsg, Toast.LENGTH_SHORT).show();
     }
+
 }

@@ -34,6 +34,13 @@
     <string name="prompt_email">Email:</string>
     <string name="prompt_password">Password:</string>
     <string name="action_sign_in">Sign In or Register</string>
+    <string name="delete">- Delete</string>
+    <string name="register">Register</string>
+    <string name="sign_in">Sign In</string>
+    <string name="register_now">Register Now</string>
+    <string name="back_to_login">Back to Login</string>
+    <string name="saved_session_key">MAD_NU_winn07_session</string>
+    <string name="ic07_preferences_file">NUMAD_NU_winn07_IC07_sessions</string>
     <!-- IN CLASS 07 -->
 
 </resources>
