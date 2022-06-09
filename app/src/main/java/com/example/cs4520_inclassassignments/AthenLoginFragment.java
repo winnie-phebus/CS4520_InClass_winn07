@@ -25,7 +25,7 @@ public class AthenLoginFragment extends Fragment {
     Button submitLogin;
     Button moveToRegister;
 
-    LoginFragment.DataManager dataManager;
+    AthenLoginFragment.DataManager dataManager;
 
     public AthenLoginFragment() {
         // Required empty public constructor

@@ -27,7 +27,7 @@ public class AuthenRegisterFragment extends Fragment {
     Button submit;
     Button backLogin;
 
-    RegisterFragment.DataManager dataManager;
+    AuthenRegisterFragment.DataManager dataManager;
 
     public AuthenRegisterFragment() {
         // Required empty public constructor
