@@ -1,4 +1,9 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass07;
+
+import com.example.cs4520_inclassassignments.inClass07.AccessToken;
+import com.example.cs4520_inclassassignments.inClass07.IC07Note;
+import com.example.cs4520_inclassassignments.inClass07.IC07Notes;
+import com.example.cs4520_inclassassignments.inClass07.IC07Profile;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InClass07">
+    tools:context=".inClass07.InClass07">
 
     <TextView
         android:id="@+id/ic07_titleTV"
@@ -18,7 +18,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/ic07_fragmentContainer"
-        android:name="com.example.cs4520_inclassassignments.LoginFragment"
+        android:name="com.example.cs4520_inclassassignments.inClass07.LoginFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="140dp"

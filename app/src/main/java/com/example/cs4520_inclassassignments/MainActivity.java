@@ -16,6 +16,7 @@ import com.example.cs4520_inclassassignments.inClass03.InClass03;
 import com.example.cs4520_inclassassignments.inClass04.InClass04;
 import com.example.cs4520_inclassassignments.inClass05.InClass05;
 import com.example.cs4520_inclassassignments.inClass06.InClass06;
+import com.example.cs4520_inclassassignments.inClass07.InClass07;
 import com.example.cs4520_inclassassignments.practice.Practice;
 
 public class MainActivity extends AppCompatActivity {

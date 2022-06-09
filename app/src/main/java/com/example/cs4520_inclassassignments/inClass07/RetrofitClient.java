@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass07;
 
 import com.google.gson.GsonBuilder;
 

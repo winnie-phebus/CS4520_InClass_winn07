@@ -14,10 +14,10 @@
         android:theme="@style/Theme.CS4520_InClassAssignments"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".NoteActivity"
+            android:name=".inClass07.NoteActivity"
             android:exported="false" />
         <activity
-            android:name=".InClass07"
+            android:name=".inClass07.InClass07"
             android:exported="false" />
         <activity
             android:name=".inClass06.InClass06"

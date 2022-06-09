@@ -1,4 +1,4 @@
-package com.example.cs4520_inclassassignments;
+package com.example.cs4520_inclassassignments.inClass07;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,6 +13,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.cs4520_inclassassignments.MainActivity;
+import com.example.cs4520_inclassassignments.R;
 
 import java.util.ArrayList;
 import java.util.List;
