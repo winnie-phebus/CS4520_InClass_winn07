@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "441929784239",
+    "project_id": "numad-inclass-team06",
+    "storage_bucket": "numad-inclass-team06.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441929784239:android:0566f5ea57d6dd502b2d5a",
+        "android_client_info": {
+          "package_name": "com.example.cs4520_inclassassignments"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441929784239-n9hbvp5m6d4migdghdmdb50llua78c0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJS-UIJKJ5xxsXu_vgayV5Y4nJcyEjuro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441929784239-n9hbvp5m6d4migdghdmdb50llua78c0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
