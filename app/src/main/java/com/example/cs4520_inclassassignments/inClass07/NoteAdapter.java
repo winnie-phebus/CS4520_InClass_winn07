@@ -88,9 +88,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.noteid = itemView.findViewById(R.id.ic07_noteCV_id);
-            this.noteBody = itemView.findViewById(R.id.ic07_noteCV_body);
-            this.delete = itemView.findViewById(R.id.ic07_noteCV_delete);
+            this.noteid = itemView.findViewById(R.id.ic08_indivmess_name);
+            this.noteBody = itemView.findViewById(R.id.ic08_indivmess_body);
+            this.delete = itemView.findViewById(R.id.ic08_messageCV_toMessage);
         }
 
         public TextView getNoteid() {

@@ -8,32 +8,33 @@
     tools:context=".AuthenRegisterFragment" >
 
     <EditText
-        android:id="@+id/ic08_reg_password"
+        android:id="@+id/ic08_reg_confrimPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:hint="@string/prompt_password"
+        android:hint="@string/ic8_confirm_password"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
+        android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic08_reg_email" />
+        app:layout_constraintTop_toBottomOf="@+id/ic08_reg_password" />
 
     <EditText
-        android:id="@+id/ic08_reg_username"
+        android:id="@+id/ic08_reg_firstName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="96dp"
-        android:layout_marginEnd="24dp"
-        android:hint="Username:"
+        android:hint="@string/ic8_first_name"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
         android:selectAllOnFocus="true"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ic08_reg_lastName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,6 +51,35 @@
         app:layout_constraintTop_toBottomOf="@+id/ic08_register" />
 
     <EditText
+        android:id="@+id/ic08_reg_lastName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:hint="@string/ic8_last_name"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ic08_reg_firstName"
+        app:layout_constraintTop_toTopOf="@+id/ic08_reg_firstName" />
+
+    <EditText
+        android:id="@+id/ic08_reg_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:hint="@string/ic8_username"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic08_reg_lastName" />
+
+    <EditText
         android:id="@+id/ic08_reg_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,6 +88,7 @@
         android:layout_marginEnd="24dp"
         android:hint="@string/prompt_email"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -76,6 +107,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ic08_reg_password"
+        app:layout_constraintTop_toBottomOf="@+id/ic08_reg_confrimPassword"
         app:layout_constraintVertical_bias="0.2" />
+
+    <EditText
+        android:id="@+id/ic08_reg_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="@string/prompt_password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic08_reg_email" />
 </androidx.constraintlayout.widget.ConstraintLayout>

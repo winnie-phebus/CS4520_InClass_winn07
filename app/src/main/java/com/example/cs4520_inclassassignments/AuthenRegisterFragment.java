@@ -12,8 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.cs4520_inclassassignments.inClass07.RegisterFragment;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AuthenRegisterFragment#newInstance} factory method to
@@ -21,9 +19,7 @@ import com.example.cs4520_inclassassignments.inClass07.RegisterFragment;
  */
 public class AuthenRegisterFragment extends Fragment {
 
-    EditText user;
-    EditText email;
-    EditText password;
+    EditText firstName, lastName, user, email, password, confirmPassword;
     Button submit;
     Button backLogin;
 
@@ -56,9 +52,12 @@ public class AuthenRegisterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rView = inflater.inflate(R.layout.fragment_register, container, false);
+        firstName = rView.findViewById(R.id.ic08_reg_firstName);
+        lastName = rView.findViewById(R.id.ic08_reg_lastName);
         user = rView.findViewById(R.id.ic08_reg_username);
         email = rView.findViewById(R.id.ic08_reg_email);
         password = rView.findViewById(R.id.ic08_reg_password);
+        confirmPassword = rView.findViewById(R.id.ic08_reg_confrimPassword);
 
         submit = rView.findViewById(R.id.ic08_register);
         submit.setOnClickListener(v -> dataManager.postRegister(
