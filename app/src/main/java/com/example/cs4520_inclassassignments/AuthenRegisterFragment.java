@@ -60,7 +60,10 @@ public class AuthenRegisterFragment extends Fragment {
         confirmPassword = rView.findViewById(R.id.ic08_reg_confrimPassword);
 
         submit = rView.findViewById(R.id.ic08_register);
+
         submit.setOnClickListener(v -> dataManager.postRegister(
+                firstName.getText().toString(),
+                lastName.getText().toString(),
                 user.getText().toString(),
                 email.getText().toString(),
                 password.getText().toString()));
@@ -73,7 +76,7 @@ public class AuthenRegisterFragment extends Fragment {
     }
 
     public interface DataManager {
-        void postRegister(String user, String email, String password);
+        void postRegister(String firstName, String lastName, String user, String email, String password);
 
         void returnLogin();
     }

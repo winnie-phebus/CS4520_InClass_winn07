@@ -12,27 +12,25 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.cs4520_inclassassignments.inClass07.LoginFragment;
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AthenLoginFragment#newInstance} factory method to
+ * Use the {@link AuthenLoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AthenLoginFragment extends Fragment {
+public class AuthenLoginFragment extends Fragment {
     EditText email;
     EditText password;
     Button submitLogin;
     Button moveToRegister;
 
-    AthenLoginFragment.DataManager dataManager;
+    AuthenLoginFragment.DataManager dataManager;
 
-    public AthenLoginFragment() {
+    public AuthenLoginFragment() {
         // Required empty public constructor
     }
 
-    public static AthenLoginFragment newInstance() {
-        AthenLoginFragment fragment = new AthenLoginFragment();
+    public static AuthenLoginFragment newInstance() {
+        AuthenLoginFragment fragment = new AuthenLoginFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -47,7 +45,7 @@ public class AthenLoginFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        dataManager = (AthenLoginFragment.DataManager) context;
+        dataManager = (AuthenLoginFragment.DataManager) context;
     }
 
     @Override
@@ -70,7 +68,7 @@ public class AthenLoginFragment extends Fragment {
     }
 
     public interface DataManager {
-        void postLogin(String email, String password);
+        void postLogin(String username, String password);
 
         void openRegisterFragment();
     }

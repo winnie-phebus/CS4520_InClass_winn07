@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Button inClass05Button;
     private Button inClass06Button;
     private Button inClass07Button;
+    private Button inClass08Button;
 
 
     public static boolean nonNullInput(String input) {
@@ -102,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
 
         inClass07Button = findViewById(R.id.inClass07Button);
         basicButtonSetup(inClass07Button, new Intent(MainActivity.this, InClass07.class), "07");
+
+        inClass08Button = findViewById(R.id.inClass08Button);
+        basicButtonSetup(inClass08Button, new Intent(MainActivity.this, AuthenticationActivity.class), "08");
     }
 
     // this function simplifies the action of using a button to open a new activity

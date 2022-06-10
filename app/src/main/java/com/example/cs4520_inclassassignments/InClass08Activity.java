@@ -3,6 +3,7 @@ package com.example.cs4520_inclassassignments;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -18,5 +19,12 @@ public class InClass08Activity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.ic8_home_recyc_view);
         toEditProfile = findViewById(R.id.ic8_home_to_profile);
+    }
+
+    public void goToMessage(Conversation conversation) {
+        Intent toAccount = new Intent(InClass08Activity.this, MessageActivity.class);
+        toAccount.putExtra("Conversation", conversation);
+        startActivity(toAccount);
+
     }
 }

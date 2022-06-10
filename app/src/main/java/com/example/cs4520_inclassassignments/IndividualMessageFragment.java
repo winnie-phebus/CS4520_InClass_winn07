@@ -18,23 +18,23 @@ import org.w3c.dom.Text;
  */
 public class IndividualMessageFragment extends Fragment {
 
-    TextView friendName, body;
+    TextView senderName, body;
+    Message message;
 
     public IndividualMessageFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment IndividualMessageFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static IndividualMessageFragment newInstance(String param1, String param2) {
+    public IndividualMessageFragment(Message message) {
+        this.message = message;
+    }
+
+
+    public static IndividualMessageFragment newInstance(Message message) {
         IndividualMessageFragment fragment = new IndividualMessageFragment();
+        Bundle args = new Bundle();
+        args.putParcelable("message", message);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -49,8 +49,11 @@ public class IndividualMessageFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_ic08_indiv_message, container, false);
 
-        friendName = rootView.findViewById(R.id.ic08_indivmess_name);
+        senderName = rootView.findViewById(R.id.ic08_indivmess_name);
         body = rootView.findViewById(R.id.ic08_indivmess_body);
+
+        senderName.setText(message.getSender());
+        body.setText(message.getMessage());
 
         return rootView;
     }

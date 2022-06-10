@@ -30,13 +30,14 @@
         <entry key="app/src/main/res/layout/activity_ic08_authentication.xml" value="0.271875" />
         <entry key="app/src/main/res/layout/activity_in_class07.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/activity_in_class08.xml" value="0.23009417498553242" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2973037719726563" />
         <entry key="app/src/main/res/layout/activity_message.xml" value="0.2609003721567976" />
         <entry key="app/src/main/res/layout/activity_note.xml" value="0.271875" />
         <entry key="app/src/main/res/layout/fragment_first.xml" value="0.271875" />
-        <entry key="app/src/main/res/layout/fragment_ic08_indiv_message.xml" value="0.3106781005859375" />
+        <entry key="app/src/main/res/layout/fragment_ic08_indiv_message.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_ic08_login.xml" value="0.29199727376302087" />
-        <entry key="app/src/main/res/layout/fragment_ic08_message_preview.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_ic08_register.xml" value="0.2874176025390625" />
+        <entry key="app/src/main/res/layout/fragment_ic08_message_preview.xml" value="0.3524414062500001" />
+        <entry key="app/src/main/res/layout/fragment_ic08_register.xml" value="0.19788818359375002" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.274627685546875" />
         <entry key="app/src/main/res/layout/note_row.xml" value="0.22658996582031254" />
