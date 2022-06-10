@@ -3,8 +3,6 @@ package com.example.cs4520_inclassassignments;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -50,9 +48,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.container = itemView.findViewById(R.id.ic08_indivmess_MV);
-            this.sender = itemView.findViewById(R.id.ic08_indivmess_name);
-            this.message = itemView.findViewById(R.id.ic08_indivmess_body);
+            this.container = itemView.findViewById(R.id.ic08_indivMess_MV);
+            this.sender = itemView.findViewById(R.id.ic08_indivMess_name);
+            this.message = itemView.findViewById(R.id.ic08_prevMess_body);
 
         }
 

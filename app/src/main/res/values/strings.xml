@@ -47,7 +47,8 @@
 
     <string name="ic8_username">Username</string>
     <string name="ic8_messages_title">All Messages</string>
-    <string name="ic8_edit_profile_title">Edit Profile</string>
+    <string name="ic8_edit_profile_title">Profile</string>
+    <string name="ic8_new_chat_title">New Chat</string>
     <string name="ic8_return_to_messages">Back</string>
     <string name="ic8_send_message">Send</string>
     <string name="ic8_confirm_password">Confirm Password</string>

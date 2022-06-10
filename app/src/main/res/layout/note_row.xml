@@ -16,7 +16,7 @@
             android:layout_marginBottom="5dp">
 
             <TextView
-                android:id="@+id/ic08_indivmess_name"
+                android:id="@+id/ic08_prevMess_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -26,15 +26,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/ic08_indivmess_body"
+                android:id="@+id/ic08_prevMess_body"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="5dp"
                 android:text="TextView"
                 app:layout_constraintEnd_toStartOf="@+id/ic08_messageCV_toMessage"
-                app:layout_constraintStart_toStartOf="@+id/ic08_indivmess_name"
-                app:layout_constraintTop_toBottomOf="@+id/ic08_indivmess_name" />
+                app:layout_constraintStart_toStartOf="@+id/ic08_prevMess_name"
+                app:layout_constraintTop_toBottomOf="@+id/ic08_prevMess_name" />
 
             <Button
                 android:id="@+id/ic08_messageCV_toMessage"

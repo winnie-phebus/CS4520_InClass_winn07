@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -47,8 +46,8 @@ public class PreviewMessageFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.fragment_ic08_message_preview, container, false);
-        chatName = rootView.findViewById(R.id.ic08_indivmess_name);
-        body = rootView.findViewById(R.id.ic08_indivmess_body);
+        chatName = rootView.findViewById(R.id.ic08_prevMess_name);
+        body = rootView.findViewById(R.id.ic08_prevMess_body);
         toMessage = rootView.findViewById(R.id.ic08_messageCV_toMessage);
 
         chatName.setText(conversation.getChatName());

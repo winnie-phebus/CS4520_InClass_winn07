@@ -6,11 +6,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class InClass08Activity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    Button toEditProfile;
+    Button toEditProfile, newChat;
+
+    private RecyclerView.LayoutManager recyclerViewLayoutManager;
+    private ConversationAdapter convoAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +23,7 @@ public class InClass08Activity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.ic8_home_recyc_view);
         toEditProfile = findViewById(R.id.ic8_home_to_profile);
+        newChat = findViewById(R.id.ic8_home_new_chat);
     }
 
     public void goToMessage(Conversation conversation) {
@@ -26,5 +31,9 @@ public class InClass08Activity extends AppCompatActivity {
         toAccount.putExtra("Conversation", conversation);
         startActivity(toAccount);
 
+    }
+
+    public void startNewChat(){
+        Toast.makeText(this, "start a new chat", Toast.LENGTH_SHORT).show();
     }
 }
