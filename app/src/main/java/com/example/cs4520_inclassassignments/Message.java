@@ -12,6 +12,23 @@ public class Message implements Parcelable {
         this.message = message;
     }
 
+    protected Message(Parcel in) {
+        sender = in.readString();
+        message = in.readString();
+    }
+
+    public static final Creator<Message> CREATOR = new Creator<Message>() {
+        @Override
+        public Message createFromParcel(Parcel in) {
+            return new Message(in);
+        }
+
+        @Override
+        public Message[] newArray(int size) {
+            return new Message[size];
+        }
+    };
+
     public String getSender() {
         return sender;
     }

@@ -19,13 +19,16 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
     private FragmentActivity fragmentActivity;
 
     public ConversationAdapter(ArrayList<Conversation> allConvos, FragmentActivity fragmentActivity) {
-        if(fragmentActivity != null) {
+
+        this.allConvos = allConvos;
+        this.fragmentActivity = fragmentActivity;
+/*        if(fragmentActivity != null) {
             this.allConvos = allConvos;
             this.fragmentActivity = fragmentActivity;
         } else {
             throw new RuntimeException(fragmentActivity.toString()
                     + " must be called from a Fragment");
-        }
+        }*/
     }
 
     public ConversationAdapter(ArrayList<Conversation> allConvos) {
@@ -54,7 +57,6 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
             this.chatName = itemView.findViewById(R.id.ic08_prevMess_name);
             this.body = itemView.findViewById(R.id.ic08_prevMess_body);
             this.toConvo = itemView.findViewById(R.id.ic08_prevMess_toConvo);
-
         }
 
         public ConstraintLayout getContainer() {
@@ -77,8 +79,9 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_in_class08, parent, false);
+        View view = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.fragment_ic08_message_preview, parent, false);
         return new ViewHolder(view);
     }
 
@@ -86,9 +89,11 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
     public void onBindViewHolder(@NonNull ConversationAdapter.ViewHolder holder, int position) {
         holder.getChatName().setText(allConvos.get(position).getChatName());
         Message mostRecentMessage = allConvos.get(position).getMostRecentMessage();
+
         String sender = mostRecentMessage.getSender();
         String text = mostRecentMessage.getMessage();
         holder.getBody().setText(sender + ": " + text);
+
         holder.getToConvo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

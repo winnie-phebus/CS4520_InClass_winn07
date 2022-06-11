@@ -4,20 +4,21 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Conversation implements Parcelable {
 
     String chatName;
-    ArrayList<String> senders;
-    ArrayList<Message> messages;
+    List<String> senders;
+    List<Message> messages;
 
-    public Conversation(String chatName, ArrayList<String> senders, ArrayList<Message> messages) {
+    public Conversation(String chatName, List<String> senders, List<Message> messages) {
         this.chatName = chatName;
         this.senders = senders;
         this.messages = messages;
     }
 
-    public Conversation(ArrayList<String> senders, ArrayList<Message> messages) {
+    public Conversation(List<String> senders, List<Message> messages) {
         this.senders = senders;
         this.messages = messages;
 
@@ -37,19 +38,19 @@ public class Conversation implements Parcelable {
         this.chatName = chatName;
     }
 
-    public ArrayList<String> getSenders() {
+    public List<String> getSenders() {
         return senders;
     }
 
-    public void setSenders(ArrayList<String> senders) {
+    public void setSenders(List<String> senders) {
         this.senders = senders;
     }
 
-    public ArrayList<Message> getMessages() {
+    public List<Message> getMessages() {
         return messages;
     }
 
-    public void setMessages(ArrayList<Message> messages) {
+    public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
 
@@ -60,7 +61,6 @@ public class Conversation implements Parcelable {
     public void addMessage(Message newMessage) {
         this.messages.add(newMessage);
     }
-
 
 
     public static final Creator<Conversation> CREATOR = new Creator<Conversation>() {
@@ -85,6 +85,5 @@ public class Conversation implements Parcelable {
         parcel.writeString(chatName);
         parcel.writeList(senders);
         parcel.writeList(messages);
-
     }
 }

@@ -51,7 +51,8 @@ public class AuthenRegisterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rView = inflater.inflate(R.layout.fragment_register, container, false);
+        View rView = inflater.inflate(R.layout.fragment_ic08_register, container, false);
+
         firstName = rView.findViewById(R.id.ic08_reg_firstName);
         lastName = rView.findViewById(R.id.ic08_reg_lastName);
         user = rView.findViewById(R.id.ic08_reg_username);
@@ -61,15 +62,20 @@ public class AuthenRegisterFragment extends Fragment {
 
         submit = rView.findViewById(R.id.ic08_register);
 
-        submit.setOnClickListener(v -> dataManager.postRegister(
-                firstName.getText().toString(),
-                lastName.getText().toString(),
-                user.getText().toString(),
-                email.getText().toString(),
-                password.getText().toString()));
+        if (submit != null) {
+            submit.setOnClickListener(v -> dataManager.postRegister(
+                    firstName.getText().toString(),
+                    lastName.getText().toString(),
+                    user.getText().toString(),
+                    email.getText().toString(),
+                    password.getText().toString()));
+        }
 
         backLogin = rView.findViewById(R.id.ic08_send_back_to_login);
-        backLogin.setOnClickListener(v -> dataManager.returnLogin());
+
+        if (backLogin != null){
+            backLogin.setOnClickListener(v -> dataManager.returnLogin());
+        }
 
         // Inflate the layout for this fragment
         return rView;

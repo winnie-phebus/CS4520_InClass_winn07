@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder>{
-    private ArrayList<Message> allMessages;
+    private List<Message> allMessages;
     private FragmentActivity fragmentActivity;
 
-    public MessageAdapter(ArrayList<Message> allMessages, FragmentActivity fragmentActivity) {
+    public MessageAdapter(List<Message> allMessages, FragmentActivity fragmentActivity) {
         if(fragmentActivity != null) {
             this.allMessages = allMessages;
             this.fragmentActivity = fragmentActivity;
@@ -27,7 +27,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         }
     }
 
-    public MessageAdapter(ArrayList<Message> allMessages) {
+    public MessageAdapter(List<Message> allMessages) {
         this.allMessages = allMessages;
     }
 
@@ -35,7 +35,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         return allMessages;
     }
 
-    public void setAllMessages(ArrayList<Message> allMessages) {
+    public void setAllMessages(List<Message> allMessages) {
         this.allMessages = allMessages;
         this.notifyDataSetChanged();
     }

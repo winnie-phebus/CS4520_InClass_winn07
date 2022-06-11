@@ -27,7 +27,6 @@ public class PreviewMessageFragment extends Fragment {
     }
 
 
-    // TODO: Rename and change types and number of parameters
     public static PreviewMessageFragment newInstance(Conversation conversation) {
         PreviewMessageFragment fragment = new PreviewMessageFragment();
         Bundle args = new Bundle();

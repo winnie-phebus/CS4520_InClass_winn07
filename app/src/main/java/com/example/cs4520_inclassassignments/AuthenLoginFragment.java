@@ -51,19 +51,25 @@ public class AuthenLoginFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rView = inflater.inflate(R.layout.fragment_login, container, false);
+        View rView = inflater.inflate(R.layout.fragment_ic08_login, container, false);
 
         email = rView.findViewById(R.id.ic08_login_username);
         password = rView.findViewById(R.id.ic08_login_pass);
 
         submitLogin = rView.findViewById(R.id.ic08_login_button);
-        submitLogin.setOnClickListener(
-                v -> dataManager.postLogin(
-                        email.getText().toString(), password.getText().toString()));
+
+        if (submitLogin != null) {
+            submitLogin.setOnClickListener(
+                    v -> dataManager.postLogin(
+                            email.getText().toString(), password.getText().toString()));
+        }
+
 
         moveToRegister = rView.findViewById(R.id.ic08_send_to_reg);
-        moveToRegister.setOnClickListener(v -> dataManager.openRegisterFragment());
 
+        if (moveToRegister != null) {
+            moveToRegister.setOnClickListener(v -> dataManager.openRegisterFragment());
+        }
         return rView;
     }
 
