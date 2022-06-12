@@ -39,6 +39,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private FirebaseUser currentUser;
 
     TextView title;
 
@@ -46,7 +47,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
     protected void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
         if (currentUser != null){
             currentUser.reload();
         }
@@ -225,11 +226,23 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
     }
 
     public void userUpdatePhoto(Url url){
-        //TODO: fix this :) check out https://firebase.google.com/docs/auth/android/manage-users
+
+        //TO DO: fix this :) check out https://firebase.google.com/docs/auth/android/manage-users
+
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("Jane Q. User")
+                .setDisplayName(currentUser.getDisplayName())
                 .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
                 .build();
+
+        currentUser.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User profile updated.");
+                        }
+                    }
+                });
     }
 
     private void updateUI(FirebaseUser user) {
