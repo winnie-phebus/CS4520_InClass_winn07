@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,19 +44,28 @@ public class MessageActivity extends AppCompatActivity {
         messageAdapter = new MessageAdapter(conversation.getMessages());
         recyclerView.setAdapter(messageAdapter);
 
-        // TODO: make 'back' button work
-
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Message message = new Message("You", newMessage.getText().toString());
-                conversation.addMessage(message);
-                messageAdapter.notifyDataSetChanged();
 
-                newMessage.setText("");
-                //listener.addButtonClicked(note);
-                // TODO: 4WINN - make it so that messages get added to conversations in Firebase
-                // TODO: make it in Adapter so that when message sender = user.getNameDisplay, it shows up as 'you'
+                if(!newMessage.getText().toString().equals("")){
+                    Message message = new Message("You", newMessage.getText().toString());
+                    conversation.addMessage(message);
+                    messageAdapter.notifyDataSetChanged();
+
+                    newMessage.setText("");
+                    //listener.addButtonClicked(note);
+                    // TODO: 4WINN - make it so that messages get added to conversations in Firebase
+                    // TODO: make it in Adapter so that when message sender = user.getNameDisplay, it shows up as 'you'
+                }
+            }
+        });
+
+        return2home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent back2home = new Intent(MessageActivity.this, InClass08Activity.class);
+                startActivity(back2home);
             }
         });
     }

@@ -97,8 +97,7 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
         holder.getToConvo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO to message page.
-                // pass conversation object allConvos.get(position)
+                ((InClass08Activity) view.getContext()).goToMessage(allConvos.get(position));
             }
         });
     }

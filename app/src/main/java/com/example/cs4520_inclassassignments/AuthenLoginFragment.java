@@ -18,7 +18,6 @@ import android.widget.EditText;
  * create an instance of this fragment.
  */
 public class AuthenLoginFragment extends Fragment {
-    // TODO: verify and validate input!!
 
     EditText email;
     EditText password;
