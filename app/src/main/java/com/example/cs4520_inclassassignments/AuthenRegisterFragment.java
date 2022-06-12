@@ -6,11 +6,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,8 +23,6 @@ import android.widget.EditText;
  */
 public class AuthenRegisterFragment extends Fragment {
 
-    // TODO: verify and validate input!!
-    // TODO: confirm that passwords match
     EditText firstName, lastName, user, email, password, confirmPassword;
     Button submit;
     Button backLogin;
@@ -64,13 +66,54 @@ public class AuthenRegisterFragment extends Fragment {
 
         submit = rView.findViewById(R.id.ic08_register);
 
+
+
         if (submit != null) {
-            submit.setOnClickListener(v -> dataManager.postRegister(
-                    firstName.getText().toString(),
-                    lastName.getText().toString(),
-                    user.getText().toString(),
-                    email.getText().toString(),
-                    password.getText().toString()));
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    InputValidatorHelper helper = new InputValidatorHelper();
+                    String firstNameString = firstName.getText().toString();
+                    String lastNameString = lastName.getText().toString();
+                    String userString = user.getText().toString();
+                    String emailString = email.getText().toString();
+                    String passwordString = password.getText().toString();
+                    String confrimPasswordString = confirmPassword.getText().toString();
+
+
+                    if(helper.isNullOrEmpty(firstNameString) ||
+                            helper.isNullOrEmpty(lastNameString) ||
+                            helper.isNullOrEmpty(userString) ||
+                            helper.isNullOrEmpty(emailString) ||
+                            helper.isNullOrEmpty(passwordString) ||
+                            helper.isNullOrEmpty(confrimPasswordString)) {
+
+                        ((AuthenticationActivity) getActivity()).makeToast("All fields most be complete.");
+                    }
+
+                    else if (!helper.isValidEmail(emailString)) {
+                        ((AuthenticationActivity) getActivity()).makeToast("Please enter valid email.");
+                    }
+
+                    else {
+                        if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+                            dataManager.postRegister(
+                                    firstName.getText().toString(),
+                                    lastName.getText().toString(),
+                                    user.getText().toString(),
+                                    email.getText().toString(),
+                                    password.getText().toString());
+                        }
+
+                        else {
+                            ((AuthenticationActivity) getActivity()).makeToast("Passwords must match. Try again.");
+                            confirmPassword.setText("");
+                        }
+                    }
+                }
+            });
+
         }
 
         backLogin = rView.findViewById(R.id.ic08_send_back_to_login);
@@ -87,6 +130,35 @@ public class AuthenRegisterFragment extends Fragment {
         void postRegister(String firstName, String lastName, String user, String email, String password);
 
         void returnLogin();
+    }
+
+    public class InputValidatorHelper {
+
+        public boolean isValidEmail(String string){
+            final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+            Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+            Matcher matcher = pattern.matcher(string);
+            return matcher.matches();
+        }
+
+        /*public boolean isValidPassword(String string, boolean allowSpecialChars){
+            String PATTERN;
+            if(allowSpecialChars){
+                //PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})";
+                PATTERN = "^[a-zA-Z@#$%]\\w{5,19}$";
+            }else{
+                //PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})";
+                PATTERN = "^[a-zA-Z]\\w{5,19}$";
+            }
+
+            Pattern pattern = Pattern.compile(PATTERN);
+            Matcher matcher = pattern.matcher(string);
+            return matcher.matches();
+        }*/
+
+        public boolean isNullOrEmpty(String string){
+            return TextUtils.isEmpty(string);
+        }
     }
 
 }

@@ -239,4 +239,8 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
             startActivity(toMessages);
         }
     }
+
+    public void makeToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
 }
