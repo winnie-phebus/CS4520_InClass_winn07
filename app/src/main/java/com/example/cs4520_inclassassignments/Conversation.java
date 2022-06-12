@@ -9,17 +9,21 @@ import java.util.List;
 public class Conversation implements Parcelable {
 
     String chatName;
-    List<String> senders;
+    List<String> chatters;
     List<Message> messages;
+
+    public Conversation() {
+        // for Firebase
+    }
 
     public Conversation(String chatName, List<String> senders, List<Message> messages) {
         this.chatName = chatName;
-        this.senders = senders;
+        this.chatters = senders;
         this.messages = messages;
     }
 
     public Conversation(List<String> senders, List<Message> messages) {
-        this.senders = senders;
+        this.chatters = senders;
         this.messages = messages;
 
         this.chatName = senders.toString();
@@ -27,6 +31,10 @@ public class Conversation implements Parcelable {
 
     public Conversation(Parcel in) {
         this.chatName = in.readString();
+        this.chatters = new ArrayList<>();
+        this.messages = new ArrayList<>();
+        in.readList(this.chatters, Conversation.class.getClassLoader());
+        in.readList(this.messages, Conversation.class.getClassLoader());
     }
 
 
@@ -38,12 +46,12 @@ public class Conversation implements Parcelable {
         this.chatName = chatName;
     }
 
-    public List<String> getSenders() {
-        return senders;
+    public List<String> getChatters() {
+        return chatters;
     }
 
-    public void setSenders(List<String> senders) {
-        this.senders = senders;
+    public void setChatters(List<String> chatters) {
+        this.chatters = chatters;
     }
 
     public List<Message> getMessages() {
@@ -61,7 +69,6 @@ public class Conversation implements Parcelable {
     public void addMessage(Message newMessage) {
         this.messages.add(newMessage);
     }
-
 
     public static final Creator<Conversation> CREATOR = new Creator<Conversation>() {
         @Override
@@ -83,7 +90,16 @@ public class Conversation implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(chatName);
-        parcel.writeList(senders);
+        parcel.writeList(chatters);
         parcel.writeList(messages);
+    }
+
+    @Override
+    public String toString() {
+        return "Conversation{" +
+                "chatName='" + chatName + '\'' +
+                ", chatters=" + chatters +
+                ", messages=" + messages +
+                '}';
     }
 }

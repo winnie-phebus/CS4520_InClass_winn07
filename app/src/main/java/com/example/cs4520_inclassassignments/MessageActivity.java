@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ public class MessageActivity extends AppCompatActivity {
         return2home = findViewById(R.id.ic08_mess_toHome);
 
         conversation = getIntent().getParcelableExtra("Conversation");
+        Log.d("IC08_MA", "Conversation: "+ conversation.toString());
 
         chatName.setText(conversation.getChatName());
 
@@ -40,6 +42,8 @@ public class MessageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
         messageAdapter = new MessageAdapter(conversation.getMessages());
         recyclerView.setAdapter(messageAdapter);
+
+        // TODO: make 'back' button work
 
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +54,8 @@ public class MessageActivity extends AppCompatActivity {
 
                 newMessage.setText("");
                 //listener.addButtonClicked(note);
+                // TODO: 4WINN - make it so that messages get added to conversations in Firebase
+                // TODO: make it in Adapter so that when message sender = user.getNameDisplay, it shows up as 'you'
             }
         });
     }

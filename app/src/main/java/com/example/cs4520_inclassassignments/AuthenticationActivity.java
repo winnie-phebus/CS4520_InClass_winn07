@@ -25,7 +25,9 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import retrofit2.http.Url;
@@ -45,7 +47,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
+        if (currentUser != null){
             currentUser.reload();
         }
     }
@@ -83,7 +85,6 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
                 .replace(R.id.ic08_authen_fragment_container, new AuthenLoginFragment())
                 .commit();
         title.setText("Login");
-
     }
 
     private void createDbUser(String first, String last, String username, String email){
@@ -102,6 +103,36 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
                     public void onFailure(@NonNull Exception e) {
                         Log.d(TAG, "FAILED user addition: " + e.getMessage());
                         MainActivity.showToast(AuthenticationActivity.this, "Adding user to Firebase Failed.");
+                    }
+                });
+
+/*        ArrayList<Conversation> convos = new ArrayList<>();
+        Message intro = new Message(
+                "Default",
+                "press new chat and talk to your friends!");
+        List<String> recps = new ArrayList<String>();
+        recps.add("Tutorial");
+        List<Message> msg = new ArrayList<>();
+        msg.add(intro);
+
+        convos.add(new Conversation("Empty", recps, msg));
+        Conversations s = new Conversations(convos);*/
+
+        Map<String, String> start = new HashMap<>();
+        start.put("conversation","/default");
+
+        db.collection("users")
+                .document(username)
+                .collection("conversations")
+                .document("DEFAULT")
+                .set(start).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG,
+                                "FAILED user collection conversation init: " + e.getMessage());
+                        MainActivity.showToast(
+                                AuthenticationActivity.this,
+                                "Adding user collection to Firebase Failed.");
                     }
                 });
     }
@@ -191,8 +222,6 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
                         }
                     }
                 });
-
-
     }
 
     public void userUpdatePhoto(Url url){
@@ -202,6 +231,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
                 .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
                 .build();
     }
+
     private void updateUI(FirebaseUser user) {
         if (user != null){
             Intent toMessages = new Intent(this, InClass08Activity.class);

@@ -7,6 +7,10 @@ public class Message implements Parcelable {
 
     String sender, message;
 
+    public Message() {
+        // for Firebase
+    }
+
     public Message(String sender, String message) {
         this.sender = sender;
         this.message = message;
@@ -15,6 +19,14 @@ public class Message implements Parcelable {
     protected Message(Parcel in) {
         sender = in.readString();
         message = in.readString();
+    }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "sender='" + sender + '\'' +
+                ", message='" + message + '\'' +
+                '}';
     }
 
     public static final Creator<Message> CREATOR = new Creator<Message>() {

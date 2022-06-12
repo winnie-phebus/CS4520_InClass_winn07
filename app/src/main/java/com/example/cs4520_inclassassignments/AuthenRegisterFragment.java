@@ -19,6 +19,8 @@ import android.widget.EditText;
  */
 public class AuthenRegisterFragment extends Fragment {
 
+    // TODO: verify and validate input!!
+    // TODO: confirm that passwords match
     EditText firstName, lastName, user, email, password, confirmPassword;
     Button submit;
     Button backLogin;
