@@ -18,7 +18,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/ic07_fragmentContainer"
-        android:name="com.example.cs4520_inclassassignments.inClass07.LoginFragment"
+        android:name="com.example.cs4520_inclassassignments.inClass07.ic07_LoginFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="140dp"

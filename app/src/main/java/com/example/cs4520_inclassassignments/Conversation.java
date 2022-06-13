@@ -6,11 +6,29 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
+ */
 public class Conversation implements Parcelable {
 
-    String chatName;
-    List<String> chatters;
-    List<Message> messages;
+    public static final Creator<Conversation> CREATOR = new Creator<Conversation>() {
+        @Override
+        public Conversation createFromParcel(Parcel in) {
+            return new Conversation(in);
+        }
+
+        @Override
+        public Conversation[] newArray(int size) {
+            return new Conversation[size];
+        }
+    };
+
+    private String chatName;
+    private List<String> chatters;
+    private List<Message> messages;
 
     public Conversation() {
         // for Firebase
@@ -29,6 +47,7 @@ public class Conversation implements Parcelable {
         this.chatName = senders.toString();
     }
 
+
     public Conversation(Parcel in) {
         this.chatName = in.readString();
         this.chatters = new ArrayList<>();
@@ -36,7 +55,6 @@ public class Conversation implements Parcelable {
         in.readList(this.chatters, Conversation.class.getClassLoader());
         in.readList(this.messages, Conversation.class.getClassLoader());
     }
-
 
     public String getChatName() {
         return chatName;
@@ -62,25 +80,13 @@ public class Conversation implements Parcelable {
         this.messages = messages;
     }
 
-    public Message getMostRecentMessage(){
-        return this.messages.get(this.messages.size()-1);
+    public Message getMostRecentMessage() {
+        return this.messages.get(this.messages.size() - 1);
     }
 
     public void addMessage(Message newMessage) {
         this.messages.add(newMessage);
     }
-
-    public static final Creator<Conversation> CREATOR = new Creator<Conversation>() {
-        @Override
-        public Conversation createFromParcel(Parcel in) {
-            return new Conversation(in);
-        }
-
-        @Override
-        public Conversation[] newArray(int size) {
-            return new Conversation[size];
-        }
-    };
 
     @Override
     public int describeContents() {

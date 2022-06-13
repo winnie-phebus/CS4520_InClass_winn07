@@ -2,36 +2,36 @@ package com.example.cs4520_inclassassignments;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link AuthenLoginFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
  */
-public class AuthenLoginFragment extends Fragment {
+public class ic08_LoginFragment extends Fragment {
 
     EditText email;
     EditText password;
     Button submitLogin;
     Button moveToRegister;
 
-    AuthenLoginFragment.DataManager dataManager;
+    ic08_LoginFragment.DataManager dataManager;
 
-    public AuthenLoginFragment() {
+    public ic08_LoginFragment() {
         // Required empty public constructor
     }
 
-    public static AuthenLoginFragment newInstance() {
-        AuthenLoginFragment fragment = new AuthenLoginFragment();
+    public static ic08_LoginFragment newInstance() {
+        ic08_LoginFragment fragment = new ic08_LoginFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -46,7 +46,7 @@ public class AuthenLoginFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        dataManager = (AuthenLoginFragment.DataManager) context;
+        dataManager = (ic08_LoginFragment.DataManager) context;
     }
 
     @Override

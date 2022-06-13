@@ -1,19 +1,19 @@
 package com.example.cs4520_inclassassignments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link PreviewMessageFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
  */
 public class PreviewMessageFragment extends Fragment {
 
@@ -44,7 +44,7 @@ public class PreviewMessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView =  inflater.inflate(R.layout.fragment_ic08_message_preview, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_ic08_message_preview, container, false);
         chatName = rootView.findViewById(R.id.ic08_prevMess_name);
         body = rootView.findViewById(R.id.ic08_prevMess_body);
         toMessage = rootView.findViewById(R.id.ic08_messageCV_toMessage);
@@ -58,7 +58,7 @@ public class PreviewMessageFragment extends Fragment {
         toMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((InClass08Activity)getActivity()).goToMessage(conversation);
+                ((InClass08Activity) getActivity()).goToMessage(conversation);
             }
         });
 

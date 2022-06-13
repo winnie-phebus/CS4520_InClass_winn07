@@ -17,7 +17,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/ic08_authen_fragment_container"
-        android:name="com.example.cs4520_inclassassignments.AuthenLoginFragment"
+        android:name="com.example.cs4520_inclassassignments.ic08_LoginFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"

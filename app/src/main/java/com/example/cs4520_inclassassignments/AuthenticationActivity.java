@@ -25,24 +25,28 @@ import java.util.Map;
 
 import retrofit2.http.Url;
 
-public class AuthenticationActivity extends AppCompatActivity implements AuthenRegisterFragment.DataManager, AuthenLoginFragment.DataManager {
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
+ */
+public class AuthenticationActivity extends AppCompatActivity implements ic08_RegisterFragment.DataManager, ic08_LoginFragment.DataManager {
 
-    private static final String TAG = "IC08_AUTH";
     public static final String ic08_USER_KEY = "NUMAD_ic08_FirebaseLoggedIn";
+    private static final String TAG = "IC08_AUTH";
     public static String userKey = "SignedIn User";
-
+    private TextView title;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private FirebaseUser currentUser;
-
-    TextView title;
 
     @Override
     protected void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         currentUser = mAuth.getCurrentUser();
-        if (currentUser != null){
+        if (currentUser != null) {
             currentUser.reload();
             updateUI(currentUser);
         }
@@ -60,7 +64,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
 
         getSupportFragmentManager().beginTransaction()
                 .addToBackStack("Login")
-                .replace(R.id.ic08_authen_fragment_container, new AuthenLoginFragment())
+                .replace(R.id.ic08_authen_fragment_container, new ic08_LoginFragment())
                 .commit();
 
         title.setText("Login");
@@ -78,12 +82,12 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
     public void returnLogin() {
         getSupportFragmentManager().beginTransaction()
                 .addToBackStack("Register")
-                .replace(R.id.ic08_authen_fragment_container, new AuthenLoginFragment())
+                .replace(R.id.ic08_authen_fragment_container, new ic08_LoginFragment())
                 .commit();
         title.setText("Login");
     }
 
-    private void createDbUser(String first, String last, String username, String email){
+    private void createDbUser(String first, String last, String username, String email) {
         Log.d(TAG, "Attempting user addition.");
 
         Map<String, Object> user = new HashMap<>();
@@ -91,7 +95,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
         user.put("last_name", last);
         user.put("username", username);
         user.put("email", email);
-        
+
         db.collection("users")
                 .document(username)
                 .set(user).addOnFailureListener(new OnFailureListener() {
@@ -115,7 +119,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
         Conversations s = new Conversations(convos);*/
 
         Map<String, String> start = new HashMap<>();
-        start.put("conversation","/default");
+        start.put("conversation", "/default");
 
         db.collection("users")
                 .document(username)
@@ -138,7 +142,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
         findEmailFromUsername(username, password);
     }
 
-    private void firebaseLogin(String email, String password){
+    private void firebaseLogin(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -181,7 +185,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
     public void openRegisterFragment() {
         getSupportFragmentManager().beginTransaction()
                 .addToBackStack("Register")
-                .replace(R.id.ic08_authen_fragment_container, new AuthenRegisterFragment())
+                .replace(R.id.ic08_authen_fragment_container, new ic08_RegisterFragment())
                 .commit();
         title.setText("Register Here");
     }
@@ -198,18 +202,24 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
                             FirebaseUser user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(username)
-                                    .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
+                                    .setPhotoUri(
+                                            Uri.parse("https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg"))
                                     .build();
                             user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Log.d(TAG, "User profile updated.");
+                                        createDbUser(firstName, lastName, username, email);
+                                        updateUI(user);
+                                    } else {
+                                        Log.d(TAG, "Failed User update: " + task.getResult());
+                                        MainActivity.showToast(
+                                                AuthenticationActivity.this,
+                                                "Something went wrong when adding your user, try again?");
                                     }
                                 }
                             });
-                            createDbUser(firstName,lastName,username,email);
-                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -220,7 +230,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
                 });
     }
 
-    public void userUpdatePhoto(Url url){
+    public void userUpdatePhoto(Url url) {
 
         //TO DO: fix this :) check out https://firebase.google.com/docs/auth/android/manage-users
 
@@ -247,7 +257,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
         editor.putString(getString(R.string.saved_session_key), session.getToken());
         editor.apply();*/
 
-        if (user != null){
+        if (user != null) {
             MainActivity.saveObjectToSharedPreference(this, getString(R.string.ic08_preferences_file), ic08_USER_KEY, user);
 
             Intent toConvos = new Intent(this, InClass08Activity.class);

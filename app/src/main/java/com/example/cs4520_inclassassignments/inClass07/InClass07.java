@@ -23,7 +23,7 @@ import retrofit2.Response;
  * @author Winnie Phebus
  * Assignment 07
  */
-public class InClass07 extends AppCompatActivity implements RegisterFragment.DataManager, LoginFragment.DataManager {
+public class InClass07 extends AppCompatActivity implements ic07_RegisterFragment.DataManager, ic07_LoginFragment.DataManager {
     // private static final String TAG = "IC07 MAIN";
     public static final String sessionKey = "IC07 Session";
 
@@ -129,7 +129,7 @@ public class InClass07 extends AppCompatActivity implements RegisterFragment.Dat
         getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack("Register")
-                .replace(R.id.ic07_fragmentContainer, RegisterFragment.newInstance())
+                .replace(R.id.ic07_fragmentContainer, ic07_RegisterFragment.newInstance())
                 .commit();
     }
 

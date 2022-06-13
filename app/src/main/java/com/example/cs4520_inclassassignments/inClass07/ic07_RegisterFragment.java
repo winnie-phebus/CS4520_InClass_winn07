@@ -17,7 +17,7 @@ import com.example.cs4520_inclassassignments.R;
  * @author Winnie Phebus
  * Assignment 07
  */
-public class RegisterFragment extends Fragment {
+public class ic07_RegisterFragment extends Fragment {
     EditText user;
     EditText email;
     EditText password;
@@ -26,12 +26,12 @@ public class RegisterFragment extends Fragment {
 
     DataManager dataManager;
 
-    public RegisterFragment() {
+    public ic07_RegisterFragment() {
         // Required empty public constructor
     }
 
-    public static RegisterFragment newInstance() {
-        RegisterFragment fragment = new RegisterFragment();
+    public static ic07_RegisterFragment newInstance() {
+        ic07_RegisterFragment fragment = new ic07_RegisterFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);

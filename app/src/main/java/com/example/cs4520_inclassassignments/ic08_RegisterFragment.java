@@ -2,10 +2,6 @@ package com.example.cs4520_inclassassignments;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,28 +9,32 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link AuthenRegisterFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
  */
-public class AuthenRegisterFragment extends Fragment {
+public class ic08_RegisterFragment extends Fragment {
 
     EditText firstName, lastName, user, email, password, confirmPassword;
     Button submit;
     Button backLogin;
 
-    AuthenRegisterFragment.DataManager dataManager;
+    ic08_RegisterFragment.DataManager dataManager;
 
-    public AuthenRegisterFragment() {
+    public ic08_RegisterFragment() {
         // Required empty public constructor
     }
 
-    public static AuthenRegisterFragment newInstance() {
-        AuthenRegisterFragment fragment = new AuthenRegisterFragment();
+    public static ic08_RegisterFragment newInstance() {
+        ic08_RegisterFragment fragment = new ic08_RegisterFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -49,7 +49,7 @@ public class AuthenRegisterFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        dataManager = (AuthenRegisterFragment.DataManager) context;
+        dataManager = (ic08_RegisterFragment.DataManager) context;
     }
 
     @Override
@@ -67,7 +67,6 @@ public class AuthenRegisterFragment extends Fragment {
         submit = rView.findViewById(R.id.ic08_register);
 
 
-
         if (submit != null) {
             submit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,7 +81,7 @@ public class AuthenRegisterFragment extends Fragment {
                     String confrimPasswordString = confirmPassword.getText().toString();
 
 
-                    if(helper.isNullOrEmpty(firstNameString) ||
+                    if (helper.isNullOrEmpty(firstNameString) ||
                             helper.isNullOrEmpty(lastNameString) ||
                             helper.isNullOrEmpty(userString) ||
                             helper.isNullOrEmpty(emailString) ||
@@ -90,13 +89,9 @@ public class AuthenRegisterFragment extends Fragment {
                             helper.isNullOrEmpty(confrimPasswordString)) {
 
                         ((AuthenticationActivity) getActivity()).makeToast("All fields most be complete.");
-                    }
-
-                    else if (!helper.isValidEmail(emailString)) {
+                    } else if (!helper.isValidEmail(emailString)) {
                         ((AuthenticationActivity) getActivity()).makeToast("Please enter valid email.");
-                    }
-
-                    else {
+                    } else {
                         if (password.getText().toString().equals(confirmPassword.getText().toString())) {
                             dataManager.postRegister(
                                     firstName.getText().toString(),
@@ -104,9 +99,7 @@ public class AuthenRegisterFragment extends Fragment {
                                     user.getText().toString(),
                                     email.getText().toString(),
                                     password.getText().toString());
-                        }
-
-                        else {
+                        } else {
                             ((AuthenticationActivity) getActivity()).makeToast("Passwords must match. Try again.");
                             confirmPassword.setText("");
                         }
@@ -118,7 +111,7 @@ public class AuthenRegisterFragment extends Fragment {
 
         backLogin = rView.findViewById(R.id.ic08_send_back_to_login);
 
-        if (backLogin != null){
+        if (backLogin != null) {
             backLogin.setOnClickListener(v -> dataManager.returnLogin());
         }
 
@@ -134,7 +127,7 @@ public class AuthenRegisterFragment extends Fragment {
 
     public class InputValidatorHelper {
 
-        public boolean isValidEmail(String string){
+        public boolean isValidEmail(String string) {
             final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
             Pattern pattern = Pattern.compile(EMAIL_PATTERN);
             Matcher matcher = pattern.matcher(string);
@@ -156,7 +149,7 @@ public class AuthenRegisterFragment extends Fragment {
             return matcher.matches();
         }*/
 
-        public boolean isNullOrEmpty(String string){
+        public boolean isNullOrEmpty(String string) {
             return TextUtils.isEmpty(string);
         }
     }

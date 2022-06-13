@@ -10,13 +10,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapter.ViewHolder>{
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
+ */
+public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapter.ViewHolder> {
     private ArrayList<Conversation> allConvos;
     private Activity parentActivity;
 
@@ -44,38 +49,6 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
     public void setAllConvos(ArrayList<Conversation> allConvos) {
         this.allConvos = allConvos;
         this.notifyDataSetChanged();
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        // display/delete notes elements
-        private ConstraintLayout container;
-        private TextView chatName, body;
-        private ImageButton toConvo;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.container = itemView.findViewById(R.id.ic08_prevMess_view);
-            this.chatName = itemView.findViewById(R.id.ic08_prevMess_name);
-            this.body = itemView.findViewById(R.id.ic08_prevMess_body);
-            this.toConvo = itemView.findViewById(R.id.ic08_prevMess_toConvo);
-        }
-
-        public ConstraintLayout getContainer() {
-            return container;
-        }
-
-        public TextView getChatName() {
-            return chatName;
-        }
-
-        public TextView getBody() {
-            return body;
-        }
-
-        public ImageButton getToConvo() {
-            return toConvo;
-        }
     }
 
     @NonNull
@@ -111,6 +84,38 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
     @Override
     public int getItemCount() {
         return allConvos.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        // display/delete notes elements
+        private ConstraintLayout container;
+        private TextView chatName, body;
+        private ImageButton toConvo;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.container = itemView.findViewById(R.id.ic08_prevMess_view);
+            this.chatName = itemView.findViewById(R.id.ic08_prevMess_name);
+            this.body = itemView.findViewById(R.id.ic08_prevMess_body);
+            this.toConvo = itemView.findViewById(R.id.ic08_prevMess_toConvo);
+        }
+
+        public ConstraintLayout getContainer() {
+            return container;
+        }
+
+        public TextView getChatName() {
+            return chatName;
+        }
+
+        public TextView getBody() {
+            return body;
+        }
+
+        public ImageButton getToConvo() {
+            return toConvo;
+        }
     }
 }
 

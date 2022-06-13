@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AuthenLoginFragment" >
+    tools:context=".ic08_LoginFragment" >
 
     <Button
         android:id="@+id/ic08_send_to_reg"

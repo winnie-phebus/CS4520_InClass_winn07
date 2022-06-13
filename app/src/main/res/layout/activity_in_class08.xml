@@ -7,62 +7,114 @@
     tools:context=".InClass08Activity">
 
     <TextView
-        android:id="@+id/ic8_home_title"
+        android:id="@+id/ic08_home_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/ic8_messages_title"
+        android:layout_marginStart="10dp"
+        android:text="@string/ic8_activity_title"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/ic08_avatar_img"
+        app:layout_constraintTop_toTopOf="@+id/ic08_avatar_img" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ic8_home_recyc_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spn_items" />
+        app:layout_constraintTop_toBottomOf="@id/ic08_conversationsTV" />
 
     <Button
         android:id="@+id/ic8_home_to_profile"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
         android:text="@string/ic8_edit_profile_title"
-        app:layout_constraintBottom_toBottomOf="@+id/ic8_home_title"
+        app:layout_constraintBottom_toBottomOf="@+id/ic08_usernameTV"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/ic8_home_title" />
+        app:layout_constraintTop_toTopOf="@+id/ic08_home_title" />
 
     <com.example.cs4520_inclassassignments.MultiSelectionSpinner
         android:id="@+id/spn_items"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="213dp"
-        android:layout_marginTop="98dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="28dp"
-        android:layout_weight="2"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toTopOf="@+id/ic8_home_recyc_view"
-        app:layout_constraintEnd_toStartOf="@+id/ic8_home_new_chat"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/ic8_home_new_chat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="23dp"
-        android:text="@string/ic8_new_chat_title"
+        android:layout_marginTop="11dp"
+        android:layout_weight="2"
+        android:backgroundTint="@color/purple_500"
+        android:minHeight="40dp"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="5dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="@+id/ic8_home_recyc_view"
+        app:layout_constraintTop_toBottomOf="@+id/ic08_home_div" />
+
+    <TextView
+        android:id="@+id/ic08_conversationsTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conversations:"
+        app:layout_constraintStart_toStartOf="@+id/ic8_home_recyc_view"
+        app:layout_constraintTop_toTopOf="@+id/ic08_start_newTV" />
+
+    <TextView
+        android:id="@+id/ic08_start_newTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Start New Chat:"
+        app:layout_constraintBottom_toBottomOf="@+id/spn_items"
+        app:layout_constraintEnd_toStartOf="@+id/spn_items"
+        app:layout_constraintTop_toTopOf="@+id/spn_items" />
+
+    <View
+        android:id="@+id/ic08_home_div"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spn_items"
-        app:layout_constraintTop_toBottomOf="@+id/ic8_home_to_profile" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ic08_avatar_img" />
+
+    <ImageView
+        android:id="@+id/ic08_avatar_img"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/select_avatar" />
+
+    <TextView
+        android:id="@+id/ic08_usernameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ic08_avatar_img"
+        app:layout_constraintStart_toStartOf="@+id/ic08_home_title"
+        app:layout_constraintTop_toBottomOf="@+id/ic08_home_title" />
+
+    <Button
+        android:id="@+id/ic08_logout"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/ic8_home_recyc_view"
+        app:layout_constraintTop_toBottomOf="@+id/ic8_home_recyc_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

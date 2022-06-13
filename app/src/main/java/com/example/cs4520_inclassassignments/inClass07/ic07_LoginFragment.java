@@ -17,7 +17,7 @@ import com.example.cs4520_inclassassignments.R;
  * @author Winnie Phebus
  * Assignment 07
  */
-public class LoginFragment extends Fragment {
+public class ic07_LoginFragment extends Fragment {
     EditText email;
     EditText password;
     Button submitLogin;
@@ -25,12 +25,12 @@ public class LoginFragment extends Fragment {
 
     DataManager dataManager;
 
-    public LoginFragment() {
+    public ic07_LoginFragment() {
         // Required empty public constructor
     }
 
-    public static LoginFragment newInstance() {
-        LoginFragment fragment = new LoginFragment();
+    public static ic07_LoginFragment newInstance() {
+        ic07_LoginFragment fragment = new ic07_LoginFragment();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -45,7 +45,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        dataManager = (LoginFragment.DataManager) context;
+        dataManager = (ic07_LoginFragment.DataManager) context;
     }
 
     @Override

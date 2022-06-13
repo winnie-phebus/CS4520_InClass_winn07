@@ -1,18 +1,18 @@
 package com.example.cs4520_inclassassignments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link IndividualMessageFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
  */
 public class IndividualMessageFragment extends Fragment {
 

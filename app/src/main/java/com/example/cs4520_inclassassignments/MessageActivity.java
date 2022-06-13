@@ -1,10 +1,5 @@
 package com.example.cs4520_inclassassignments;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,17 +22,22 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.List;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
+ */
 public class MessageActivity extends AppCompatActivity {
 
     private static final String TAG = "ICO8_MSG_A";
     TextView chatName;
     RecyclerView recyclerView;
-    private RecyclerView.LayoutManager recyclerViewLayoutManager;
-    private MessageAdapter messageAdapter;
     EditText newMessage;
     Button sendMessage, return2home;
-
     Conversation conversation;
+    private RecyclerView.LayoutManager recyclerViewLayoutManager;
+    private MessageAdapter messageAdapter;
     private List<Message> msgs;
     private FirebaseFirestore db;
     private FirebaseUser user;
@@ -56,6 +61,7 @@ public class MessageActivity extends AppCompatActivity {
 
         msgs = conversation.getMessages();
         watchMessages();
+
         recyclerViewLayoutManager = new LinearLayoutManager(this);
         // recyclerViewLayoutManager.stackFromEnd
         // TODO: AESTHETIC - arrange so that messages build from the bottom instead
@@ -72,7 +78,8 @@ public class MessageActivity extends AppCompatActivity {
                     conversation = InClass08Activity.addMessageToFB(
                             MessageActivity.this,
                             conversation, message);
-                    messageAdapter.notifyDataSetChanged();
+                    updateMessages(conversation);
+                    messageAdapter.notifyItemInserted(conversation.getChatters().size() - 1);
 
                     newMessage.setText("");
                     //listener.addButtonClicked(note);
@@ -93,7 +100,7 @@ public class MessageActivity extends AppCompatActivity {
     private void watchMessages() {
         db = FirebaseFirestore.getInstance();
         db.collection("conversations")
-                .document(conversation.chatName)
+                .document(conversation.getChatName())
                 .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot snapshot,
@@ -105,7 +112,7 @@ public class MessageActivity extends AppCompatActivity {
 
                         if (snapshot != null && snapshot.exists()) {
                             Log.d(TAG, "Current data: " + snapshot.getData());
-                            updateMessages(snapshot.toObject(Messages.class));
+                            updateMessages(snapshot.toObject(Conversation.class));
                         } else {
                             Log.d(TAG, "Current data: null");
                         }
@@ -115,9 +122,10 @@ public class MessageActivity extends AppCompatActivity {
 
 
     //
-    public void updateMessages(Messages newmsgs) {
+    public void updateMessages(Conversation newmsgs) {
         this.msgs = newmsgs.getMessages();
         conversation.setMessages(msgs);
+        messageAdapter.setAllMessages(msgs);
         messageAdapter.notifyDataSetChanged();
     }
 }

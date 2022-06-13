@@ -1,19 +1,26 @@
 package com.example.cs4520_inclassassignments;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.SpinnerAdapter;
-
 
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
+ */
 public class MultiSelectionSpinner extends AppCompatSpinner implements
         DialogInterface.OnMultiChoiceClickListener {
 
@@ -21,7 +28,6 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements
     ArrayList<String> selectedUsers = new ArrayList<>();
     boolean[] selection = {false};
     ArrayAdapter<String> adapter;
-   // private String[] usernames;
 
     public MultiSelectionSpinner(Context context, String[] usernames) {
         super(context);
@@ -55,21 +61,41 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements
     public boolean performClick() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-        Log.d(TAG,"perform click");
+        builder.setTitle("Select users to chat with.");
+
+        Log.d(TAG, "perform click");
 
         //builder.set
-        builder.setMultiChoiceItems(InClass08Activity.arrListString(selectedUsers), selection, this);
+        Log.d(TAG, String.valueOf(selectedUsers));
+        //String[] arrNames = InClass08Activity.arrListString(selectedUsers);
+        String[] arrNames;
+        // arrNames = new String[]{"wohebus", "template"};
+        arrNames = selectedUsers.toArray(new String[selectedUsers.size()]);
+        Log.d(TAG, arrNames[0] + " " + arrNames[1] + " " + arrNames[2] + " " + arrNames[3]);
+        builder.setMultiChoiceItems(arrNames, selection, this);
 
+        // TODO: 09- adjust to use a listview / custom adapter / look prettier
         Log.d(TAG, "after builder 'set mci'");
+
+        final EditText msgBody = new EditText(getContext());
+        msgBody.setHint("Type in opening message!");
+
+        builder.setView(msgBody);
+
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface arg0, int arg1)
-            {
+            public void onClick(DialogInterface arg0, int arg1) {
                 // Do nothing
+                String msgText = msgBody.getText().toString();
+                List<String> chatters = getSelectedItems();
+                if (getContext() instanceof InClass08Activity) {
+                    InClass08Activity contxt = (InClass08Activity) getContext();
+                    contxt.startNewChat(chatters, msgText);
+                }
             }
         });
-
         Log.d(TAG, "before builder 'show");
+
         builder.show();
         Log.d(TAG, "after builder 'show");
         return true;

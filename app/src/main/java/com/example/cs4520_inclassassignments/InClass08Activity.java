@@ -1,18 +1,19 @@
 package com.example.cs4520_inclassassignments;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,26 +26,52 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
+ */
 public class InClass08Activity extends AppCompatActivity {
 
     private static final String TAG = "IC08_HOME";
     FirebaseUser user;
     RecyclerView recyclerView;
-    Button toEditProfile, newChat;
+    ImageView avatar;
+    TextView title, emailTV;
+    Button toEditProfile, logout;
     ArrayList<Conversation> convos;
 
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private ConversationAdapter convoAdapter;
     private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
     private ArrayList<String> allusers;
     private MultiSelectionSpinner mySpinner;
+
+    public static Conversation addMessageToFB(Context context, Conversation convo, Message msg) {
+        convo.addMessage(msg);
+
+        FirebaseFirestore.getInstance()
+                .collection("conversations")
+                .document(convo.getChatName())
+                .set(convo).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        MainActivity.showToast(context,
+                                "Failed to add msg. -" + e.getMessage());
+                    }
+                });
+
+        return convo;
+    }
 
     @Override
     protected void onStart() {
@@ -76,15 +103,23 @@ public class InClass08Activity extends AppCompatActivity {
             user.reload();
         }
 
-/*        if (getIntent() != null && getIntent().getExtras() != null) {
+        if (user == null && getIntent() != null && getIntent().getExtras() != null) {
             user = getIntent().getParcelableExtra(AuthenticationActivity.userKey);
-        }*/
+        }
+
+        setTitle("Chat App");
+
+        title = findViewById(R.id.ic08_home_title);
+        emailTV = findViewById(R.id.ic08_usernameTV);
+        avatar = findViewById(R.id.ic08_avatar_img);
+        title.setText(String.format(getString(R.string.ic8_activity_title), user.getDisplayName()));
+        emailTV.setText(String.format(getString(R.string.ic08_email_display), user.getEmail()));
+        Picasso.get().load(user.getPhotoUrl()).into(avatar);
 
         db = FirebaseFirestore.getInstance();
         toEditProfile = findViewById(R.id.ic8_home_to_profile);
-        newChat = findViewById(R.id.ic8_home_new_chat);
         recyclerView = findViewById(R.id.ic8_home_recyc_view);
-
+        logout = findViewById(R.id.ic08_logout);
 
         allusers = new ArrayList<>();
         allusers.add(user.getDisplayName());
@@ -96,28 +131,27 @@ public class InClass08Activity extends AppCompatActivity {
         findNamesOfChatters();
         conversationDisplayDefault();
         Log.d(TAG, "user: " + user.toString());
-        // getUserConversations(user.getDisplayName());
+        getUserConversations(user.getDisplayName());
 
         toEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.showToast(InClass08Activity.this, "Profile display");
+                MainActivity.showToast(InClass08Activity.this, "Not implemented yet, sorry!");
             }
         });
-        newChat.setOnClickListener(new View.OnClickListener() {
+
+        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: change from default input and allow user to select who they want to chat with
-                // List<String> receivers = findNamesOfChatters(); // new ArrayList<String>();
-                /*receivers.add("chichi");
-                receivers.add("wohebus");
-                receivers.add("template");*/
-
-                startNewChat(findChatters(), ":)");
-                // TODO: collect information for the opening message somehow
-                //startNewChat(receivers, ":)");
+                logOutAccount();
             }
         });
+    }
+
+    private void logOutAccount() {
+        FirebaseAuth.getInstance().signOut();
+        Intent backToMainAct = new Intent(this, MainActivity.class);
+        startActivity(backToMainAct);
     }
 
     private void findNamesOfChatters() {
@@ -135,6 +169,7 @@ public class InClass08Activity extends AppCompatActivity {
                             }
                             //findChatters(userNames);
                             allusers = userNames;
+                            allusers.remove(user.getDisplayName());
                             mySpinner = findViewById(R.id.spn_items);
                             mySpinner.setSelectedUsers(allusers);
                             findChatters();
@@ -145,23 +180,13 @@ public class InClass08Activity extends AppCompatActivity {
                 });
 
     }
-    private String[] allUsersArr(){
+
+    private String[] allUsersArr() {
         String[] arr = new String[allusers.size()];
         int i = 0;
-        for (String str : allusers){
+        for (String str : allusers) {
             arr[i] = allusers.get(i);
         }
-        return arr;
-    }
-
-    public static String[] arrListString(ArrayList<String> arrList){
-        Log.d(TAG, "arrListString called: "+arrList.toString());
-        String[] arr = new String[arrList.size()];
-        int i = 0;
-        for (String str : arrList){
-            arr[i] = arrList.get(i);
-        }
-        Log.d(TAG, "returning: "+arr.length);
         return arr;
     }
 
@@ -172,7 +197,7 @@ public class InClass08Activity extends AppCompatActivity {
         MultiSelectionSpinner mySpinner;
 
         mySpinner = findViewById(R.id.spn_items);
-       // mySpinner.newAdapter(this, allUsersArr());
+        // mySpinner.newAdapter(this, allUsersArr());
         // mySpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allUsersArr()));
         mySpinner.setSelectedUsers(allusers);
         chatters.addAll(mySpinner.getSelectedItems());
@@ -187,7 +212,8 @@ public class InClass08Activity extends AppCompatActivity {
     }
 
     public void startNewChat(List<String> receivers, String msgText) {
-        db.collection("conversations")
+        receivers.add(user.getDisplayName());
+        FirebaseFirestore.getInstance().collection("conversations")
                 .document(receiversToChatName(receivers))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -258,26 +284,13 @@ public class InClass08Activity extends AppCompatActivity {
     }
 
     private void openMessageActivity(Conversation convo) {
-        Intent openMsg = new Intent(this, MessageActivity.class);
-        openMsg.putExtra("Conversation", convo);
-        startActivity(openMsg);
-    }
-
-    public static Conversation addMessageToFB(Context context, Conversation convo, Message msg) {
-        convo.addMessage(msg);
-
-        FirebaseFirestore.getInstance()
-                .collection("conversations")
-                .document(convo.getChatName())
-                .set(convo).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        MainActivity.showToast(context,
-                                "Failed to add msg. -" + e.getMessage());
-                    }
-                });
-
-        return convo;
+        if (Objects.equals(convo.getChatName(), "")) {
+            MainActivity.showToast(this, "You can't open this chat! it's a tutorial!");
+        } else {
+            Intent openMsg = new Intent(this, MessageActivity.class);
+            openMsg.putExtra("Conversation", convo);
+            startActivity(openMsg);
+        }
     }
 
     public String receiversToChatName(List<String> receivers) {
@@ -296,6 +309,7 @@ public class InClass08Activity extends AppCompatActivity {
         db.collection("users")
                 .document(username)
                 .collection("conversations")
+                .whereNotEqualTo("conversation", "/default")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -345,11 +359,12 @@ public class InClass08Activity extends AppCompatActivity {
         List<Message> msg = new ArrayList<>();
         msg.add(intro);
 
-        convos.add(new Conversation("Empty", recps, msg));
+        convos.add(new Conversation("Get Chatting!", recps, msg));
 
         recyclerViewLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
         convoAdapter = new ConversationAdapter(convos, this);
         recyclerView.setAdapter(convoAdapter);
     }
+
 }

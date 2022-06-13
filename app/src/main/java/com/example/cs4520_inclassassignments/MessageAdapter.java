@@ -8,30 +8,22 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder>{
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 08
+ */
+public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
     private List<Message> allMessages;
-    private FragmentActivity fragmentActivity;
-
-    public MessageAdapter(List<Message> allMessages, FragmentActivity fragmentActivity) {
-        this.allMessages = allMessages;
-        if(fragmentActivity != null) {
-            this.allMessages = allMessages;
-            this.fragmentActivity = fragmentActivity;
-        } else {
-            throw new RuntimeException(fragmentActivity.toString()
-                    + " must be called from a Fragment");
-        }
-    }
 
     public MessageAdapter(List<Message> allMessages) {
         this.allMessages = allMessages;
-        if (this.allMessages == null){
+        if (this.allMessages == null) {
             Log.d("IC08_MA", "NULL ALLMESSAGES???!!");
         }
     }
@@ -44,32 +36,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         this.allMessages = allMessages;
         this.notifyDataSetChanged();
         // TODO: adjust margins between messages
-    }
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        // display/delete notes elements
-        private ConstraintLayout container;
-        private TextView sender, message;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.container = itemView.findViewById(R.id.ic08_indivMess_MV);
-            this.sender = itemView.findViewById(R.id.ic08_indivMess_name);
-            this.message = itemView.findViewById(R.id.ic08_indivMess_body);
-        }
-
-        public ConstraintLayout getContainer() {
-            return container;
-        }
-
-        public TextView getSender() {
-            return sender;
-        }
-
-        public TextView getMessage() {
-            return message;
-        }
     }
 
     @NonNull
@@ -89,6 +55,33 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public int getItemCount() {
         return allMessages.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        // display/delete notes elements
+        private final ConstraintLayout container;
+        private final TextView sender;
+        private final TextView message;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.container = itemView.findViewById(R.id.ic08_indivMess_MV);
+            this.sender = itemView.findViewById(R.id.ic08_indivMess_name);
+            this.message = itemView.findViewById(R.id.ic08_indivMess_body);
+        }
+
+        public ConstraintLayout getContainer() {
+            return container;
+        }
+
+        public TextView getSender() {
+            return sender;
+        }
+
+        public TextView getMessage() {
+            return message;
+        }
     }
 }
 
