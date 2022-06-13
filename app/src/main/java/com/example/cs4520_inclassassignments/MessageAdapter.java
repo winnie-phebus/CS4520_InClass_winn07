@@ -35,7 +35,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void setAllMessages(List<Message> allMessages) {
         this.allMessages = allMessages;
         this.notifyDataSetChanged();
-        // TODO: adjust margins between messages
     }
 
     @NonNull

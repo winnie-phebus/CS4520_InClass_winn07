@@ -232,8 +232,6 @@ public class InClass08Activity extends AppCompatActivity {
     }
 
     public void openNewChat(List<String> receivers, String msgText) {
-        // TODO: 4WINN - delete/unlink 'default' conversation
-
         Toast.makeText(this, "Starting a new chat", Toast.LENGTH_SHORT).show();
 
         String chatName = receiversToChatName(receivers);

@@ -30,6 +30,7 @@ import java.util.List;
  */
 public class MessageActivity extends AppCompatActivity {
 
+    // TODO: 09- USEFUL LINK? https://firebase.google.com/docs/storage/android/upload-files
     private static final String TAG = "ICO8_MSG_A";
     TextView chatName;
     RecyclerView recyclerView;
@@ -64,7 +65,7 @@ public class MessageActivity extends AppCompatActivity {
 
         recyclerViewLayoutManager = new LinearLayoutManager(this);
         // recyclerViewLayoutManager.stackFromEnd
-        // TODO: AESTHETIC - arrange so that messages build from the bottom instead
+        // TODO: 09 AESTHETIC - arrange so that messages build from the bottom instead
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
         messageAdapter = new MessageAdapter(msgs);
         recyclerView.setAdapter(messageAdapter);
@@ -83,7 +84,7 @@ public class MessageActivity extends AppCompatActivity {
 
                     newMessage.setText("");
                     //listener.addButtonClicked(note);
-                    // TODO: make it in Adapter so that when message sender = user.getNameDisplay, it shows up as 'you'
+                    // TODO: 09 - make it in Adapter so that when message sender = user.getNameDisplay, it shows up as 'you'
                 }
             }
         });
