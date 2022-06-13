@@ -5,27 +5,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.cs4520_inclassassignments.inClass07.InClass07;
-import com.example.cs4520_inclassassignments.inClass07.Util07;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.rpc.context.AttributeContext;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,15 +42,43 @@ public class InClass08Activity extends AppCompatActivity {
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private ConversationAdapter convoAdapter;
     private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    private ArrayList<String> allusers;
+    private MultiSelectionSpinner mySpinner;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        /*        *//*SharedPreferences sharedPref = this.getSharedPreferences(
+                getString(R.string.ic08_preferences_file), Context.MODE_PRIVATE);
+        Map<String, FirebaseUser> user = (Map<String, FirebaseUser>) sharedPref.getAll();*//*
+
+        user = MainActivity.getSavedObjectFromPreference(
+                this,
+                getString(R.string.ic08_preferences_file),
+                AuthenticationActivity.ic08_USER_KEY, FirebaseUser.class);
+
+        if (user == null) {
+            // openNoteActivity();
+            // open Authentication??
+            user = FirebaseAuth().get
+        }*/
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_class08);
 
-        if (getIntent() != null && getIntent().getExtras() != null) {
-            user = getIntent().getParcelableExtra(AuthenticationActivity.userKey);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            user.reload();
         }
+
+/*        if (getIntent() != null && getIntent().getExtras() != null) {
+            user = getIntent().getParcelableExtra(AuthenticationActivity.userKey);
+        }*/
 
         db = FirebaseFirestore.getInstance();
         toEditProfile = findViewById(R.id.ic8_home_to_profile);
@@ -59,8 +86,17 @@ public class InClass08Activity extends AppCompatActivity {
         recyclerView = findViewById(R.id.ic8_home_recyc_view);
 
 
+        allusers = new ArrayList<>();
+        allusers.add(user.getDisplayName());
+
+        /*mySpinner = findViewById(R.id.spn_items);
+        mySpinner.setSelectedUsers(allusers);*/
+
+        //findChatters();
+        findNamesOfChatters();
         conversationDisplayDefault();
-        getUserConversations(user.getDisplayName());
+        Log.d(TAG, "user: " + user.toString());
+        // getUserConversations(user.getDisplayName());
 
         toEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,14 +108,76 @@ public class InClass08Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // TODO: change from default input and allow user to select who they want to chat with
-                List<String> receivers = new ArrayList<String>();
-                receivers.add("chichi");
+                // List<String> receivers = findNamesOfChatters(); // new ArrayList<String>();
+                /*receivers.add("chichi");
                 receivers.add("wohebus");
+                receivers.add("template");*/
 
+                startNewChat(findChatters(), ":)");
                 // TODO: collect information for the opening message somehow
-                startNewChat(receivers, ":)");
+                //startNewChat(receivers, ":)");
             }
         });
+    }
+
+    private void findNamesOfChatters() {
+        db.collection("users")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<String> userNames = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                userNames.add(document.getData().get("username").toString());
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                            }
+                            //findChatters(userNames);
+                            allusers = userNames;
+                            mySpinner = findViewById(R.id.spn_items);
+                            mySpinner.setSelectedUsers(allusers);
+                            findChatters();
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+    }
+    private String[] allUsersArr(){
+        String[] arr = new String[allusers.size()];
+        int i = 0;
+        for (String str : allusers){
+            arr[i] = allusers.get(i);
+        }
+        return arr;
+    }
+
+    public static String[] arrListString(ArrayList<String> arrList){
+        Log.d(TAG, "arrListString called: "+arrList.toString());
+        String[] arr = new String[arrList.size()];
+        int i = 0;
+        for (String str : arrList){
+            arr[i] = arrList.get(i);
+        }
+        Log.d(TAG, "returning: "+arr.length);
+        return arr;
+    }
+
+    private List<String> findChatters() {
+        List<String> chatters = new ArrayList<>();
+        chatters.add(user.getDisplayName());
+
+        MultiSelectionSpinner mySpinner;
+
+        mySpinner = findViewById(R.id.spn_items);
+       // mySpinner.newAdapter(this, allUsersArr());
+        // mySpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, allUsersArr()));
+        mySpinner.setSelectedUsers(allusers);
+        chatters.addAll(mySpinner.getSelectedItems());
+
+        return chatters;
     }
 
     public void goToMessage(Conversation conversation) {
@@ -89,7 +187,25 @@ public class InClass08Activity extends AppCompatActivity {
     }
 
     public void startNewChat(List<String> receivers, String msgText) {
-        // TODO: 4WINN - case where chat with participants already exists
+        db.collection("conversations")
+                .document(receiversToChatName(receivers))
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) { // chat already exists so load it
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            openMessageActivity(document.toObject(Conversation.class));
+                        } else { // doesn't exist so new chat
+                            Log.d(TAG, "No such chat, creating new");
+                            openNewChat(receivers, msgText);
+                        }
+                    }
+                });
+    }
+
+    public void openNewChat(List<String> receivers, String msgText) {
         // TODO: 4WINN - delete/unlink 'default' conversation
 
         Toast.makeText(this, "Starting a new chat", Toast.LENGTH_SHORT).show();
@@ -117,9 +233,9 @@ public class InClass08Activity extends AppCompatActivity {
                     }
                 });
 
-        String path = "/"+chatName;
+        String path = "/" + chatName;
         Map<String, String> start = new HashMap<>();
-        start.put("conversation",path);
+        start.put("conversation", path);
 
         for (String chatter : receivers) {
             db.collection("users")
@@ -133,7 +249,7 @@ public class InClass08Activity extends AppCompatActivity {
                                     "FAILED user conversation addition: " + e.getMessage());
                             MainActivity.showToast(
                                     InClass08Activity.this,
-                                    "Adding conversation to Firebase Failed for user: "+chatter);
+                                    "Adding conversation to Firebase Failed for user: " + chatter);
                         }
                     });
         }
@@ -141,13 +257,30 @@ public class InClass08Activity extends AppCompatActivity {
         openMessageActivity(newChat);
     }
 
-    private void openMessageActivity(Conversation convo){
+    private void openMessageActivity(Conversation convo) {
         Intent openMsg = new Intent(this, MessageActivity.class);
         openMsg.putExtra("Conversation", convo);
         startActivity(openMsg);
     }
 
-    public String receiversToChatName(List<String> receivers){
+    public static Conversation addMessageToFB(Context context, Conversation convo, Message msg) {
+        convo.addMessage(msg);
+
+        FirebaseFirestore.getInstance()
+                .collection("conversations")
+                .document(convo.getChatName())
+                .set(convo).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        MainActivity.showToast(context,
+                                "Failed to add msg. -" + e.getMessage());
+                    }
+                });
+
+        return convo;
+    }
+
+    public String receiversToChatName(List<String> receivers) {
         String recvStr = receivers.get(0);
 
         if (receivers.size() > 1) {
@@ -159,7 +292,7 @@ public class InClass08Activity extends AppCompatActivity {
         return recvStr;
     }
 
-    public void getUserConversations(String username){
+    public void getUserConversations(String username) {
         db.collection("users")
                 .document(username)
                 .collection("conversations")
@@ -168,7 +301,7 @@ public class InClass08Activity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            convos.clear();
+                            convos = new ArrayList<>();
                             List<String> convoRefs = new ArrayList<>();
                             for (QueryDocumentSnapshot conversationRef : task.getResult()) {
                                 Log.d(TAG, conversationRef.getId() + " => " + conversationRef.getData());
@@ -184,10 +317,10 @@ public class InClass08Activity extends AppCompatActivity {
     }
 
     private void refsToConversations(List<String> convoRefs) {
-        CollectionReference convos = db.collection("conversations");
+        CollectionReference convopath = db.collection("conversations");
 
         for (String path : convoRefs) {
-            convos.document(path).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            convopath.document(path).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(@NonNull DocumentSnapshot documentSnapshot) {
                     convos.add(documentSnapshot.toObject(Conversation.class));
@@ -213,11 +346,10 @@ public class InClass08Activity extends AppCompatActivity {
         msg.add(intro);
 
         convos.add(new Conversation("Empty", recps, msg));
-        // Conversations start = new Conversations(convos);
 
         recyclerViewLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
-        convoAdapter = new ConversationAdapter(convos);
+        convoAdapter = new ConversationAdapter(convos, this);
         recyclerView.setAdapter(convoAdapter);
     }
 }

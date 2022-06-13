@@ -1,5 +1,7 @@
 package com.example.cs4520_inclassassignments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +18,12 @@ import java.util.List;
 
 public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapter.ViewHolder>{
     private ArrayList<Conversation> allConvos;
-    private FragmentActivity fragmentActivity;
+    private Activity parentActivity;
 
-    public ConversationAdapter(ArrayList<Conversation> allConvos, FragmentActivity fragmentActivity) {
+    public ConversationAdapter(ArrayList<Conversation> allConvos, Activity parentActivity) {
 
         this.allConvos = allConvos;
-        this.fragmentActivity = fragmentActivity;
+        this.parentActivity = parentActivity;
 /*        if(fragmentActivity != null) {
             this.allConvos = allConvos;
             this.fragmentActivity = fragmentActivity;
@@ -97,7 +99,11 @@ public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapte
         holder.getToConvo().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((InClass08Activity) view.getContext()).goToMessage(allConvos.get(position));
+                Conversation conversation = allConvos.get(holder.getAdapterPosition());
+
+                Intent toAccount = new Intent(parentActivity, MessageActivity.class);
+                toAccount.putExtra("Conversation", conversation);
+                parentActivity.startActivity(toAccount);
             }
         });
     }

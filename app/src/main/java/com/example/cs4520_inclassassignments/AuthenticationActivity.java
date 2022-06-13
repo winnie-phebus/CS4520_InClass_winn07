@@ -12,22 +12,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.http.Url;
@@ -35,6 +28,7 @@ import retrofit2.http.Url;
 public class AuthenticationActivity extends AppCompatActivity implements AuthenRegisterFragment.DataManager, AuthenLoginFragment.DataManager {
 
     private static final String TAG = "IC08_AUTH";
+    public static final String ic08_USER_KEY = "NUMAD_ic08_FirebaseLoggedIn";
     public static String userKey = "SignedIn User";
 
     private FirebaseAuth mAuth;
@@ -50,6 +44,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
         currentUser = mAuth.getCurrentUser();
         if (currentUser != null){
             currentUser.reload();
+            updateUI(currentUser);
         }
     }
 
@@ -96,7 +91,7 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
         user.put("last_name", last);
         user.put("username", username);
         user.put("email", email);
-
+        
         db.collection("users")
                 .document(username)
                 .set(user).addOnFailureListener(new OnFailureListener() {
@@ -246,10 +241,18 @@ public class AuthenticationActivity extends AppCompatActivity implements AuthenR
     }
 
     private void updateUI(FirebaseUser user) {
+/*        SharedPreferences sharedPref = this.getSharedPreferences(
+                getString(R.string.ic07_preferences_file), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.saved_session_key), session.getToken());
+        editor.apply();*/
+
         if (user != null){
-            Intent toMessages = new Intent(this, InClass08Activity.class);
-            toMessages.putExtra(userKey, user);
-            startActivity(toMessages);
+            MainActivity.saveObjectToSharedPreference(this, getString(R.string.ic08_preferences_file), ic08_USER_KEY, user);
+
+            Intent toConvos = new Intent(this, InClass08Activity.class);
+            toConvos.putExtra(userKey, user);
+            startActivity(toConvos);
         }
     }
 

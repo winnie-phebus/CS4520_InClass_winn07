@@ -2,6 +2,7 @@ package com.example.cs4520_inclassassignments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -18,6 +19,7 @@ import com.example.cs4520_inclassassignments.inClass05.InClass05;
 import com.example.cs4520_inclassassignments.inClass06.InClass06;
 import com.example.cs4520_inclassassignments.inClass07.InClass07;
 import com.example.cs4520_inclassassignments.practice.Practice;
+import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity {
     // final String TAG = "Main";
@@ -112,6 +114,27 @@ public class MainActivity extends AppCompatActivity {
     private void basicButtonSetup(Button newButton, Intent newIntent, String num) {
         newButton.setText(getResources().getString(R.string.main_in_class_param, num));
         newButton.setOnClickListener(view -> startActivity(newIntent));
+    }
+
+    // for saving to sharedPref
+    // copied from: https://stackoverflow.com/a/39435730
+    public static void saveObjectToSharedPreference(Context context, String preferenceFileName, String serializedObjectKey, Object object) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
+        SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
+        final Gson gson = new Gson();
+        String serializedObject = gson.toJson(object);
+        sharedPreferencesEditor.putString(serializedObjectKey, serializedObject);
+        sharedPreferencesEditor.apply();
+    }
+
+    // copied from: https://stackoverflow.com/a/39435730
+    public static <GenericClass> GenericClass getSavedObjectFromPreference(Context context, String preferenceFileName, String preferenceKey, Class<GenericClass> classType) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
+        if (sharedPreferences.contains(preferenceKey)) {
+            final Gson gson = new Gson();
+            return gson.fromJson(sharedPreferences.getString(preferenceKey, ""), classType);
+        }
+        return null;
     }
 
     // this function simplifies the action of using a button to open a new activity

@@ -12,6 +12,7 @@
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_in_class05.xml" value="0.18" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_in_class06.xml" value="0.2" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_in_class07.xml" value="0.15" />
+        <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_in_class08.xml" value="0.22" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_note.xml" value="0.2" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_practice.xml" value="0.1" />
@@ -20,7 +21,9 @@
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic03__select_avatar.xml" value="0.1734375" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic06_article_display.xml" value="0.1734375" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic06_select_headline.xml" value="0.25" />
-        <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic08_indiv_message.xml" value="0.1" />
+        <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic08_indiv_message.xml" value="0.22" />
+        <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic08_indiv_message_senderview.xml" value="0.1734375" />
+        <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic08_login.xml" value="0.1734375" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic08_message_preview.xml" value="0.1" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic08_register.xml" value="0.1" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_login.xml" value="0.1" />
@@ -29,13 +32,10 @@
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/note_row.xml" value="0.25" />
         <entry key="..\:/Users/doron/Documents/CS4520/app/src/main/res/layout/activity_main.xml" value="0.21" />
         <entry key="..\:/Users/doron/Documents/CS4520/app/src/main/res/layout/activity_practice.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_ic02_display.xml" value="0.1734375" />
-        <entry key="app/src/main/res/layout/activity_message.xml" value="0.20208333333333334" />
-        <entry key="app/src/main/res/layout/fragment_ic08_message_preview.xml" value="0.1" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
