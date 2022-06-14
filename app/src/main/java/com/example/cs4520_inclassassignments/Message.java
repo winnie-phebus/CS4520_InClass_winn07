@@ -3,6 +3,8 @@ package com.example.cs4520_inclassassignments;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.storage.StorageReference;
+
 /**
  * TEAM 06
  *
@@ -23,19 +25,29 @@ public class Message implements Parcelable {
         }
     };
     String sender, message;
+    StorageReference img;
 
     public Message() {
         // for Firebase
     }
 
-    public Message(String sender, String message) {
+    public Message(String sender, String message, StorageReference img) {
         this.sender = sender;
         this.message = message;
+        this.img = img;
     }
 
     protected Message(Parcel in) {
         sender = in.readString();
         message = in.readString();
+    }
+
+    public StorageReference getImg() {
+        return img;
+    }
+
+    public void setImg(StorageReference img) {
+        this.img = img;
     }
 
     @Override

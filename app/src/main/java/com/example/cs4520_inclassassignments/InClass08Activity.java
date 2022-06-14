@@ -2,6 +2,7 @@ package com.example.cs4520_inclassassignments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -136,7 +138,7 @@ public class InClass08Activity extends AppCompatActivity {
         toEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.showToast(InClass08Activity.this, "Not implemented yet, sorry!");
+                profilePress();
             }
         });
 
@@ -146,6 +148,11 @@ public class InClass08Activity extends AppCompatActivity {
                 logOutAccount();
             }
         });
+    }
+
+    // TODO: make a display for the user that lets them input the new name OR/AND profile photo they'd like
+    private void profilePress() {
+        MainActivity.showToast(InClass08Activity.this, "Not implemented yet, sorry!");
     }
 
     private void logOutAccount() {
@@ -179,15 +186,6 @@ public class InClass08Activity extends AppCompatActivity {
                     }
                 });
 
-    }
-
-    private String[] allUsersArr() {
-        String[] arr = new String[allusers.size()];
-        int i = 0;
-        for (String str : allusers) {
-            arr[i] = allusers.get(i);
-        }
-        return arr;
     }
 
     private List<String> findChatters() {
@@ -235,7 +233,7 @@ public class InClass08Activity extends AppCompatActivity {
         Toast.makeText(this, "Starting a new chat", Toast.LENGTH_SHORT).show();
 
         String chatName = receiversToChatName(receivers);
-        Message msg = new Message(user.getDisplayName(), msgText);
+        Message msg = new Message(user.getDisplayName(), msgText, null);
         List<Message> msgs = new ArrayList<>();
         msgs.add(msg);
 
@@ -351,7 +349,8 @@ public class InClass08Activity extends AppCompatActivity {
         convos = new ArrayList<>();
         Message intro = new Message(
                 "Default",
-                "press new chat and talk to your friends!");
+                "press new chat and talk to your friends!",
+                null);
         List<String> recps = new ArrayList<String>();
         recps.add("Tutorial");
         List<Message> msg = new ArrayList<>();
@@ -363,6 +362,36 @@ public class InClass08Activity extends AppCompatActivity {
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
         convoAdapter = new ConversationAdapter(convos, this);
         recyclerView.setAdapter(convoAdapter);
+    }
+
+    // TODO: this should be called after User has supplied the changes they want, then put into userUpdate()
+    // https://www.codegrepper.com/code-examples/java/how+to+get+uri+of+captured+image+in+android might be helpful
+    public UserProfileChangeRequest profileBuilder(String name, Uri avatar) {
+        UserProfileChangeRequest.Builder builder = new UserProfileChangeRequest.Builder();
+
+        if (name != null) {
+            builder.setDisplayName(name);
+        }
+
+        if (avatar != null) {
+            builder.setPhotoUri(avatar);
+        }
+
+        return builder.build();
+    }
+
+    public void userUpdate(UserProfileChangeRequest profileUpdates) {
+        //TO DO: fix this :) check out https://firebase.google.com/docs/auth/android/manage-users
+
+        user.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User profile updated.");
+                        }
+                    }
+                });
     }
 
 }

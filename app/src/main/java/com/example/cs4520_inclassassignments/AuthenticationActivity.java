@@ -230,26 +230,6 @@ public class AuthenticationActivity extends AppCompatActivity implements ic08_Re
                 });
     }
 
-    public void userUpdatePhoto(Url url) {
-
-        //TO DO: fix this :) check out https://firebase.google.com/docs/auth/android/manage-users
-
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName(currentUser.getDisplayName())
-                .setPhotoUri(Uri.parse("https://example.com/jane-q-user/profile.jpg"))
-                .build();
-
-        currentUser.updateProfile(profileUpdates)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "User profile updated.");
-                        }
-                    }
-                });
-    }
-
     private void updateUI(FirebaseUser user) {
 /*        SharedPreferences sharedPref = this.getSharedPreferences(
                 getString(R.string.ic07_preferences_file), Context.MODE_PRIVATE);

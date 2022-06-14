@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -43,6 +44,8 @@ public class MessageActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseUser user;
 
+    StorageReference img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,7 @@ public class MessageActivity extends AppCompatActivity {
         newMessage = findViewById(R.id.ic08_mess_newMessageBody);
         sendMessage = findViewById(R.id.ic08_mess_sendMessage);
         return2home = findViewById(R.id.ic08_mess_toHome);
+        // TODO: add and implement the ImgButton
 
         conversation = getIntent().getParcelableExtra("Conversation");
         Log.d("IC08_MA", "Conversation: " + conversation.toString());
@@ -65,7 +69,7 @@ public class MessageActivity extends AppCompatActivity {
 
         recyclerViewLayoutManager = new LinearLayoutManager(this);
         // recyclerViewLayoutManager.stackFromEnd
-        // TODO: 09 AESTHETIC - arrange so that messages build from the bottom instead
+        // TODO: 4WINN - 09 AESTHETIC - arrange so that messages build from the bottom instead
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
         messageAdapter = new MessageAdapter(msgs);
         recyclerView.setAdapter(messageAdapter);
@@ -75,7 +79,7 @@ public class MessageActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (!newMessage.getText().toString().equals("")) {
-                    Message message = new Message(user.getDisplayName(), newMessage.getText().toString());
+                    Message message = new Message(user.getDisplayName(), newMessage.getText().toString(), img);
                     conversation = InClass08Activity.addMessageToFB(
                             MessageActivity.this,
                             conversation, message);
@@ -84,7 +88,8 @@ public class MessageActivity extends AppCompatActivity {
 
                     newMessage.setText("");
                     //listener.addButtonClicked(note);
-                    // TODO: 09 - make it in Adapter so that when message sender = user.getNameDisplay, it shows up as 'you'
+                    // TODO: make it in Adapter so that when message sender = user.getNameDisplay, it shows up as 'you'
+                    // TODO: AESTHETIC - use the sender view so that text is right aligned
                 }
             }
         });

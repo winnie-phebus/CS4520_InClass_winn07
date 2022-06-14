@@ -43,7 +43,7 @@
     <string name="ic07_preferences_file">NUMAD_NU_winn07_IC07_sessions</string>
     <!-- IN CLASS 07 -->
 
-    <!-- IN CLASS 08 -->
+    <!-- IN CLASS 08 && IN CLASS 09 -->
     <string name="ic8_username">Username</string>
     <string name="ic8_activity_title">Hey, %s</string>
     <string name="ic08_username_display">User: %s</string>
@@ -57,4 +57,5 @@
     <string name="ic8_last_name">Last Name</string>
     <string name="ic08_preferences_file">NUMAD_06_ic08_file</string>
     <string name="logout">Log Out</string>
+    <string name="ic08_addimage">+</string> <!-- TODO: change to image icon to be clearer -->
 </resources>

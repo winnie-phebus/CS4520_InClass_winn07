@@ -22,24 +22,23 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="24dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ic08_mess_sendMessage"
+        app:layout_constraintEnd_toStartOf="@+id/ic08_img_button"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/ic08_mess_sendMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
         android:text="@string/ic8_send_message"
         app:layout_constraintBottom_toBottomOf="@+id/ic08_mess_newMessageBody"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/ic08_mess_recyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ic08_mess_recyclerView"
@@ -65,5 +64,16 @@
         app:layout_constraintBottom_toBottomOf="@+id/ic08_mess_friendName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/ic08_mess_friendName" />
+
+    <Button
+        android:id="@+id/ic08_img_button"
+        style="@style/Widget.Material3.Button.IconButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:text="@string/ic08_addimage"
+        app:icon="@drawable/icons8_image_36___"
+        app:layout_constraintEnd_toStartOf="@+id/ic08_mess_sendMessage"
+        app:layout_constraintTop_toTopOf="@+id/ic08_mess_sendMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
