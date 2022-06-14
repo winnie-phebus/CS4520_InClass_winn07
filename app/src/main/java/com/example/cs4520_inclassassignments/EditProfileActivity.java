@@ -17,7 +17,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     EditText newUsername;
     ImageView imageDisp;
-    Button takePicture, uploadPicture, leaveNoSave, saveChanges;
+    Button takePicture, leaveNoSave, saveChanges;
 
 
     @Override
@@ -28,7 +28,6 @@ public class EditProfileActivity extends AppCompatActivity {
         newUsername = findViewById(R.id.ic09_edit_newUsernameInput);
         imageDisp = findViewById(R.id.ic09_edit_profilePicDisp);
         takePicture = findViewById(R.id.ic09_edit_takePicture);
-        uploadPicture = findViewById(R.id.ic09_edit_upload);
         leaveNoSave = findViewById(R.id.ic09_edit_backNoSave);
         saveChanges = findViewById(R.id.ic09_edit_save);
 

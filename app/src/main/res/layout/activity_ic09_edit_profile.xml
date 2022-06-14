@@ -23,18 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Take a new photo"
+        android:text="New photo"
         app:layout_constraintStart_toStartOf="@+id/ic09_edit_profilePicDisp"
         app:layout_constraintTop_toBottomOf="@+id/ic09_edit_profilePicDisp" />
-
-    <Button
-        android:id="@+id/ic09_edit_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Upload"
-        app:layout_constraintStart_toStartOf="@+id/ic09_edit_profilePicDisp"
-        app:layout_constraintTop_toBottomOf="@+id/ic09_edit_takePicture" />
 
     <ImageView
         android:id="@+id/ic09_edit_profilePicDisp"
