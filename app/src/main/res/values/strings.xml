@@ -57,5 +57,5 @@
     <string name="ic8_last_name">Last Name</string>
     <string name="ic08_preferences_file">NUMAD_06_ic08_file</string>
     <string name="logout">Log Out</string>
-    <string name="ic08_addimage">+</string> <!-- TODO: change to image icon to be clearer -->
+    <!-- string name="ic08_addimage">+</string>-->
 </resources>

@@ -71,9 +71,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
-        android:text="@string/ic08_addimage"
         app:icon="@drawable/icons8_image_36___"
         app:layout_constraintEnd_toStartOf="@+id/ic08_mess_sendMessage"
-        app:layout_constraintTop_toTopOf="@+id/ic08_mess_sendMessage" />
+        app:layout_constraintTop_toTopOf="@+id/ic08_mess_sendMessage"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,6 +51,8 @@ public class InClass08Activity extends AppCompatActivity {
     TextView title, emailTV;
     Button toEditProfile, logout;
     ArrayList<Conversation> convos;
+    int RESULT_OK = 1;
+    int RESULT_CANCELED = 0;
 
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private ConversationAdapter convoAdapter;
@@ -150,9 +152,45 @@ public class InClass08Activity extends AppCompatActivity {
         });
     }
 
-    // TODO: make a display for the user that lets them input the new name OR/AND profile photo they'd like
+    // TO-DO: make a display for the user that lets them input the new name OR/AND profile photo they'd like
     private void profilePress() {
+
+        Intent toEditProfile = new Intent(this, EditProfileActivity.class);
+        toEditProfile.putExtra("user", user);
+        // TODO: find better way to wait for result from edit activity.
+        startActivityForResult(toEditProfile, 1);
+
         MainActivity.showToast(InClass08Activity.this, "Not implemented yet, sorry!");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        // check if the request code is same as what is passed  here it is 2
+        if(requestCode==1)
+        {
+            applyChanges();
+        }
+    }
+
+    private void applyChanges(){
+        String newUsername;
+        Uri newProfilePic;
+
+        try {
+            newUsername = getIntent().getStringExtra("new username");
+        } catch (NullPointerException e) {
+            newUsername = user.getDisplayName();
+        }
+
+        try {
+            newProfilePic = getIntent().getParcelableExtra("new profile picture");
+        } catch (NullPointerException e) {
+            newProfilePic = user.getPhotoUrl();
+        }
+
+        UserProfileChangeRequest builder = profileBuilder(newUsername, newProfilePic);
+        userUpdate(builder);
     }
 
     private void logOutAccount() {
@@ -364,7 +402,7 @@ public class InClass08Activity extends AppCompatActivity {
         recyclerView.setAdapter(convoAdapter);
     }
 
-    // TODO: this should be called after User has supplied the changes they want, then put into userUpdate()
+    // TO-DO: this should be called after User has supplied the changes they want, then put into userUpdate()
     // https://www.codegrepper.com/code-examples/java/how+to+get+uri+of+captured+image+in+android might be helpful
     public UserProfileChangeRequest profileBuilder(String name, Uri avatar) {
         UserProfileChangeRequest.Builder builder = new UserProfileChangeRequest.Builder();
