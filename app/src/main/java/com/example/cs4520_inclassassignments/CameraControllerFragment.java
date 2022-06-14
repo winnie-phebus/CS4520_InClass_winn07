@@ -88,9 +88,11 @@ public class CameraControllerFragment extends Fragment implements View.OnClickLi
         buttonSwitchCamera.setOnClickListener(this);
         buttonOpenGallery.setOnClickListener(this);
 
-//        default lense facing....
+
+        // default to back camera
         lenseFacing = lenseFacingBack;
 
+        // set up + display what camera is seeing.
         setUpCamera();
 
         return rootView;
@@ -101,7 +103,7 @@ public class CameraControllerFragment extends Fragment implements View.OnClickLi
     private void setUpCamera() {
         //            binding hardware camera with preview, and imageCapture.......
         cameraProviderFuture = ProcessCameraProvider.getInstance(getContext());
-        cameraProviderFuture.addListener(()->{
+        cameraProviderFuture.addListener(()->{ // using lambda to make this less complicated
             preview = new Preview.Builder()
                     .build();
             preview.setSurfaceProvider(previewView.getSurfaceProvider());
