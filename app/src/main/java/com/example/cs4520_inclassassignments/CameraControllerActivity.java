@@ -39,7 +39,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
     private int lenseFacingBack;
     private int lenseFacingFront;
 
-    private CameraControllerFragment.DisplayTakenPhoto mListener;
+    private DisplayTakenPhoto mListener;
 
     private FloatingActionButton buttonTakePhoto;
     private FloatingActionButton buttonSwitchCamera;
