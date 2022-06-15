@@ -34,7 +34,7 @@ public class EditProfileActivity extends AppCompatActivity {
         FirebaseUser user = getIntent().getParcelableExtra("user");
 
         newUsername.setText(user.getDisplayName());
-        // TODO fix
+        // TODO fix image ressource change
         // imageDisp.setImageResource(user.getPhotoUrl());
 
         leaveNoSave.setOnClickListener(new View.OnClickListener() {

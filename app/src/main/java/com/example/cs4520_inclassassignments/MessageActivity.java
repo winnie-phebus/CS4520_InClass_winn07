@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -36,7 +37,8 @@ public class MessageActivity extends AppCompatActivity {
     TextView chatName;
     RecyclerView recyclerView;
     EditText newMessage;
-    Button sendMessage, return2home;
+    Button sendMessage, return2home, sendPicture;
+
     Conversation conversation;
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private MessageAdapter messageAdapter;
@@ -57,7 +59,7 @@ public class MessageActivity extends AppCompatActivity {
         newMessage = findViewById(R.id.ic08_mess_newMessageBody);
         sendMessage = findViewById(R.id.ic08_mess_sendMessage);
         return2home = findViewById(R.id.ic08_mess_toHome);
-        // TODO: add and implement the ImgButton
+        sendPicture = findViewById(R.id.ic08_img_button);
 
         conversation = getIntent().getParcelableExtra("Conversation");
         Log.d("IC08_MA", "Conversation: " + conversation.toString());
@@ -73,6 +75,15 @@ public class MessageActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
         messageAdapter = new MessageAdapter(msgs);
         recyclerView.setAdapter(messageAdapter);
+
+        // TODO : check if this works.
+        sendPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToCamera = new Intent(MessageActivity.this, CameraControllerActivity.class);
+                startActivity(goToCamera);
+            }
+        });
 
         sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override

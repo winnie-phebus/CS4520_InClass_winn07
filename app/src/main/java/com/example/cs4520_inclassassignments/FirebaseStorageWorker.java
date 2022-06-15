@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnPausedListener;
 import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -56,7 +57,9 @@ public class FirebaseStorageWorker {
             @Override
             public void onFailure(@NonNull Exception exception) {
                 // Handle unsuccessful uploads
-                // TODO: add a static error method lmao
+                int errorCode = ((StorageException) exception).getErrorCode();
+                String errorMessage = exception.getMessage();
+                Log.d(TAG, "Error: "+ errorMessage);
                 // reference: https://firebase.google.com/docs/storage/android/handle-errors if needed
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
