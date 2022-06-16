@@ -2,6 +2,7 @@ package com.example.cs4520_inclassassignments;
 
 import static com.example.cs4520_inclassassignments.FirebaseStorageWorker.getStorage;
 
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -151,7 +152,13 @@ public class MessageActivity extends AppCompatActivity {
 
     public void onUploadButtonPressed(Uri imageUri) {
 //        Upload an image from local file....
+        final int permissions = 10;
+        enforceCallingOrSelfUriPermission(imageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION, "");
+        // requestPermissions(Manifest.permission.);
+        // Log.d(TAG, "onUploadButtonPressed: PERMISSIONS:" + permissions);
+
         StorageReference storageReference = getStorage().getReference().child("images/" + user.getUid() + "/" + imageUri.getLastPathSegment());
+
         UploadTask uploadImage = storageReference.putFile(imageUri);
         uploadImage.addOnFailureListener(new OnFailureListener() {
                     @Override

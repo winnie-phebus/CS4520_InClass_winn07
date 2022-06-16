@@ -99,8 +99,8 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
         // get storage set up
         storage = FirebaseStorage.getInstance();
 
-        //TODO: this might need to move to InClass08
-       // enforceCallingOrSelfPermission(, "TODO: message if thrown");
+        //TODO: this might not be working;
+        enforceCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE, "Permission needed.");
 
         //Retrieving an image from gallery....
         galleryLauncher = registerForActivityResult(
@@ -192,6 +192,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
         final Intent data = new Intent();
         // Add the required data to be returned to the MainActivity
         data.putExtra(IMG_KEY, imgUri);
+        data.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
         setResult(Activity.RESULT_OK, data);
         finish();

@@ -230,6 +230,8 @@ public class AuthenticationActivity extends AppCompatActivity implements ic08_Re
                 });
     }
 
+    // TODO: change register / login to lowercase
+    
     private void updateUI(FirebaseUser user) {
 /*        SharedPreferences sharedPref = this.getSharedPreferences(
                 getString(R.string.ic07_preferences_file), Context.MODE_PRIVATE);
