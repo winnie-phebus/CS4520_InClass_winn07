@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
@@ -18,6 +19,7 @@ public class EditProfileActivity extends AppCompatActivity {
     EditText newUsername;
     ImageView imageDisp;
     Button takePicture, leaveNoSave, saveChanges;
+    private FirebaseUser user;
 
 
     @Override
@@ -25,13 +27,13 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ic09_edit_profile);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
         newUsername = findViewById(R.id.ic09_edit_newUsernameInput);
         imageDisp = findViewById(R.id.ic09_edit_profilePicDisp);
         takePicture = findViewById(R.id.ic09_edit_takePicture);
         leaveNoSave = findViewById(R.id.ic09_edit_backNoSave);
         saveChanges = findViewById(R.id.ic09_edit_save);
 
-        FirebaseUser user = getIntent().getParcelableExtra("user");
 
         newUsername.setText(user.getDisplayName());
         // TODO fix image ressource change
@@ -40,9 +42,9 @@ public class EditProfileActivity extends AppCompatActivity {
         leaveNoSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent returnIntent = new Intent();
-                setResult(0, returnIntent);
-                finish();
+                Intent returnIntent = new Intent(EditProfileActivity.this, InClass08Activity.class);
+                returnIntent.putExtra("save_changes", 0);
+                startActivity(returnIntent);
             }
         });
 
@@ -50,10 +52,10 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent returnIntent = new Intent();
+                Intent returnIntent = new Intent(EditProfileActivity.this, InClass08Activity.class);
                 returnIntent.putExtra("new username",newUsername.getText().toString());
-                setResult(1,returnIntent);
-                finish();
+                returnIntent.putExtra("save_changes", 1);
+                startActivity(returnIntent);
             }
         });
 
