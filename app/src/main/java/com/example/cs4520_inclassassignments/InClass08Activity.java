@@ -1,7 +1,10 @@
 package com.example.cs4520_inclassassignments;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -43,8 +48,13 @@ import java.util.Objects;
  * Assignment 08
  */
 public class InClass08Activity extends AppCompatActivity {
+    private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
+    private static final int CAMERA_REQUEST_CODE = 10;
 
     private static final String TAG = "IC08_HOME";
+    private static final int PROFILE_ACT_UPDATE = 1;
+    private static final int PERMISSIONS_CODE = 0x100;
+
     FirebaseUser user;
     RecyclerView recyclerView;
     ImageView avatar;
@@ -59,6 +69,19 @@ public class InClass08Activity extends AppCompatActivity {
     private FirebaseFirestore db;
     private ArrayList<String> allusers;
     private MultiSelectionSpinner mySpinner;
+
+    public static void cameraPermissionCheck(Context context) {
+        //  grant permissions to camera access, and read/write on device storage.
+        Boolean cameraAllowed = ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;
+        Boolean readAllowed = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        Boolean writeAllowed = ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+
+        if (cameraAllowed && readAllowed && writeAllowed) {
+            Toast.makeText(context, "All permissions granted!", Toast.LENGTH_SHORT).show();
+        } else {
+            InClass08Activity.requestPermission((Activity) context);
+        }
+    }
 
     public static Conversation addMessageToFB(Context context, Conversation convo, Message msg) {
         convo.addMessage(msg);
@@ -75,6 +98,21 @@ public class InClass08Activity extends AppCompatActivity {
                 });
 
         return convo;
+    }
+
+    public static boolean hasCameraPermission(Context context) {
+        return ContextCompat.checkSelfPermission(
+                context,
+                Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    public static void requestPermission(Activity context) {
+        context.requestPermissions(new String[]{
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        }, PERMISSIONS_CODE);
     }
 
     @Override
@@ -167,13 +205,12 @@ public class InClass08Activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check if the request code is same as what is passed  here it is 2
-        if(requestCode==1)
-        {
+        if (requestCode == PROFILE_ACT_UPDATE) {
             applyChanges();
         }
     }
 
-    private void applyChanges(){
+    private void applyChanges() {
         String newUsername;
         Uri newProfilePic;
 
@@ -224,6 +261,34 @@ public class InClass08Activity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    public void cameraPermissionCheck() {
+        if (hasCameraPermission(this)) {
+            enableCamera();
+        } else {
+            requestPermission(this);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grantResults) {
+
+        super.onRequestPermissionsResult(permsRequestCode, permissions, grantResults);
+        switch (permsRequestCode) {
+
+            case 200:
+
+                boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                break;
+
+        }
+
+    }
+
+    private void enableCamera() {
+        Intent intent = new Intent(this, CameraControllerActivity.class);
+        startActivity(intent);
     }
 
     private List<String> findChatters() {

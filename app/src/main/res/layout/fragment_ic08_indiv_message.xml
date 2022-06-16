@@ -34,8 +34,20 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="1dp"
                 android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/ic08_indivMess_name"
+                app:layout_constraintTop_toBottomOf="@+id/ic09_msgImg" />
+
+            <ImageView
+                android:id="@+id/ic09_msgImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/select_avatar"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="@+id/ic08_indivMess_name"
                 app:layout_constraintTop_toBottomOf="@+id/ic08_indivMess_name" />
 

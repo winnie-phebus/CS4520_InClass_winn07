@@ -1,9 +1,12 @@
 package com.example.cs4520_inclassassignments;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.firebase.storage.StorageReference;
+
+import retrofit2.http.Url;
 
 /**
  * TEAM 06
@@ -25,13 +28,13 @@ public class Message implements Parcelable {
         }
     };
     String sender, message;
-    StorageReference img;
+    Uri img;
 
     public Message() {
         // for Firebase
     }
 
-    public Message(String sender, String message, StorageReference img) {
+    public Message(String sender, String message, Uri img) {
         this.sender = sender;
         this.message = message;
         this.img = img;
@@ -42,11 +45,11 @@ public class Message implements Parcelable {
         message = in.readString();
     }
 
-    public StorageReference getImg() {
+    public Uri getImg() {
         return img;
     }
 
-    public void setImg(StorageReference img) {
+    public void setImg(Uri img) {
         this.img = img;
     }
 

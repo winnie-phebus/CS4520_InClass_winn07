@@ -54,7 +54,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 returnIntent.putExtra("new username",newUsername.getText().toString());
                 setResult(1,returnIntent);
                 finish();
-
             }
         });
 

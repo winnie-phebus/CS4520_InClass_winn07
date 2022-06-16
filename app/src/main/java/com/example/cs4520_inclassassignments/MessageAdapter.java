@@ -4,11 +4,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -47,8 +50,15 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
-        holder.getSender().setText(allMessages.get(position).getSender());
-        holder.getMessage().setText(allMessages.get(position).getMessage());
+        Message current = allMessages.get(position);
+
+        holder.getSender().setText(current.getSender());
+        holder.getMessage().setText(current.getMessage());
+
+        if (current.getImg() != null) {
+            Picasso.get().load(current.getImg()).into(holder.getImg());
+            holder.getImg().setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -62,12 +72,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         private final ConstraintLayout container;
         private final TextView sender;
         private final TextView message;
+        private final ImageView img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.container = itemView.findViewById(R.id.ic08_indivMess_MV);
             this.sender = itemView.findViewById(R.id.ic08_indivMess_name);
             this.message = itemView.findViewById(R.id.ic08_indivMess_body);
+            this.img = itemView.findViewById(R.id.ic09_msgImg);
         }
 
         public ConstraintLayout getContainer() {
@@ -80,6 +92,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
         public TextView getMessage() {
             return message;
+        }
+
+        public ImageView getImg() {
+            return img;
         }
     }
 }

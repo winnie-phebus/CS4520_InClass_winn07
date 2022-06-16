@@ -76,4 +76,16 @@
         app:layout_constraintTop_toTopOf="@+id/ic08_mess_sendMessage"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <ImageView
+        android:id="@+id/ic09_addImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:maxWidth="250dp"
+        android:maxHeight="250dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/ic08_mess_newMessageBody"
+        app:layout_constraintStart_toStartOf="@+id/ic08_mess_recyclerView"
+        app:srcCompat="@drawable/select_avatar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
