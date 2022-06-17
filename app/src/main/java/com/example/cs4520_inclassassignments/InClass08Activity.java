@@ -22,7 +22,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +52,7 @@ import java.util.Objects;
  * @author Alix Heudebourg & Winnie Phebus
  * Assignment 08
  */
-public class InClass08Activity extends AppCompatActivity {
+public class InClass08Activity extends AppCompatActivity implements CameraControllerActivity.imgHandler {
     private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
     private static final int CAMERA_REQUEST_CODE = 10;
 
@@ -69,15 +68,17 @@ public class InClass08Activity extends AppCompatActivity {
     ArrayList<Conversation> convos;
     int RESULT_OK = 1;
     int RESULT_CANCELED = 0;
-    private int makeChanges;
     String newUsernameInput;
-    Uri newProfilePicInput ,img;
-
+    Uri newProfilePicInput, img;
+    private int makeChanges;
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private ConversationAdapter convoAdapter;
     private FirebaseFirestore db;
     private ArrayList<String> allusers;
     private MultiSelectionSpinner mySpinner;
+    ImageView imageDisp;
+    ActivityResultLauncher<Intent> retrieveImg;
+    private Uri newImg;
 
     public static void cameraPermissionCheck(Context context) {
         //  grant permissions to camera access, and read/write on device storage.
@@ -184,6 +185,22 @@ public class InClass08Activity extends AppCompatActivity {
         Log.d(TAG, "user: " + user.toString());
         getUserConversations(user.getDisplayName());
 
+        retrieveImg =
+                registerForActivityResult(
+                        new ActivityResultContracts.StartActivityForResult(),
+                        new ActivityResultCallback<ActivityResult>() {
+                            @Override
+                            public void onActivityResult(ActivityResult result) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        resultDisplay(result, imageDisp, true);
+                                    }
+                                });
+                            }
+                        }
+                );
+
         toEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -211,29 +228,39 @@ public class InClass08Activity extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_ic09_edit_profile);
 
         EditText newUsername;
-        ImageView imageDisp;
         Button takePicture, leaveNoSave, saveChanges;
-        Uri img;
+        //Uri img;
 
-        newUsername = findViewById(R.id.ic09_edit_newUsernameInput);
-        imageDisp = findViewById(R.id.ic09_edit_profilePicDisp);
-        takePicture = findViewById(R.id.ic09_edit_takePicture);
-        leaveNoSave = findViewById(R.id.ic09_edit_backNoSave);
-        saveChanges = findViewById(R.id.ic09_edit_save);
+        newUsername = dialog.findViewById(R.id.ic09_edit_newUsernameInput);
+        imageDisp = dialog.findViewById(R.id.ic09_edit_profilePicDisp);
+        takePicture = dialog.findViewById(R.id.ic09_edit_takePicture);
+        leaveNoSave = dialog.findViewById(R.id.ic09_edit_backNoSave);
+        saveChanges = dialog.findViewById(R.id.ic09_edit_save);
 
         // show username before any changes are made
         newUsername.setText(user.getDisplayName());
 
         // show avatar
-        Picasso.get().load(user.getPhotoUrl()).into(imageDisp);
+        // img = user.getPhotoUrl();
+
+        if (newProfilePicInput != null) {
+            img = newProfilePicInput;
+        } else if (img != null) {
+            img = user.getPhotoUrl();
+        }
+
+        Picasso.get().load(img).into(imageDisp);
 
         // leave without saving edits
         leaveNoSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                resetDialog();
                 dialog.dismiss();
             }
         });
+
+        //dialog.setOnShowListener();
 
         saveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,27 +268,21 @@ public class InClass08Activity extends AppCompatActivity {
                 newUsernameInput = newUsername.getText().toString();
                 // TODO: get picture and cast it to newProfilePicInput object
                 //  newProfilePicInput = imageDisp.get
-                applyChanges();
+                userUpdate(profileBuilder(newUsernameInput, newProfilePicInput));
+                // applyChanges();
             }
         });
-
-        ActivityResultLauncher<Intent> retrieveImg =
-                registerForActivityResult(
-                        new ActivityResultContracts.StartActivityForResult(),
-                        new ActivityResultCallback<ActivityResult>() {
-                            @Override
-                            public void onActivityResult(ActivityResult result) {
-                                resultDisplay(result, imageDisp);
-                            }
-                        }
-                );
 
         takePicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (InClass08Activity.hasCameraPermission(InClass08Activity.this)) {
-                    Intent openCamera = new Intent(InClass08Activity.this, CameraControllerActivity.class);
+                    CameraControllerActivity cca = new CameraControllerActivity();
+                    Intent openCamera = new Intent(InClass08Activity.this, cca.getClass());
+                    // openCamera.putExtra(Intent.EXTRA_REFERRER, InClass08Activity.this);
                     openCamera.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    //startActivity(openCamera);
+                    dialog.dismiss();
                     retrieveImg.launch(openCamera);
                 } else {
                     InClass08Activity.requestPermission(InClass08Activity.this);
@@ -269,6 +290,7 @@ public class InClass08Activity extends AppCompatActivity {
             }
         });
 
+        dialog.show();
 //        Intent toEditProfile = new Intent(this, EditProfileActivity.class);
 //        //toEditProfile.putExtra("user", user);
 //        // TO DO: find better way to wait for result from edit activity.
@@ -276,7 +298,16 @@ public class InClass08Activity extends AppCompatActivity {
 //        MainActivity.showToast(InClass08Activity.this, "Not implemented yet, sorry!");
     }
 
-    public void resultDisplay(ActivityResult result, ImageView imageView) {
+    private void resetDialog() {
+        newUsernameInput = null;
+        newProfilePicInput = null;
+    }
+
+    public void resultDisplay(ActivityResult result, ImageView imageView, Boolean inDialog) {
+        if (imageView == null && inDialog) {
+            imageView = findViewById(R.id.ic09_edit_profilePicDisp);
+        }
+
         Log.d(TAG, "resultDisplay: " + result);
         if (result.getResultCode() == RESULT_OK) {
             Intent data = result.getData();
@@ -311,7 +342,7 @@ public class InClass08Activity extends AppCompatActivity {
     // apply changes to the profile if coming from EditProfile
     private void makesChangesFromEdit() {
 
-        if (this.makeChanges == 1){
+        if (this.makeChanges == 1) {
             applyChanges();
         }
 
@@ -321,9 +352,9 @@ public class InClass08Activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // check if the request code is same as what is passed  here it is 2
-        if (requestCode == PROFILE_ACT_UPDATE) {
+       /* if (requestCode == PROFILE_ACT_UPDATE) {
             applyChanges();
-        }
+        }*/
     }
 
     private void applyChanges() {
@@ -388,7 +419,7 @@ public class InClass08Activity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int permsRequestCode,@NonNull String[] permissions,@NonNull int[] grantResults) {
 
         super.onRequestPermissionsResult(permsRequestCode, permissions, grantResults);
         switch (permsRequestCode) {
@@ -396,6 +427,8 @@ public class InClass08Activity extends AppCompatActivity {
             case 200:
 
                 boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
+                boolean readAccess = grantResults[1] == PackageManager.PERMISSION_GRANTED;
+                boolean writeAccess = grantResults[2] == PackageManager.PERMISSION_GRANTED;
                 break;
 
         }
@@ -613,4 +646,9 @@ public class InClass08Activity extends AppCompatActivity {
                 });
     }
 
+    @Override
+    public void receiveImgUri(Uri img) {
+        newProfilePicInput = img;
+       //profilePress(retrieveImg);
+    }
 }

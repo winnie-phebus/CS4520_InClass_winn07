@@ -13,6 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:text="Save"
+        app:layout_constraintBottom_toBottomOf="@+id/ic09_edit_backNoSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/ic09_edit_backNoSave"
@@ -20,9 +21,11 @@
 
     <ImageView
         android:id="@+id/ic09_edit_profilePicDisp"
-        android:layout_width="255dp"
-        android:layout_height="250dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/ic09_edit_newUsernameInput"
         app:layout_constraintTop_toBottomOf="@+id/ic09_edit_newUsernameInput"
         tools:srcCompat="@drawable/select_avatar" />
@@ -42,6 +45,7 @@
         android:layout_marginTop="16dp"
         android:text="New photo"
         app:layout_constraintEnd_toEndOf="@+id/ic09_edit_profilePicDisp"
+        app:layout_constraintStart_toStartOf="@+id/ic09_edit_profilePicDisp"
         app:layout_constraintTop_toBottomOf="@+id/ic09_edit_profilePicDisp" />
 
     <EditText
@@ -77,9 +81,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="15dp"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
-        android:text="Return without saving"
+        android:text="X"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ic09_edit_takePicture" />

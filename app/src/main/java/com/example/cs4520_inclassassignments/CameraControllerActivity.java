@@ -2,8 +2,10 @@ package com.example.cs4520_inclassassignments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -40,7 +42,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.concurrent.ExecutionException;
 
-public class CameraControllerActivity extends AppCompatActivity implements View.OnClickListener, DisplayTakenPhoto {
+public class CameraControllerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int PERMISSIONS_CODE = 0x100;
     public static final String IMG_KEY = "ic09 IMG URL";
@@ -55,7 +57,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
     private int lenseFacing;
     private int lenseFacingBack;
     private int lenseFacingFront;
-    private DisplayTakenPhoto mListener;
+    // private DisplayTakenPhoto mListener;
     private FloatingActionButton buttonTakePhoto;
     private FloatingActionButton buttonSwitchCamera;
     private FloatingActionButton buttonOpenGallery;
@@ -64,6 +66,12 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
     private FirebaseStorage storage;
     private ActivityResultLauncher<Intent> galleryLauncher;
 
+    public void setImgHandler(CameraControllerActivity.imgHandler imgHandler) {
+        this.imgHandler = imgHandler;
+    }
+
+    private imgHandler imgHandler;
+
     public void setParent(Context parent) {
         this.parent = parent;
     }
@@ -71,7 +79,9 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
     @Override
     protected void onStart() {
         super.onStart();
-        mListener = (DisplayTakenPhoto) this;
+       // mListener = (DisplayTakenPhoto) this;
+        // imgHandler = (imgHandler) ;
+
     }
 
     @Override
@@ -176,7 +186,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
                     @Override
                     public void onImageSaved(@NonNull ImageCapture.OutputFileResults outputFileResults) {
                         Log.d("demo", "onImageSaved: " + outputFileResults.getSavedUri());
-                        mListener.onTakePhoto(outputFileResults.getSavedUri());
+                        onTakePhoto(outputFileResults.getSavedUri());
                     }
 
                     @Override
@@ -205,7 +215,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
                 takePhoto();
                 break;
             case R.id.ic09_camera_gallery:
-                mListener.onOpenGalleryPressed();
+                onOpenGalleryPressed();
                 break;
             case R.id.ic09_camera_flip:
                 if (lenseFacing == lenseFacingBack) {
@@ -224,7 +234,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
     }*/
 
 
-    @Override
+    // @Override
     public void onTakePhoto(Uri imageUri) {
         // dk about this one
         returnImg(imageUri);
@@ -280,4 +290,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
                 });
     }
 
+    public interface imgHandler {
+        void receiveImgUri(Uri img);
+    }
 }
