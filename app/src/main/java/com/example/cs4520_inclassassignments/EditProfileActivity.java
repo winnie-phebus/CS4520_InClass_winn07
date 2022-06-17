@@ -35,7 +35,7 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ic09_edit_profile);
+        //setContentView(R.layout.activity_ic09_edit_profile);
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -47,8 +47,6 @@ public class EditProfileActivity extends AppCompatActivity {
 
 
         newUsername.setText(user.getDisplayName());
-        // TODO fix image ressource change
-        // imageDisp.setImageResource(user.getPhotoUrl());
 
         // show avatar
         Picasso.get().load(user.getPhotoUrl()).into(imageDisp);
