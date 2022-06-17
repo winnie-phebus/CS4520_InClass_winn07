@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MessagingFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/ic08_mess_friendName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/ic08_mess_newMessageBody"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="24dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ic08_img_button"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/ic08_mess_sendMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ic8_send_message"
+            app:layout_constraintBottom_toBottomOf="@+id/ic08_mess_newMessageBody"
+            app:layout_constraintEnd_toEndOf="@+id/ic08_mess_recyclerView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ic08_mess_recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/ic08_mess_newMessageBody"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ic08_mess_friendName" />
+
+        <Button
+            android:id="@+id/ic08_mess_toHome"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:text="@string/ic8_return_to_messages"
+            app:layout_constraintBottom_toBottomOf="@+id/ic08_mess_friendName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ic08_mess_friendName" />
+
+        <Button
+            android:id="@+id/ic08_img_button"
+            style="@style/Widget.Material3.Button.IconButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            app:icon="@drawable/icons8_image_36___"
+            app:layout_constraintEnd_toStartOf="@+id/ic08_mess_sendMessage"
+            app:layout_constraintTop_toTopOf="@+id/ic08_mess_sendMessage"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <ImageView
+            android:id="@+id/ic09_addImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:maxWidth="250dp"
+            android:maxHeight="250dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/ic08_mess_newMessageBody"
+            app:layout_constraintStart_toStartOf="@+id/ic08_mess_recyclerView"
+            app:srcCompat="@drawable/select_avatar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

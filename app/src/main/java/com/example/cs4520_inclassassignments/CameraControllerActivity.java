@@ -280,4 +280,6 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
                 });
     }
 
+    public interface DataManager {
+    }
 }
