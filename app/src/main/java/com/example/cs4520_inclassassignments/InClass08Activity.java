@@ -63,6 +63,7 @@ public class InClass08Activity extends AppCompatActivity {
     ArrayList<Conversation> convos;
     int RESULT_OK = 1;
     int RESULT_CANCELED = 0;
+    private int makeChanges;
 
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private ConversationAdapter convoAdapter;
@@ -188,17 +189,30 @@ public class InClass08Activity extends AppCompatActivity {
                 logOutAccount();
             }
         });
+
+        // changes to be made to profile from Edit Profile page
+        // default to 0
+        makeChanges = (int) getIntent().getIntExtra("save_changes", 0);
+        makesChangesFromEdit();
     }
 
     // TO-DO: make a display for the user that lets them input the new name OR/AND profile photo they'd like
     private void profilePress() {
 
         Intent toEditProfile = new Intent(this, EditProfileActivity.class);
-        toEditProfile.putExtra("user", user);
+        //toEditProfile.putExtra("user", user);
         // TODO: find better way to wait for result from edit activity.
-        startActivityForResult(toEditProfile, 1);
-
+        startActivity(toEditProfile);
         MainActivity.showToast(InClass08Activity.this, "Not implemented yet, sorry!");
+    }
+
+    // apply changes to the profile if coming from EditProfile
+    private void makesChangesFromEdit() {
+
+        if (this.makeChanges == 1){
+            applyChanges();
+        }
+
     }
 
     @Override

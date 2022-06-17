@@ -48,7 +48,7 @@
         android:id="@+id/ic09_camera_capture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="75dp"
         android:clickable="true"
         android:src="@drawable/ic_baseline_camera_24"
         app:layout_constraintBottom_toBottomOf="@+id/ic09_camera_container"
