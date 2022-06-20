@@ -1,13 +1,9 @@
 package com.example.cs4520_inclassassignments;
 
-import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,11 +38,17 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.concurrent.ExecutionException;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 09
+ */
 public class CameraControllerActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final int PERMISSIONS_CODE = 0x100;
     public static final String IMG_KEY = "ic09 IMG URL";
     public static final String TAG = "IC09_CCA";
+    private static final int PERMISSIONS_CODE = 0x100;
     Context parent;
     private ListenableFuture<ProcessCameraProvider> cameraProviderFuture;
     private PreviewView previewView;
@@ -65,12 +67,11 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
     // https://github.com/sakibnm/CameraXJava/blob/master/app/src/main/java/space/sakibnm/cameraxdemo/MainActivity.java
     private FirebaseStorage storage;
     private ActivityResultLauncher<Intent> galleryLauncher;
+    private imgHandler imgHandler;
 
     public void setImgHandler(CameraControllerActivity.imgHandler imgHandler) {
         this.imgHandler = imgHandler;
     }
-
-    private imgHandler imgHandler;
 
     public void setParent(Context parent) {
         this.parent = parent;
@@ -79,7 +80,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
     @Override
     protected void onStart() {
         super.onStart();
-       // mListener = (DisplayTakenPhoto) this;
+        // mListener = (DisplayTakenPhoto) this;
         // imgHandler = (imgHandler) ;
 
     }
@@ -102,7 +103,6 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
         buttonSwitchCamera.setOnClickListener(this);
         buttonOpenGallery.setOnClickListener(this);
 
-
         // default to back camera
         lenseFacing = lenseFacingBack;
 
@@ -110,7 +110,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
         storage = FirebaseStorage.getInstance();
 
         //TODO: this might not be working;
-        enforceCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE, "Permission needed.");
+        // enforceCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE, "Permission needed.");
 
         //Retrieving an image from gallery....
         galleryLauncher = registerForActivityResult(
@@ -196,7 +196,7 @@ public class CameraControllerActivity extends AppCompatActivity implements View.
                 });
     }
 
-    public void returnImg(Uri imgUri){
+    public void returnImg(Uri imgUri) {
         // onUploadButtonPressed(imgUri);
         Log.d(TAG, String.valueOf(imgUri));
         final Intent data = new Intent();

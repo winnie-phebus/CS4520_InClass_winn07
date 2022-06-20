@@ -10,7 +10,7 @@ import java.util.List;
  * TEAM 06
  *
  * @author Alix Heudebourg & Winnie Phebus
- * Assignment 08
+ * Assignment 08 + 09
  */
 public class Conversation implements Parcelable {
 

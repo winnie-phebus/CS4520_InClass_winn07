@@ -12,7 +12,7 @@ import retrofit2.http.Url;
  * TEAM 06
  *
  * @author Alix Heudebourg & Winnie Phebus
- * Assignment 08
+ * Assignment 09
  */
 public class Message implements Parcelable {
 
@@ -49,8 +49,10 @@ public class Message implements Parcelable {
         return img;
     }
 
-    public void setImg(Uri img) {
-        this.img = img;
+    public void setImg(String img){
+        if (img != null) {
+            this.img = Uri.parse(img);
+        }
     }
 
     @Override

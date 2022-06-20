@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
  * TEAM 06
  *
  * @author Alix Heudebourg & Winnie Phebus
- * Assignment 08
+ * Assignment 09
  */
 public class ic08_RegisterFragment extends Fragment {
 

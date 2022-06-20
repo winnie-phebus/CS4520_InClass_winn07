@@ -19,7 +19,7 @@ import java.util.List;
  * TEAM 06
  *
  * @author Alix Heudebourg & Winnie Phebus
- * Assignment 08
+ * Assignment 08 + 09
  */
 public class ConversationAdapter extends RecyclerView.Adapter<ConversationAdapter.ViewHolder> {
     private ArrayList<Conversation> allConvos;

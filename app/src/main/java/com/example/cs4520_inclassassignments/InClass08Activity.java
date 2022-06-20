@@ -50,7 +50,7 @@ import java.util.Objects;
  * TEAM 06
  *
  * @author Alix Heudebourg & Winnie Phebus
- * Assignment 08
+ * Assignment 09
  */
 public class InClass08Activity extends AppCompatActivity implements CameraControllerActivity.imgHandler {
     private static final String[] CAMERA_PERMISSION = new String[]{Manifest.permission.CAMERA};
@@ -70,14 +70,14 @@ public class InClass08Activity extends AppCompatActivity implements CameraContro
     int RESULT_CANCELED = 0;
     String newUsernameInput;
     Uri newProfilePicInput, img;
+    ImageView imageDisp;
+    ActivityResultLauncher<Intent> retrieveImg;
     private int makeChanges;
     private RecyclerView.LayoutManager recyclerViewLayoutManager;
     private ConversationAdapter convoAdapter;
     private FirebaseFirestore db;
     private ArrayList<String> allusers;
     private MultiSelectionSpinner mySpinner;
-    ImageView imageDisp;
-    ActivityResultLauncher<Intent> retrieveImg;
     private Uri newImg;
 
     public static void cameraPermissionCheck(Context context) {
@@ -143,12 +143,15 @@ public class InClass08Activity extends AppCompatActivity implements CameraContro
             // open Authentication??
             user = FirebaseAuth().get
         }*/
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_class08);
+
+        cameraPermissionCheck(this);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -419,7 +422,7 @@ public class InClass08Activity extends AppCompatActivity implements CameraContro
     }
 
     @Override
-    public void onRequestPermissionsResult(int permsRequestCode,@NonNull String[] permissions,@NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int permsRequestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         super.onRequestPermissionsResult(permsRequestCode, permissions, grantResults);
         switch (permsRequestCode) {
@@ -649,6 +652,6 @@ public class InClass08Activity extends AppCompatActivity implements CameraContro
     @Override
     public void receiveImgUri(Uri img) {
         newProfilePicInput = img;
-       //profilePress(retrieveImg);
+        //profilePress(retrieveImg);
     }
 }

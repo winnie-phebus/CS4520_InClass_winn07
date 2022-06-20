@@ -22,9 +22,6 @@
             android:name=".CameraControllerActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileActivity"
-            android:exported="false" />
-        <activity
             android:name=".MessageActivity"
             android:exported="false" />
         <activity
