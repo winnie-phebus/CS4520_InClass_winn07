@@ -19,7 +19,7 @@ import java.util.List;
  * TEAM 06
  *
  * @author Alix Heudebourg & Winnie Phebus
- * Assignment 08
+ * Assignment 09
  */
 public class MultiSelectionSpinner extends AppCompatSpinner implements
         DialogInterface.OnMultiChoiceClickListener {

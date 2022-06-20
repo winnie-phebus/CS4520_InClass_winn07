@@ -16,10 +16,11 @@
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_in_class07.xml" value="0.15" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_in_class08.xml" value="0.22" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_message.xml" value="0.22" />
+        <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_message.xml" value="0.1" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_note.xml" value="0.2" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/activity_practice.xml" value="0.1" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/dialog_ic09_edit_profile.xml" value="0.16875" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic03__display.xml" value="0.1734375" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic03__select_avatar.xml" value="0.1734375" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic06_article_display.xml" value="0.1734375" />
@@ -30,6 +31,7 @@
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic08_message_preview.xml" value="0.1" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_ic08_register.xml" value="0.1" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_messaging.xml" value="0.16875" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/fragment_register.xml" value="0.12047101449275362" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/ic06_headline_view.xml" value="0.12047101449275362" />
         <entry key="..\:/Users/doron/Documents/2-CS4520/CS4520_InClass_winn07/app/src/main/res/layout/note_row.xml" value="0.25" />

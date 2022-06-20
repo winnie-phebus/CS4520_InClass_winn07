@@ -23,13 +23,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-import retrofit2.http.Url;
-
 /**
  * TEAM 06
  *
  * @author Alix Heudebourg & Winnie Phebus
- * Assignment 08
+ * Assignment 08 + 09
  */
 public class AuthenticationActivity extends AppCompatActivity implements ic08_RegisterFragment.DataManager, ic08_LoginFragment.DataManager {
 

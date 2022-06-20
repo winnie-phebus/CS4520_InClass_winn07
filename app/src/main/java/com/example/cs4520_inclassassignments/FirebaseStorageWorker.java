@@ -17,6 +17,13 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 
+/**
+ * TEAM 06
+ *
+ * @author Alix Heudebourg & Winnie Phebus
+ * Assignment 09
+ */
+
 public class FirebaseStorageWorker {
     private static final String TAG = "FSW";
 
@@ -59,7 +66,7 @@ public class FirebaseStorageWorker {
                 // Handle unsuccessful uploads
                 int errorCode = ((StorageException) exception).getErrorCode();
                 String errorMessage = exception.getMessage();
-                Log.d(TAG, "Error: "+ errorMessage);
+                Log.d(TAG, "Error: " + errorMessage);
                 // reference: https://firebase.google.com/docs/storage/android/handle-errors if needed
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -72,7 +79,7 @@ public class FirebaseStorageWorker {
         });
     }
 
-    public static void downloadPhoto(String path){ // TODO: possibly change to URl or URI if needed
+    public static void downloadPhoto(String path) { // TODO: possibly change to URl or URI if needed
         FirebaseStorage storage = getStorage();
 
         // Create a reference to a file from a Google Cloud Storage URI

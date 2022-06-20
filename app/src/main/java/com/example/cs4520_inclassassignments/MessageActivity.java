@@ -2,7 +2,6 @@ package com.example.cs4520_inclassassignments;
 
 import static com.example.cs4520_inclassassignments.FirebaseStorageWorker.getStorage;
 
-import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -43,7 +42,7 @@ import java.util.List;
  * TEAM 06
  *
  * @author Alix Heudebourg & Winnie Phebus
- * Assignment 08
+ * Assignment 09
  */
 public class MessageActivity extends AppCompatActivity {
 
@@ -124,16 +123,9 @@ public class MessageActivity extends AppCompatActivity {
                 if (!(TextUtils.isEmpty(newMessage.getText().toString()) && img == null)) {
                     if (img != null) {
                         onUploadButtonPressed(img);
+                    } else {
+                        sendMessageToFB();
                     }
-                    Message message = new Message(user.getDisplayName(), newMessage.getText().toString(), img);
-                    conversation = InClass08Activity.addMessageToFB(
-                            MessageActivity.this,
-                            conversation, message);
-                    updateMessages(conversation);
-                    messageAdapter.notifyItemInserted(conversation.getChatters().size() - 1);
-
-                    newMessage.setText("");
-                    toggleVis(false);
                     //listener.addButtonClicked(note);
                     // TODO: make it in Adapter so that when message sender = user.getNameDisplay, it shows up as 'you'
                     // TODO: AESTHETIC - use the sender view so that text is right aligned
@@ -150,10 +142,22 @@ public class MessageActivity extends AppCompatActivity {
         });
     }
 
+    private void sendMessageToFB() {
+        Message message = new Message(user.getDisplayName(), newMessage.getText().toString(), img);
+        conversation = InClass08Activity.addMessageToFB(
+                MessageActivity.this,
+                conversation, message);
+        updateMessages(conversation);
+        messageAdapter.notifyItemInserted(conversation.getChatters().size() - 1);
+
+        newMessage.setText("");
+        toggleVis(false);
+    }
+
     public void onUploadButtonPressed(Uri imageUri) {
 //        Upload an image from local file....
         final int permissions = 10;
-        enforceCallingOrSelfUriPermission(imageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION, "");
+        // enforceCallingOrSelfUriPermission(imageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION, "");
         // requestPermissions(Manifest.permission.);
         // Log.d(TAG, "onUploadButtonPressed: PERMISSIONS:" + permissions);
 
@@ -172,6 +176,7 @@ public class MessageActivity extends AppCompatActivity {
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // img = storageReference;
                         Toast.makeText(MessageActivity.this, "Upload successful! Check Firestorage at images/" + user.getUid(), Toast.LENGTH_SHORT).show();
+                        sendMessageToFB();
                     }
                 });
     }
@@ -216,6 +221,7 @@ public class MessageActivity extends AppCompatActivity {
 
     public void resultDisplay(ActivityResult result) {
         Log.d(TAG, "resultDisplay: " + result);
+
         if (result.getResultCode() == RESULT_OK) {
             Intent data = result.getData();
             int takeFlags = data.getFlags() & Intent.FLAG_GRANT_READ_URI_PERMISSION;
@@ -223,7 +229,7 @@ public class MessageActivity extends AppCompatActivity {
             img = data.getExtras().getParcelable(CameraControllerActivity.IMG_KEY);
            /* this.getContentResolver().takePersistableUriPermission(img,
                     Intent.FLAG_GRANT_READ_URI_PERMISSION);*/
-            Log.d(TAG, "resultDisplay: img:" + img);
+            Log.d(TAG, "resultDisplay: img:" + img.toString());
 
             //Intent backToSender = new Intent(String.valueOf(selectedImageUri));
             //startActivity(backToSender);

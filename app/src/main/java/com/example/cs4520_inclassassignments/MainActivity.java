@@ -72,6 +72,22 @@ public class MainActivity extends AppCompatActivity {
                 && validPassword(contxt, password);
     }
 
+    // for saving to sharedPref
+    // copied from: https://stackoverflow.com/a/39435730
+    public static void saveObjectToSharedPreference(Context context, String preferenceFileName, String serializedObjectKey, Object object) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
+        SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
+        final Gson gson = new Gson();
+        String serializedObject = gson.toJson(object);
+        sharedPreferencesEditor.putString(serializedObjectKey, serializedObject);
+        sharedPreferencesEditor.apply();
+    }
+
+    // this function simplifies Toast creation throughout the project, abstracted for fun
+    public static void showToast(Context contxt, String toastMsg) {
+        Toast.makeText(contxt, toastMsg, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,34 +123,13 @@ public class MainActivity extends AppCompatActivity {
         basicButtonSetup(inClass07Button, new Intent(MainActivity.this, InClass07.class), "07");
 
         inClass08Button = findViewById(R.id.inClass08Button);
-        basicButtonSetup(inClass08Button, new Intent(MainActivity.this, AuthenticationActivity.class), "08");
+        basicButtonSetup(inClass08Button, new Intent(MainActivity.this, AuthenticationActivity.class), "08 and 09");
     }
 
     // this function simplifies the action of using a button to open a new activity
     private void basicButtonSetup(Button newButton, Intent newIntent, String num) {
         newButton.setText(getResources().getString(R.string.main_in_class_param, num));
         newButton.setOnClickListener(view -> startActivity(newIntent));
-    }
-
-    // for saving to sharedPref
-    // copied from: https://stackoverflow.com/a/39435730
-    public static void saveObjectToSharedPreference(Context context, String preferenceFileName, String serializedObjectKey, Object object) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
-        SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
-        final Gson gson = new Gson();
-        String serializedObject = gson.toJson(object);
-        sharedPreferencesEditor.putString(serializedObjectKey, serializedObject);
-        sharedPreferencesEditor.apply();
-    }
-
-    // copied from: https://stackoverflow.com/a/39435730
-    public static <GenericClass> GenericClass getSavedObjectFromPreference(Context context, String preferenceFileName, String preferenceKey, Class<GenericClass> classType) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(preferenceFileName, 0);
-        if (sharedPreferences.contains(preferenceKey)) {
-            final Gson gson = new Gson();
-            return gson.fromJson(sharedPreferences.getString(preferenceKey, ""), classType);
-        }
-        return null;
     }
 
     // this function simplifies the action of using a button to open a new activity
@@ -144,11 +139,6 @@ public class MainActivity extends AppCompatActivity {
             newIntent.putExtra(extraName, "non-important");
             startActivity(newIntent);
         });
-    }
-
-    // this function simplifies Toast creation throughout the project, abstracted for fun
-    public static void showToast(Context contxt, String toastMsg) {
-        Toast.makeText(contxt, toastMsg, Toast.LENGTH_SHORT).show();
     }
 
 }

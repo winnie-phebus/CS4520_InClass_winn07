@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
  * TEAM 06
  *
  * @author Alix Heudebourg & Winnie Phebus
- * Assignment 08
+ * Assignment 09
  */
 public class ic08_LoginFragment extends Fragment {
 
